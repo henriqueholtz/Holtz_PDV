@@ -33,17 +33,18 @@ namespace Holtz_PDV
 
 
             //Injeção de serviços : services
+            services.AddScoped<SeedingService>();
             services.AddScoped<ClienteService>();
             //services.AddScoped<ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env/*, SeedingService seedingService*/)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment()) //Desenvolvimento
             {
                 app.UseDeveloperExceptionPage();
-                //seedingService.Seed(); //Popular o banco de dados
+                seedingService.Seed(); //Popular o banco de dados
             }
             else
             {

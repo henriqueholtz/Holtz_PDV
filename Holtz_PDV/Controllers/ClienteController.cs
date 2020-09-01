@@ -20,5 +20,19 @@ namespace Holtz_PDV.Controllers
             var list = await _cliente.FindAllAsync();
             return View(list);
         }
+
+        public async Task<IActionResult> Edit()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Details()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Delete()
+        {
+            return View();
+        }
     }
 }

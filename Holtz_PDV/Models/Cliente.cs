@@ -29,6 +29,10 @@ namespace Holtz_PDV.Models
         [Column(TypeName = Tipo.VARCHAR150)]
         public string CliEnd { get; set; } //Endereço
 
+        [Display(Name = "Bairro")]
+        [Column(TypeName = Tipo.VARCHAR130)]
+        public string CliBai { get; set; } //Bairro
+
 
         [Display(Name = "Status")]
         [Column(TypeName = Tipo.STATUS_ATIVO_INATIVO)]

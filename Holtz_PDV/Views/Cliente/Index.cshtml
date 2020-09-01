@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.CliRaz)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CliEnd)
+                @Html.DisplayNameFor(model => model.CliCpfCnpj)
             </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.CliRaz)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CliEnd)
+                @Html.DisplayFor(modelItem => item.CliCpfCnpj)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CliCod">Editar</a>
