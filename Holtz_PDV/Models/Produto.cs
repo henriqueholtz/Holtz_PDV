@@ -16,15 +16,15 @@ namespace Holtz_PDV.Models
 
         [Display(Name = "Nome")]
         [Column(TypeName = Tipo.VARCHAR150)] 
-        public string ProNom { get; set; } //Nome 
+        public string ProNom { get; set; } = null!; //Nome 
 
 
         [Column(TypeName = Tipo.VARCHAR1000)]
-        public string ProObs { get; set; }
+        public string ProObs { get; set; } = null!;
 
 
         [Display(Name = "Status")]
         [Column(TypeName = Tipo.STATUS_ATIVO_INATIVO)]
-        public Status_AtivoInativo ProSts { get; set; } //Status
+        public Status_AtivoInativo? ProSts { get; set; } //Status
     }
 }

@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200902091218_Add_Campos_em_Cliente")]
+    partial class Add_Campos_em_Cliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,13 +54,6 @@ namespace Holtz_PDV.Migrations
                         .HasColumnType("int")
                         .HasMaxLength(8);
 
-                    b.Property<int>("CidCod")
-                        .HasColumnType("int")
-                        .HasMaxLength(8);
-
-                    b.Property<int?>("CidadeCidCod")
-                        .HasColumnType("int");
-
                     b.Property<string>("CliBai")
                         .HasColumnType("VARCHAR(130)");
 
@@ -78,8 +73,6 @@ namespace Holtz_PDV.Migrations
                         .HasColumnType("TINYINT");
 
                     b.HasKey("CliCod");
-
-                    b.HasIndex("CidadeCidCod");
 
                     b.ToTable("Clientes");
                 });
@@ -108,13 +101,6 @@ namespace Holtz_PDV.Migrations
                     b.HasOne("Holtz_PDV.Models.Estado", "Estado")
                         .WithMany()
                         .HasForeignKey("EstadoEstCod");
-                });
-
-            modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
-                {
-                    b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
-                        .WithMany()
-                        .HasForeignKey("CidadeCidCod");
                 });
 #pragma warning restore 612, 618
         }

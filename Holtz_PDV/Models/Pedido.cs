@@ -17,15 +17,15 @@ namespace Holtz_PDV.Models
 
         [Display(Name = "Código Cliente")]
         [MaxLength(8)] 
-        public int PedCliCod { get; set; }
+        public int? PedCliCod { get; set; }
 
 
         [Display(Name = "Data Pedido")]
-        public DateTime PedDta { get; set; }
+        public DateTime? PedDta { get; set; }
 
 
         [Display(Name = "Status")]
         [Column(TypeName = Tipo.STATUS_PEDIDO)]
-        public Status_Duplicata PedSts { get; set; } //Status
+        public Status_Duplicata? PedSts { get; set; } //Status
     }
 }

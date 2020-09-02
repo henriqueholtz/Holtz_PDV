@@ -21,7 +21,7 @@ namespace Holtz_PDV.Models
 
         [Display(Name = "IBGE")]
         [MaxLength(8)]
-        public int CidIBGE { get; set; } //Código IBGE
+        public int? CidIBGE { get; set; } //Código IBGE
 
         public Estado Estado { get; set; }
         [Display(Name = "Cód. Estado")]
