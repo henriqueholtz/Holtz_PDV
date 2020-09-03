@@ -7,6 +7,7 @@ using Holtz_PDV.Models;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,16 +28,17 @@ namespace Holtz_PDV
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
             //Install-Package Pomelo.EntityFrameworkCore.MySql
-            services.AddDbContext<Holtz_PDVContext>(options => options.UseMySql(Configuration.GetConnectionString("MySql"),builder => builder.MigrationsAssembly("Holtz_PDV")));
-            
+            services.AddDbContext<Holtz_PDVContext>(options =>
+            options.UseMySql(Configuration.GetConnectionString("MySql"), builder => builder.MigrationsAssembly("Holtz_PDV")));
 
 
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();
             services.AddScoped<ClienteService>();
-            //services.AddScoped<CidadeService>();
+            services.AddScoped<CidadeService>();
             //services.AddScoped<ProdutoService>();
         }
 

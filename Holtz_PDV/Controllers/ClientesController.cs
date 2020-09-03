@@ -13,9 +13,11 @@ namespace Holtz_PDV.Controllers
     public class ClienteController : Controller
     {
         private readonly ClienteService _clienteService;
-        public ClienteController(ClienteService clienteService)
+        private readonly CidadeService _cidadeService;
+        public ClienteController(ClienteService clienteService, CidadeService cidadeService)
         {
             _clienteService = clienteService;
+            _cidadeService = cidadeService;
         }
         public async Task<IActionResult> Index()
         {
@@ -34,18 +36,40 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(/*viewModel*/);
+            List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
+            return View(viewModel);
         }
 
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não fornecido" });
+            }
+            var obj = await _clienteService.FindByCodAsync(id.Value);
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não existe" });
+            }
+            List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
+            return View(viewModel);
         }
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não fornecido" });
+            }
+            var obj = await _clienteService.FindByCodAsync(id.Value);
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não existe" });
+            }
+            List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
+            return View(viewModel);
         }
         public IActionResult Error(string message)
         {

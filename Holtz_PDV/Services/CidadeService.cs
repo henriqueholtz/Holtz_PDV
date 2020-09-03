@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Holtz_PDV.Models;
@@ -17,6 +16,7 @@ namespace Holtz_PDV.Services
 
         public async Task<List<Cidade>> FindAllAsync()
         {
+            //return await _context.Cidades.OrderBy(x => x.CidNom).ToListAsync();
             return await _context.Cidades.ToListAsync();
         }
     }
