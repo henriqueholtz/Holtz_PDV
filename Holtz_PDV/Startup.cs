@@ -28,13 +28,15 @@ namespace Holtz_PDV
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<Holtz_PDVContext>(options => options.UseMySql(Configuration.GetConnectionString("MySql"),builder => builder.MigrationsAssembly("Holtz_PDV")));
             //Install-Package Pomelo.EntityFrameworkCore.MySql
+            services.AddDbContext<Holtz_PDVContext>(options => options.UseMySql(Configuration.GetConnectionString("MySql"),builder => builder.MigrationsAssembly("Holtz_PDV")));
+            
 
 
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();
             services.AddScoped<ClienteService>();
+            //services.AddScoped<CidadeService>();
             //services.AddScoped<ProdutoService>();
         }
 

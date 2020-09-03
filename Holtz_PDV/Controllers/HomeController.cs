@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Holtz_PDV.Models;
+using Holtz_PDV.Models.ViewModels;
 
 namespace Holtz_PDV.Controllers
 {

@@ -19,5 +19,10 @@ namespace Holtz_PDV.Services
         {
             return await _context.Clientes.ToListAsync();
         }
+
+        public async Task<Cliente> FindByCodAsync(int cod)
+        {
+            return await _context.Clientes.Include(obj => obj.Cidade).FirstOrDefaultAsync(x => x.CliCod == cod);
+        }
     }
 }

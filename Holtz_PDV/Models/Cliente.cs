@@ -54,16 +54,16 @@ namespace Holtz_PDV.Models
 
 
         // -------- \\
-        public Cliente()
-        {
-        }
+        //public Cliente()
+        //{
+        //}
         
-        public Cliente(int cliCod, string cliRaz,int cidCod)
-        {
-            CliCod = cliCod;
-            CliRaz = cliRaz;
+        //public Cliente(int cliCod, string cliRaz,int cidCod)
+        //{
+        //    CliCod = cliCod;
+        //    CliRaz = cliRaz;
 
-            CidCod = cidCod;
-        }
+        //    CidCod = cidCod;
+        //}
     }
 }
