@@ -18,6 +18,12 @@ namespace Holtz_PDV.Services
         {
             //return await _context.Cidades.OrderBy(x => x.CidNom).ToListAsync();
             return await _context.Cidades.ToListAsync();
+            //return await _context.Cidades.Include(obj => obj.Estado).ToListAsync();
+        }
+
+        public async Task<Cidade> FindByCodAsync(int cod)
+        {
+            return await _context.Cidades.Include(obj => obj.Estado).FirstOrDefaultAsync(x => x.CidCod == cod);
         }
     }
 }

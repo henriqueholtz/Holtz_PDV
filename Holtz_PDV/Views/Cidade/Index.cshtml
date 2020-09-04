@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Holtz_PDV.Models.Cidade>
+@{
+    ViewData["Title"] = "Listagem de Cidades";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-default">Novo</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-uppercase bg-info">
+            <th>
+                @Html.DisplayNameFor(model => model.CidCod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CidNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CidIBGE)
+            </th>
+            <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CidCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CidNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CidIBGE)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CidCod">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.CidNom">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.CidIBGE">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
