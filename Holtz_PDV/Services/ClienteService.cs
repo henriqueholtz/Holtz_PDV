@@ -17,7 +17,7 @@ namespace Holtz_PDV.Services
 
         public async Task<List<Cliente>> FindAllAsync()
         {
-            return await _context.Clientes.ToListAsync();
+            return await _context.Clientes.OrderBy(x => x.CliRaz).ToListAsync();
         }
 
         public async Task<Cliente> FindByCodAsync(int cod)

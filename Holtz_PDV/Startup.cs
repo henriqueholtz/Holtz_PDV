@@ -39,6 +39,7 @@ namespace Holtz_PDV
             services.AddScoped<SeedingService>();
             services.AddScoped<ClienteService>();
             services.AddScoped<CidadeService>();
+            services.AddScoped<EstadoService>();
             //services.AddScoped<ProdutoService>();
         }
 

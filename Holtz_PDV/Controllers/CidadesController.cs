@@ -22,9 +22,9 @@ namespace Holtz_PDV.Controllers
         public async Task<IActionResult> Index()
         {
             var cidades = await _cidadeService.FindAllAsync();
+            return View(cidades);
             //List<Estado> estados = await _estadoService.FindAllAsync();
             //CidadeFromViewModel viewModel = new CidadeFromViewModel() { Estados = estados };
-            return View(cidades);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -40,7 +40,7 @@ namespace Holtz_PDV.Controllers
             }
             List<Estado> estados = await _estadoService.FindAllAsync();
             CidadeFromViewModel viewModel = new CidadeFromViewModel { Cidade = cidade, Estados = estados };
-            return View();
+            return View(viewModel);
         }
 
         public IActionResult Error(string message)
