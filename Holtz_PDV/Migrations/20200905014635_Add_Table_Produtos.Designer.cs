@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200905014635_Add_Table_Produtos")]
+    partial class Add_Table_Produtos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
