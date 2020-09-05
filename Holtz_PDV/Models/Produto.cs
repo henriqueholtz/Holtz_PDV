@@ -25,7 +25,7 @@ namespace Holtz_PDV.Models
 
         [Display(Name = "Status")]
         [Column(TypeName = Tipo.STATUS_ATIVO_INATIVO)]
-        public Status_AtivoInativo? ProSts { get; set; } //Status
+        public Status_AtivoInativo? ProSts { get; set; } = Status_AtivoInativo.ATIVO; //Status
 
 
         [Display(Name = "Valor Venda")]

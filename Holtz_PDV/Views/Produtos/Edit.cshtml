@@ -6,3 +6,34 @@
 
 
 <hr /> <!-- Quebra de linha -->
+<div class="row">
+    <!-- Vai garantir que a linha vai ocupar toda a tela -->
+    <div class="col-md-4">
+        <!-- Vai ocupar 1/3 da tela, pois o bootstrap divide em 12 partes, e estamos pegando 4 partes-->
+        <form asp-action="Edit">
+            <div class="form-group">
+                <input type="hidden" asp-for="Produto.ProCod" />
+                <label asp-for="Produto.ProNom" class="control-label">Nome do Produto</label>
+                <input asp-for="Produto.ProNom" class="form-control" />
+                <span asp-validation-for="Produto.ProNom" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+            </div>
+            <div class="form-group">
+                <label asp-for="Produto.ProVlrCus" class="control-label"></label>
+                <input asp-for="Produto.ProVlrCus" class="form-control" />
+                <span asp-validation-for="Produto.ProVlrCus" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+            </div>
+            <div class="form-group">
+                <label asp-for="Produto.ProVlrVen" class="control-label"></label>
+                <input asp-for="Produto.ProVlrVen" class="form-control" />
+                <span asp-validation-for="Produto.ProVlrVen" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts { <!-- Para funcionar as validações (msg) a nivel de Java Script -->
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
+using Holtz_PDV.Models;
+using Holtz_PDV.Models.ViewModels;
+using System.Diagnostics;
 
 namespace Holtz_PDV.Controllers
 {
@@ -20,14 +23,29 @@ namespace Holtz_PDV.Controllers
             return View(produtos);
         }
 
-        public async Task<IActionResult> Edit()
+        public async Task<IActionResult> Edit(int? id) 
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
+            }
+            Produto prod = await _produtoService.FindByCodAsync(id.Value);
+            if (prod == null )
+            {
+                return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
+            }
+            ProdutoFromViewModel viewModel = new ProdutoFromViewModel { Produto = prod };
+            return View(viewModel);
         }
 
         public IActionResult Error(string message)
         {
-            return View();
+            ErrorViewModel viewModel = new ErrorViewModel()
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

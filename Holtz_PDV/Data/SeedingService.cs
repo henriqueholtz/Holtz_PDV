@@ -17,7 +17,7 @@ namespace Holtz_PDV.Data
 
         public void Seed()
         {
-            if(_context.Clientes.Any() || _context.Estados.Any() || _context.Cidades.Any()) //verifica se contém elementos
+            if(_context.Clientes.Any() || _context.Estados.Any() || _context.Cidades.Any() || _context.Produtos.Any()) //verifica se contém elementos
             {
                 return; //DB has been seeded
             }
@@ -47,9 +47,30 @@ namespace Holtz_PDV.Data
             Cliente c4 = new Cliente() { CliCod = 4, CliRaz = "JASPI SISTEMAS", CliNomFan = "JASPI", CliCpfCnpj = "81.286.951/0001-05", CliBai = "BAIRRO D", CliRua = "RUA D", CliSts = Status_AtivoInativo.ATIVO, CidCod = 4 };
             Cliente c5 = new Cliente() { CliCod = 5, CliRaz = "LIVRARIA A ESTUNDATIL", CliNomFan = "A ESTUNDATIL", CliCpfCnpj = "12.121.423/0001-45", CliBai = "BAIRRO E", CliRua = "RUA E", CliSts = Status_AtivoInativo.ATIVO, CidCod = 4 };
 
+            //Produtos
+            Produto p1 = new Produto { ProCod = 1, ProNom = "Notebook i3", ProVlrCus = 1500, ProVlrVen = 1800 };
+            Produto p2 = new Produto { ProCod = 2, ProNom = "PenDrive 8gb", ProVlrCus = 25, ProVlrVen = 30 };
+            Produto p3 = new Produto { ProCod = 3, ProNom = "Monitor 19'", ProVlrCus = 420, ProVlrVen = 510 };
+            Produto p4 = new Produto { ProCod = 4, ProNom = "Memória RAM DDR4 4gb", ProVlrCus = 250, ProVlrVen = 350 };
+            Produto p5 = new Produto { ProCod = 5, ProNom = "Mouse USB", ProVlrCus = 25, ProVlrVen = 32 };
+            Produto p6 = new Produto { ProCod = 6, ProNom = "Mouse USB s/ Fio", ProVlrCus = 45, ProVlrVen = 56 };
+            Produto p7 = new Produto { ProCod = 7, ProNom = "Teclado USB", ProVlrCus = 40, ProVlrVen = 50 };
+            Produto p8 = new Produto { ProCod = 8, ProNom = "Teclado USB s/ Fio", ProVlrCus = 75, ProVlrVen = 88 };
+            Produto p9 = new Produto { ProCod = 9, ProNom = "Processador i3", ProVlrCus = 750, ProVlrVen = 880 };
+            Produto p10 = new Produto { ProCod = 10, ProNom = "Processador i5", ProVlrCus = 1050, ProVlrVen = 1320 };
+
+            //Marcas
+            Marca m1 = new Marca { MarCod = 1, MarNom = "Dell" };
+            Marca m2 = new Marca { MarCod = 2, MarNom = "Acer" };
+            Marca m3 = new Marca { MarCod = 3, MarNom = "Kingston" };
+            Marca m4 = new Marca { MarCod = 4, MarNom = "Positivo" };
+
+
             _context.Estados.AddRange(e1, e2, e3, e4, e5, e6, e7, e8);
             _context.Cidades.AddRange(cd1, cd2, cd3, cd4, cd5, cd6);
             _context.Clientes.AddRange(c1, c2, c3, c4, c5);
+            _context.Produtos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+            _context.Marcas.AddRange(m1, m2, m3, m4);
 
             _context.SaveChanges();
         }
