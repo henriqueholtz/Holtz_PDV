@@ -20,7 +20,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.MarSts)
             </th>
-            <!--<th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
+            <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
     </thead>
     <tbody>
@@ -37,9 +37,9 @@
                     @Html.DisplayFor(modelItem => item.MarSts)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.MarCod">Editar</a>-->
-                    <a asp-action="Details" asp-route-id="@item.MarCod">Detalhes</a>-->
-                    <a asp-action="Delete" asp-route-id="@item.MarCod">Remover</a>-->
+                    <a asp-action="Edit" asp-route-id="@item.MarCod">Editar </a>
+                    <a asp-action="Details" asp-route-id="@item.MarCod">Detalhes </a>
+                    <a asp-action="Delete" asp-route-id="@item.MarCod">Remover </a>
                 </td>
             </tr>
         }
