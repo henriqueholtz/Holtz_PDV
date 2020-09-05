@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
+using Holtz_PDV.Services.Exceptions;
 using System.Diagnostics;
 
 namespace Holtz_PDV.Controllers
@@ -34,7 +35,38 @@ namespace Holtz_PDV.Controllers
             {
                 RedirectToAction(nameof(Error), new { message = "Nenhum Estado com esse Código!" });
             }
-            return View(estado);
+            EstadoFromViewModel viewModel = new EstadoFromViewModel { Estado = estado };
+            return View(viewModel);
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Estado estado)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new EstadoFromViewModel { Estado = estado };
+                return View(viewModel); //Volta pra view caso o JavaScript esteja desabilitado (e portanto sem validação)
+            }
+            if (id != estado.EstCod)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Os Códigoss não correspondem." });
+            }
+            try
+            {
+                await _estadoService.UpdateAsync(estado);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            catch (DbConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         public IActionResult Error(string message)

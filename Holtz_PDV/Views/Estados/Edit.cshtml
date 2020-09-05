@@ -1,6 +1,33 @@
-﻿
+﻿@model Holtz_PDV.Models.ViewModels.EstadoFromViewModel
 @{
     ViewData["Title"] = "Editar Estado";
 }
 <h3>@ViewData["Title"]</h3>
 
+<hr /> <!-- Quebra de linha -->
+<div class="row">
+    <!-- Vai garantir que a linha vai ocupar toda a tela -->
+    <div class="col-md-4">
+        <!-- Vai ocupar 1/3 da tela, pois o bootstrap divide em 12 partes, e estamos pegando 4 partes-->
+        <form asp-action="Edit">
+            <div class="form-group">
+                <input type="hidden" asp-for="Estado.EstCod" />
+                <label asp-for="Estado.EstNom" class="control-label">Nome</label>
+                <input asp-for="Estado.EstNom" class="form-control" />
+                <span asp-validation-for="Estado.EstNom" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado.EstUf" class="control-label"></label>
+                <input asp-for="Estado.EstUf" class="form-control" />
+                <span asp-validation-for="Estado.EstUf" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts { <!-- Para funcionar as validações (msg) a nivel de Java Script -->
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
