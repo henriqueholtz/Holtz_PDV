@@ -16,5 +16,6 @@ namespace Holtz_PDV.Models
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Cidade> Cidades { get; set; }
         public DbSet<Estado> Estados { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
     }
 }

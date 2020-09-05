@@ -40,7 +40,7 @@ namespace Holtz_PDV
             services.AddScoped<ClienteService>();
             services.AddScoped<CidadeService>();
             services.AddScoped<EstadoService>();
-            //services.AddScoped<ProdutoService>();
+            services.AddScoped<ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

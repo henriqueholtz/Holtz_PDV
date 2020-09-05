@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Holtz_PDV.Controllers
 {
-    public class ClienteController : Controller
+    public class ClientesController : Controller
     {
         private readonly ClienteService _clienteService;
         private readonly CidadeService _cidadeService;
-        public ClienteController(ClienteService clienteService, CidadeService cidadeService)
+        public ClientesController(ClienteService clienteService, CidadeService cidadeService)
         {
             _clienteService = clienteService;
             _cidadeService = cidadeService;
