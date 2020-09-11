@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Holtz_PDV.Models;
+using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services.Exceptions;
 using Microsoft.EntityFrameworkCore; //ToListAsync
 

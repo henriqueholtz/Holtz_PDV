@@ -8,15 +8,18 @@ using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
 using Holtz_PDV.Services.Exceptions;
 using System.Diagnostics;
+using AutoMapper;
 
 namespace Holtz_PDV.Controllers
 {
     public class EstadosController : Controller
     {
         private readonly EstadoService _estadoService;
-        public EstadosController(EstadoService estadoService)
+        private readonly IMapper _mapper;
+        public EstadosController(EstadoService estadoService, IMapper mapper)
         {
             _estadoService = estadoService;
+            _mapper = mapper;
         }
 
 
@@ -24,6 +27,11 @@ namespace Holtz_PDV.Controllers
         {
             List<Estado> estados = await _estadoService.FindAllAsync();
             return View(estados);
+            //var estados = await _estadoService.FindAllAsync();
+            //var viewModel = _mapper.Map<List<EstadoFromViewModel>>(await _estadoService.FindAllAsync());
+            //return View(viewModel);
+            //var estados2 = _mapper.Map<List<Estado>, List<EstadoFromViewModel>>(estados);
+            //return View(estados2);
         }
 
 
@@ -50,11 +58,15 @@ namespace Holtz_PDV.Controllers
                 RedirectToAction(nameof(Error), new { message = "Código não fornecido." });
             }
             Estado estado = await _estadoService.FindByCodAsync(id.Value);
+            //var viewModel = _mapper.Map<EstadoFromViewModel>(await _estadoService.FindByCodAsync(id.Value));
             if (estado == null)
             {
                 RedirectToAction(nameof(Error), new { message = "Nenhum Estado com esse Código!" });
             }
-            return View(estado);
+            //return View(viewModel);
+            //return View(_mapper.Map<EstadoFromViewModel>(await _estadoService.FindByCodAsync(id.Value)));
+            return View(_mapper.Map<EstadoFromViewModel>(estado));
+            //return View(estado);
         }
 
         public async Task<IActionResult> Delete(int? id)

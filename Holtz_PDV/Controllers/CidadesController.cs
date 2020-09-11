@@ -40,7 +40,7 @@ namespace Holtz_PDV.Controllers
             }
             List<Estado> estados = await _estadoService.FindAllAsync();
             CidadeFromViewModel viewModel = new CidadeFromViewModel { Cidade = cidade, Estados = estados };
-            return View(viewModel);
+            return View(estados);
         }
 
         public IActionResult Error(string message)

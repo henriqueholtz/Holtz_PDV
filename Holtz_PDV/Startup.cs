@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
+using Holtz_PDV.Models.ViewModels;
 
 namespace Holtz_PDV
 {
@@ -41,6 +43,14 @@ namespace Holtz_PDV
             services.AddScoped<EstadoService>();
             services.AddScoped<ProdutoService>();
             services.AddScoped<MarcaService>();
+            //var config = new AutoMapper.MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap <EstadoFromViewModel, Estado>();
+            //});
+            //IMapper mapper = config.CreateMapper();
+            //services.AddSingleton(mapper);
+            services.AddAutoMapper(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
