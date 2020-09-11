@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Holtz_PDV.Models.ModelsConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,11 @@ namespace Holtz_PDV.Models
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //FluentApi
+            modelBuilder.ApplyConfiguration(new EstadoConfiguration());
+        }
     }
 }

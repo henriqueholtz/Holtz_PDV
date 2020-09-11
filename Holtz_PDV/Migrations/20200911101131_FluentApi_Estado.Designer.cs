@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200911101131_FluentApi_Estado")]
+    partial class FluentApi_Estado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +92,7 @@ namespace Holtz_PDV.Migrations
                         .HasColumnType("INT");
 
                     b.Property<string>("EstNom")
+                        .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("EstUf")

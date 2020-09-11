@@ -34,7 +34,6 @@ namespace Holtz_PDV
             services.AddDbContext<Holtz_PDVContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("MySql"), builder => builder.MigrationsAssembly("Holtz_PDV")));
 
-
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();
             services.AddScoped<ClienteService>();
