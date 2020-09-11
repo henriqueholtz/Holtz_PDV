@@ -30,11 +30,13 @@ namespace Holtz_PDV.Models
 
         [Display(Name = "Valor Venda")]
         [Column(TypeName = Tipo.MOEDA)]
+        [DisplayFormat(DataFormatString = "{0:F2}")] //Duas casas decimais
         public double ProVlrVen { get; set; }
 
 
         [Display(Name = "Valor Custo")]
         [Column(TypeName = Tipo.MOEDA)]
+        [DisplayFormat(DataFormatString = "{0:F2}")] //Duas casas decimais
         public double ProVlrCus { get; set; }
     }
 }

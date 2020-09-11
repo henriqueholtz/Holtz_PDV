@@ -26,6 +26,12 @@ namespace Holtz_PDV.Services
             return await _context.Estados.FirstOrDefaultAsync(x => x.EstCod == cod);
         }
 
+        public async Task InsertAsync(Estado obj)
+        {
+            _context.Estados.Add(obj);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task UpdateAsync(Estado obj)
         {
             bool hasAny = await _context.Estados.AnyAsync(x => x.EstCod == obj.EstCod);
@@ -41,6 +47,20 @@ namespace Holtz_PDV.Services
             catch (DbUpdateConcurrencyException e) //exceção do banco de dados
             {
                 throw new DbConcurrencyException(e.Message);
+            }
+        }
+
+        public async Task RemoveAsync(int id)
+        {
+            try
+            {
+                var obj = await _context.Estados.FindAsync(id);
+                _context.Estados.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException) //vem do banco
+            {
+                throw new IntegrityException("Não é possível deletar um Estado !?");
             }
         }
     }

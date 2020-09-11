@@ -27,7 +27,8 @@
                 <select asp-for="Cidade.EstCod" asp-items="@(new SelectList(Model.Estados,"EstCod","EstNom"))" class="form-control"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                <a asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>

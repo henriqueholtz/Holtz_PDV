@@ -1,0 +1,30 @@
+﻿@model Holtz_PDV.Models.Estado
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EstNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstNom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstUf)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstUf)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EstCod" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" class="btn btn-light">Voltar</a>
+</div>

@@ -1,0 +1,37 @@
+﻿@model Holtz_PDV.Models.Estado
+@{
+    ViewData["Title"] = "Excluir Estado";
+}
+<h2>@ViewData["Title"]</h2>
+
+<h3>Tem certwza que deseja excluir este Estado?</h3>
+
+<div>
+    <h4>Estado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <!-- nome do campo -->
+            @Html.DisplayNameFor(model => model.EstNom)
+        </dt>
+        <dd>
+            <!-- valor do campo-->
+            @Html.DisplayFor(model => model.EstNom)
+        </dd>
+
+        <dt>
+            <!-- nome do campo -->
+            @Html.DisplayNameFor(model => model.EstUf)
+        </dt>
+        <dd>
+            <!-- valor do campo-->
+            @Html.DisplayFor(model => model.EstUf)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EstCod" /> <!-- Campo oculto para enviar o comando delete -->
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Voltar</a>
+    </form>
+</div>

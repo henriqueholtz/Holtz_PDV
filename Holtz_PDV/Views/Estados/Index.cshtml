@@ -5,7 +5,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-default">Novo</a>
+    <a asp-action="Create" class="btn btn-info">Novo</a>
 </p>
 
 <table class="table table-striped table-hover">
@@ -26,22 +26,22 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstCod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstNom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstUf)
-            </td>
-            <td>
-            <a asp-action="Edit" asp-route-id="@item.EstCod">Editar</a>
-            <a asp-action="Details" asp-route-id="@item.EstCod">Detalhes</a>
-            <a asp-action="Delete" asp-route-id="@item.EstCod">Remover</a>
-            </td>
-        </tr>
-                        }
-                    </tbody>
-                </table>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstUf)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EstCod">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.EstCod">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.EstCod">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,4 +1,4 @@
-﻿@model Holtz_PDV.Models.ViewModels.EstadoFromViewModel
+﻿@model Holtz_PDV.Models.Estado
 @{
     ViewData["Title"] = "Editar Estado";
 }
@@ -11,18 +11,19 @@
         <!-- Vai ocupar 1/3 da tela, pois o bootstrap divide em 12 partes, e estamos pegando 4 partes-->
         <form asp-action="Edit">
             <div class="form-group">
-                <input type="hidden" asp-for="Estado.EstCod" />
-                <label asp-for="Estado.EstNom" class="control-label">Nome</label>
-                <input asp-for="Estado.EstNom" class="form-control" />
-                <span asp-validation-for="Estado.EstNom" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+                <input type="hidden" max="8" asp-for="EstCod" />
+                <label asp-for="EstNom" class="text-uppercase control-label">Nome</label>
+                <input asp-for="EstNom" class="text-uppercase form-control" maxlength="8" />
+                <span asp-validation-for="EstNom" class="text-uppercase text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
             <div class="form-group">
-                <label asp-for="Estado.EstUf" class="control-label"></label>
-                <input asp-for="Estado.EstUf" class="form-control" />
-                <span asp-validation-for="Estado.EstUf" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+                <label asp-for="EstUf" class="text-uppercase control-label"></label>
+                <input asp-for="EstUf" class="text-uppercase form-control" />
+                <span asp-validation-for="EstUf" class="text-uppercase text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-light">Voltar</a>
             </div>
         </form>
     </div>

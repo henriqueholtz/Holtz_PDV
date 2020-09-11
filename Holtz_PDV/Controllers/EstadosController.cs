@@ -18,11 +18,30 @@ namespace Holtz_PDV.Controllers
         {
             _estadoService = estadoService;
         }
+
+
         public async Task<IActionResult> Index()
         {
             List<Estado> estados = await _estadoService.FindAllAsync();
             return View(estados);
         }
+
+
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
+            }
+            Estado estado = await _estadoService.FindByCodAsync(id.Value);
+            if (estado == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Nenhum Estado com este código" });
+            }
+            return View(estado);
+        }
+
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -35,10 +54,44 @@ namespace Holtz_PDV.Controllers
             {
                 RedirectToAction(nameof(Error), new { message = "Nenhum Estado com esse Código!" });
             }
-            EstadoFromViewModel viewModel = new EstadoFromViewModel { Estado = estado };
-            return View(viewModel);
+            return View(estado);
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Código não fornecido." });
+            }
+            Estado estado = await _estadoService.FindByCodAsync(id.Value);
+            if (estado == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Nenhum Estado com esse Código!" });
+            }
+            return View(estado);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        //POST's
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            try
+            {
+                await _estadoService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e) // exceção a nível de Serviço
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
 
 
         [HttpPost]
@@ -47,13 +100,14 @@ namespace Holtz_PDV.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new EstadoFromViewModel { Estado = estado };
-                return View(viewModel); //Volta pra view caso o JavaScript esteja desabilitado (e portanto sem validação)
+                var estados = await _estadoService.FindAllAsync();
+                return View(estados);
             }
             if (id != estado.EstCod)
             {
                 return RedirectToAction(nameof(Error), new { message = "Os Códigoss não correspondem." });
             }
+
             try
             {
                 await _estadoService.UpdateAsync(estado);
@@ -67,7 +121,15 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
+            catch (InvalidOperationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+
         }
+
+
+
 
         public IActionResult Error(string message)
         {
