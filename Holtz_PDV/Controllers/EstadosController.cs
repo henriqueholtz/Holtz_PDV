@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Holtz_PDV.Models;
+using Holtz_PDV.Models.Enums;
 using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
 using Holtz_PDV.Services.Exceptions;
@@ -26,12 +27,8 @@ namespace Holtz_PDV.Controllers
         public async Task<IActionResult> Index()
         {
             List<Estado> estados = await _estadoService.FindAllAsync();
-            return View(estados);
-            //var estados = await _estadoService.FindAllAsync();
-            //var viewModel = _mapper.Map<List<EstadoFromViewModel>>(await _estadoService.FindAllAsync());
-            //return View(viewModel);
-            //var estados2 = _mapper.Map<List<Estado>, List<EstadoFromViewModel>>(estados);
-            //return View(estados2);
+            //return View(estados);
+            return View(_mapper.Map<List<EstadoFromViewModel>>(estados));
         }
 
 
@@ -43,11 +40,13 @@ namespace Holtz_PDV.Controllers
                 RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
             }
             Estado estado = await _estadoService.FindByCodAsync(id.Value);
+            //Estado estado = await _estadoService.FindByCodAsync(id.Value);
             if (estado == null)
             {
                 RedirectToAction(nameof(Error), new { message = "Nenhum Estado com este código" });
             }
-            return View(estado);
+            //return View(estado);
+            return View(_mapper.Map<EstadoFromViewModel>(estado));
         }
 
 
@@ -76,16 +75,19 @@ namespace Holtz_PDV.Controllers
                 RedirectToAction(nameof(Error), new { message = "Código não fornecido." });
             }
             Estado estado = await _estadoService.FindByCodAsync(id.Value);
+            //Estado estado = await _estadoService.FindByCodAsync(id.Value);
             if (estado == null)
             {
                 RedirectToAction(nameof(Error), new { message = "Nenhum Estado com esse Código!" });
             }
-            return View(estado);
+            //return View(estado);
+            return View(_mapper.Map<EstadoFromViewModel>(estado));
         }
 
         public IActionResult Create()
         {
-            return View();
+            //EstadoFromViewModel viewModel = new EstadoFromViewModel();// { UFs = items };
+            return View(_mapper.Map<EstadoFromViewModel>(new EstadoFromViewModel()));
         }
 
 

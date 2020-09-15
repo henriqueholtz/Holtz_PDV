@@ -17,9 +17,10 @@
                 <span asp-validation-for="EstNom" class="text-uppercase text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
             <div class="form-group">
-                <label asp-for="EstUf" class="text-uppercase control-label"></label>
-                <input asp-for="EstUf" class="text-uppercase form-control" />
-                <span asp-validation-for="EstUf" class="text-uppercase text-danger"></span> <!-- msg erro em baixo do campo -->
+                <!-- ComboBox de Uf -->
+                <label asp-for="EstUf" class="control-label"></label>
+                <select asp-for="EstUf" asp-items="@(new SelectList(Model.UFs))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="EstUf" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-success" />

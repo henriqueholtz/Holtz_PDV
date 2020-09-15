@@ -1,12 +1,12 @@
-﻿@model IEnumerable<Holtz_PDV.Models.Estado>
+﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.EstadoFromViewModel>
 @{
     ViewData["Title"] = "Listagem de Estados";
 }
-<h2>@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-info">Novo</a>
-</p>
+    <div class="col-md-6">
+        <h2>@ViewData["Title"]</h2>
+        <label><a asp-action="Create" class="btn btn-info">Novo</a></label>
+    </div>
 
 <table class="table table-striped table-hover">
     <thead>
@@ -37,9 +37,9 @@
                     @Html.DisplayFor(modelItem => item.EstUf)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EstCod">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.EstCod">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.EstCod">Remover</a>
+                    <a asp-action="Edit" asp-route-id="@item.EstCod" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.EstCod" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.EstCod" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
         }
