@@ -3,10 +3,11 @@
     ViewData["Title"] = "Listagem de Estados";
 }
 
-    <div class="col-md-6">
-        <h2>@ViewData["Title"]</h2>
-        <label><a asp-action="Create" class="btn btn-info">Novo</a></label>
-    </div>
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <a asp-action="Create" class="btn btn-info">Novo</a>
+</div>
 
 <table class="table table-striped table-hover">
     <thead>

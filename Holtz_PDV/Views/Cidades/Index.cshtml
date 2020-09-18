@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Holtz_PDV.Models.Cidade>
+﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.CidadeFromViewModel>
 @{
     ViewData["Title"] = "Listagem de Cidades";
 }
@@ -37,9 +37,9 @@
                     @Html.DisplayFor(modelItem => item.CidIBGE)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CidCod">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.CidNom">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.CidIBGE">Remover</a>
+                    <a asp-action="Edit" asp-route-id="@item.CidCod" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.CidCod" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.CidCod" class="btn btn-danger btn-sm">Remover</a>
                 </td>
             </tr>
         }

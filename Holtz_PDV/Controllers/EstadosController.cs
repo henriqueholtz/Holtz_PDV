@@ -27,7 +27,6 @@ namespace Holtz_PDV.Controllers
         public async Task<IActionResult> Index()
         {
             List<Estado> estados = await _estadoService.FindAllAsync();
-            //return View(estados);
             return View(_mapper.Map<List<EstadoFromViewModel>>(estados));
         }
 

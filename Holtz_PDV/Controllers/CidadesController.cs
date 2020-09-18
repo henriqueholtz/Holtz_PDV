@@ -7,6 +7,7 @@ using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services; //Activity
 using System.Diagnostics;
+using AutoMapper;
 
 namespace Holtz_PDV.Controllers
 {
@@ -14,17 +15,19 @@ namespace Holtz_PDV.Controllers
     {
         private readonly CidadeService _cidadeService;
         private readonly EstadoService _estadoService;
-        public CidadesController(CidadeService cidadeService, EstadoService estadoService)
+        private readonly IMapper _mapper;
+        public CidadesController(CidadeService cidadeService, EstadoService estadoService, IMapper mapper)
         {
             _cidadeService = cidadeService;
             _estadoService = estadoService;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
-            var cidades = await _cidadeService.FindAllAsync();
-            return View(cidades);
-            //List<Estado> estados = await _estadoService.FindAllAsync();
-            //CidadeFromViewModel viewModel = new CidadeFromViewModel() { Estados = estados };
+            //var cidades = await _cidadeService.FindAllAsync();
+            //return View(cidades);
+            List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -33,14 +36,13 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não fornecido" });
             }
-            var cidade = await _cidadeService.FindByCodAsync(id.Value);
+            Cidade cidade = await _cidadeService.FindByCodAsync(id.Value);
             if (cidade == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            List<Estado> estados = await _estadoService.FindAllAsync();
-            CidadeFromViewModel viewModel = new CidadeFromViewModel { Cidade = cidade, Estados = estados };
-            return View(estados);
+            
+            return View(_mapper.Map<CidadeFromViewModel>(cidade));
         }
 
         public IActionResult Error(string message)
