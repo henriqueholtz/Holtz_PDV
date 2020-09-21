@@ -19,6 +19,10 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(p => p.CidNom)
                 .HasColumnType(Tipo.VARCHAR050)
                 .ValueGeneratedNever(); //Remove Identity
+
+            builder.Property(x => x.EstCod)
+                .HasColumnType(Tipo.CODIGO)
+                .ValueGeneratedNever(); //não é AutoNumber
         }
     }
 }

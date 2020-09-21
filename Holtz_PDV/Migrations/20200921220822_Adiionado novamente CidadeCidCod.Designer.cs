@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200921220822_Adiionado novamente CidadeCidCod")]
+    partial class AdiionadonovamenteCidadeCidCod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,6 +49,9 @@ namespace Holtz_PDV.Migrations
                         .HasColumnType("INT");
 
                     b.Property<int?>("CidCod")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CidadeCidCod")
                         .HasColumnType("INT");
 
                     b.Property<string>("CliBai")
@@ -72,7 +77,7 @@ namespace Holtz_PDV.Migrations
 
                     b.HasKey("CliCod");
 
-                    b.HasIndex("CidCod");
+                    b.HasIndex("CidadeCidCod");
 
                     b.ToTable("CLIENTE");
                 });
@@ -150,7 +155,7 @@ namespace Holtz_PDV.Migrations
                 {
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
                         .WithMany()
-                        .HasForeignKey("CidCod");
+                        .HasForeignKey("CidadeCidCod");
                 });
 #pragma warning restore 612, 618
         }

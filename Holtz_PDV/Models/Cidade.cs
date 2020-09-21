@@ -12,8 +12,10 @@ namespace Holtz_PDV.Models
     {
         public int CidCod { get; set; } //Código
         public string CidNom { get; set; } //Nome
+
+        [ForeignKey("Estado")]
+        public int? EstCod { get; set; }  //isso define como pk, e não deixa cadastrar null //EstCod tem q ser igualzinho
+        public virtual Estado Estado { get; set; } = null!;
         public int? CidIBGE { get; set; } //Código IBGE
-        public Estado Estado { get; set; }
-        public int EstCod { get; set; }  //isso define como pk, e não deixa cadastrar null //EstCod tem q ser igualzinho
     }
 }

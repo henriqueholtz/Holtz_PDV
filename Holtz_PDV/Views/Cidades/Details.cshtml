@@ -1,0 +1,51 @@
+﻿@model Holtz_PDV.Models.ViewModels.CidadeFromViewModel
+@{
+    ViewData["Title"] = "Visualizar Cidade";
+}
+<h3>@ViewData["Title"]</h3>
+
+
+<div>
+    <h4>Estado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CidCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CidCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CidNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CidNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CidIBGE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CidIBGE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado.EstNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado.EstNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado.EstUf)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado.EstUf)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CidCod" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" class="btn btn-light">Voltar</a>
+</div>

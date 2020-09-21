@@ -24,6 +24,7 @@ namespace Holtz_PDV.Services
         public async Task<Cidade> FindByCodAsync(int cod)
         {
             return await _context.Cidades.Include(obj => obj.Estado).FirstOrDefaultAsync(x => x.CidCod == cod);
+            //return await _context.Cidades.FirstOrDefaultAsync(x => x.CidCod == cod);
         }
 
     }

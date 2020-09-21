@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Holtz_PDV.Data;
+using AutoMapper;
+using System.ComponentModel.DataAnnotations; //MaxLenght and Key
+using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 
 namespace Holtz_PDV.Models.ModelsConfiguration
 {
@@ -36,10 +39,10 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(x => x.CliTip)
                 .HasColumnType(Tipo.TIPO_PESSOA);
 
-            builder.Ignore(x => x.Cidade); //Para não criar Coluna "CidadeCidCod"
+            builder.Property(x => x.CidCod)
+                .HasColumnType(Tipo.CODIGO)
+                .ValueGeneratedNever(); //não é AutoNumber
 
-            //builder.Property(x => x.CliBai)
-            //    .HasColumnType(Tipo);
         }
     }
 }

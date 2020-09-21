@@ -28,9 +28,9 @@ namespace Holtz_PDV.Models.ViewModels
         [MaxLength(8)]
         public int? CidIBGE { get; set; } //Código IBGE
 
-        public Estado Estado { get; set; }
+        public Estado Estado { get; set; } = null!;
         [Display(Name = "Cód. Estado")]
         [MaxLength(8)]
-        public int EstCod { get; set; }  //isso define como pk, e não deixa cadastrar null //EstCod tem q ser igualzinho
+        public int? EstCod { get; set; }  //isso define como pk, e não deixa cadastrar null //EstCod tem q ser igualzinho
     }
 }

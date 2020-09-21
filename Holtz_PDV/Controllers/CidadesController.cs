@@ -49,6 +49,21 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<CidadeFromViewModel>(cidade));
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
+            }
+            var obj = await _cidadeService.FindByCodAsync(id.Value);
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não existe!" });
+            }
+            return View(_mapper.Map<CidadeFromViewModel>(obj));
+        }
+
+
         public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel
