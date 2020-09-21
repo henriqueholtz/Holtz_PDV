@@ -1,0 +1,39 @@
+﻿@model Holtz_PDV.Models.ViewModels.CidadeFromViewModel
+@{
+    ViewData["Title"] = "Cadastrar Cidade";
+}
+<h3>@ViewData["Title"]</h3>
+<p>@ViewData["Estados"]</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CidNom" class="control-label"></label>
+                <input asp-for="CidNom" class="form-control" />
+                <span asp-validation-for="CidNom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CidIBGE" class="control-label"></label>
+                <input asp-for="CidIBGE" class="form-control" />
+                <span asp-validation-for="CidIBGE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <!-- ComboBox de Uf -->
+                <label asp-for="Estado.EstCod" class="control-label"></label>
+                <select asp-for="Estado.EstCod" asp-items="@(new SelectList(Model.Estados))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="Estado.EstCod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-light">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

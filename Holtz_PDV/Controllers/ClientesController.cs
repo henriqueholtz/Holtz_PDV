@@ -7,6 +7,7 @@ using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace Holtz_PDV.Controllers
 {
@@ -14,15 +15,17 @@ namespace Holtz_PDV.Controllers
     {
         private readonly ClienteService _clienteService;
         private readonly CidadeService _cidadeService;
-        public ClientesController(ClienteService clienteService, CidadeService cidadeService)
+        private readonly IMapper _mapper;
+        public ClientesController(ClienteService clienteService, CidadeService cidadeService,IMapper mapper)
         {
             _clienteService = clienteService;
             _cidadeService = cidadeService;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
             var list = await _clienteService.FindAllAsync();
-            return View(list);
+            return View(_mapper.Map<List<ClienteFromViewModel>>(list));
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -36,9 +39,9 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(viewModel);
+            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
+            return View(_mapper.Map<List<ClienteFromViewModel>>(obj));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -52,9 +55,9 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(viewModel);
+            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
+            return View(_mapper.Map<List<ClienteFromViewModel>>(obj));
         }
         public async Task<IActionResult> Delete(int? id)
         {
@@ -67,9 +70,9 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(viewModel);
+            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
+            return View(_mapper.Map<List<ClienteFromViewModel>>(obj));
         }
         public IActionResult Error(string message)
         {

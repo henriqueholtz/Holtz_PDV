@@ -46,6 +46,11 @@ namespace Holtz_PDV.Data
             Cliente c3 = new Cliente() { CliCod = 3, CliRaz = "Bruna Carol", CliNomFan = "", CliCpfCnpj = "421.006.129-02", CliBai = "BAIRRO A", CliRua = "RUA C", CliSts = Status_AtivoInativo.INATIVO, CidCod = 3 };
             Cliente c4 = new Cliente() { CliCod = 4, CliRaz = "JASPI SISTEMAS", CliNomFan = "JASPI", CliCpfCnpj = "81.286.951/0001-05", CliBai = "BAIRRO D", CliRua = "RUA D", CliSts = Status_AtivoInativo.ATIVO, CidCod = 4 };
             Cliente c5 = new Cliente() { CliCod = 5, CliRaz = "LIVRARIA A ESTUNDATIL", CliNomFan = "A ESTUNDATIL", CliCpfCnpj = "12.121.423/0001-45", CliBai = "BAIRRO E", CliRua = "RUA E", CliSts = Status_AtivoInativo.ATIVO, CidCod = 4 };
+            Cliente c6 = new Cliente { CliCod = 6, CliRaz = "Michel Oscar", CliSts = Status_AtivoInativo.ATIVO, CidCod = 4, CliCpfCnpj = "123.456.789-00" };
+            Cliente c7 = new Cliente { CliCod = 7, CliRaz = "Miguel Junior", CliSts = Status_AtivoInativo.ATIVO, CidCod = 7, CliCpfCnpj = "451.261.411-10" };
+            Cliente c8 = new Cliente { CliCod = 8, CliRaz = "Larissa Dilkin", CliSts = Status_AtivoInativo.ATIVO, CidCod = 2, CliCpfCnpj = "534.456.322-70" };
+            Cliente c9 = new Cliente { CliCod = 9, CliRaz = "Henrique Holtz", CliSts = Status_AtivoInativo.ATIVO, CidCod = 2, CliCpfCnpj = "123.652.666-02" };
+
 
             //Produtos
             Produto p1 = new Produto { ProCod = 1, ProNom = "Notebook i3", ProVlrCus = 1500, ProVlrVen = 1800 };
@@ -68,7 +73,7 @@ namespace Holtz_PDV.Data
 
             _context.Estados.AddRange(e1, e2, e3, e4, e5, e6, e7, e8);
             _context.Cidades.AddRange(cd1, cd2, cd3, cd4, cd5, cd6);
-            _context.Clientes.AddRange(c1, c2, c3, c4, c5);
+            _context.Clientes.AddRange(c1, c2, c3, c4, c5, c6, c7, c8, c9);
             _context.Produtos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
             _context.Marcas.AddRange(m1, m2, m3, m4);
 

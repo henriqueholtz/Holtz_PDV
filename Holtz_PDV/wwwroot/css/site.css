@@ -12,9 +12,9 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
+/* Provide sufficient contrast against white background #0366d6*/
 a {
-  color: #0366d6;
+    color: #363636;
 }
 
 .btn-primary {
@@ -24,9 +24,9 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1C1C1C; /*#1b6ec2*/
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles

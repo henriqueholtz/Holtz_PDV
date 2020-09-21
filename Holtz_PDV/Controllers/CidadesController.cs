@@ -27,6 +27,7 @@ namespace Holtz_PDV.Controllers
             //var cidades = await _cidadeService.FindAllAsync();
             //return View(cidades);
             List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            //return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
             return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
         }
 
@@ -41,7 +42,10 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            
+            List<Estado> estados = await _estadoService.FindAllAsync();
+            CidadeFromViewModel viewModel = new CidadeFromViewModel { Estados = await _estadoService.FindAllAsync() };
+            ViewData["Estados"] = estados.ToList();
+            //CidadeFromViewModel viewModel = new CidadeFromViewModel(await _estadoService.FindAllAsync());
             return View(_mapper.Map<CidadeFromViewModel>(cidade));
         }
 

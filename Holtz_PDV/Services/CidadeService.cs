@@ -25,5 +25,6 @@ namespace Holtz_PDV.Services
         {
             return await _context.Cidades.Include(obj => obj.Estado).FirstOrDefaultAsync(x => x.CidCod == cod);
         }
+
     }
 }

@@ -4,6 +4,7 @@
 }
 <h3>@ViewData["Title"]</h3>
 
+<p>@ViewData["Estados"]</p>
 <hr /> <!-- Quebra de linha -->
 <div class="row">
     <!-- Vai garantir que a linha vai ocupar toda a tela -->
@@ -28,7 +29,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-success" />
-                <a asp-action="Index">Voltar</a>
+                <a asp-action="Index" class="btn btn-light">Voltar</a>
             </div>
         </form>
     </div>

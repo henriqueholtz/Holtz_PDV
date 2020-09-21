@@ -25,6 +25,7 @@ namespace Holtz_PDV.Models
             //FluentApi
             modelBuilder.ApplyConfiguration(new EstadoConfiguration());
             modelBuilder.ApplyConfiguration(new CidadeConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
         }
     }
 }

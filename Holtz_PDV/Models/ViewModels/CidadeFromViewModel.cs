@@ -2,7 +2,6 @@
 using Holtz_PDV.Models.Enums;
 using System.ComponentModel.DataAnnotations; //MaxLenght and Key
 using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
-using Holtz_PDV.Services;
 
 namespace Holtz_PDV.Models.ViewModels
 {
@@ -12,6 +11,7 @@ namespace Holtz_PDV.Models.ViewModels
         {
             Estados = new List<Estado>();
         }
+       
 
         public ICollection<Estado> Estados{ get; set; }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Holtz_PDV.Models.Cliente>
+﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.ClienteFromViewModel>
 @{
     ViewData["Title"] = "Listagem de Clientes";
 }
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.CliCpfCnpj)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CliCod">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.CliCod">Detalhes</a>
-                <a asp-action="Delete" asp-route-id="@item.CliCod">Remover</a>
+                <a asp-action="Edit" asp-route-id="@item.CliCod" class="btn btn-primary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.CliCod" class="btn btn-light btn-sm">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.CliCod" class="btn btn-danger btn-sm">Remover</a>
             </td>
         </tr>
         }
