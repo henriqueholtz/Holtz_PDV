@@ -33,6 +33,11 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(x => x.CliCpfCnpj)
                 .HasColumnType(Tipo.CPF_CNPJ);
 
+            builder.Property(x => x.CliTip)
+                .HasColumnType(Tipo.TIPO_PESSOA);
+
+            builder.Ignore(x => x.Cidade); //Para não criar Coluna "CidadeCidCod"
+
             //builder.Property(x => x.CliBai)
             //    .HasColumnType(Tipo);
         }

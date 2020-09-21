@@ -7,6 +7,12 @@ namespace Holtz_PDV.Models.ViewModels
 {
     public class ClienteFromViewModel
     {
+         public ClienteFromViewModel ()
+        {
+            Cidades = new List<Cidade>();
+        }
+
+
         [Display(Name = "Código")]
         [MaxLength(8)] [Key]
         public int CliCod { get; set; } //Código 
@@ -40,6 +46,11 @@ namespace Holtz_PDV.Models.ViewModels
         [Display(Name = "CPF/CNPJ")]
         [Column(TypeName = Tipo.CPF_CNPJ)]
         public string CliCpfCnpj { get; set; } = null!; //CPF/CNPJ 
+
+
+        [Display(Name = "TIPO")]
+        [Column(TypeName = Tipo.TIPO_PESSOA)] //[RequiredAttribute] ? funciona ?
+        public Tipo_Pessoa CliTip { get; set; } //Tipo
 
         public Cidade Cidade { get; set; } = null!;
 

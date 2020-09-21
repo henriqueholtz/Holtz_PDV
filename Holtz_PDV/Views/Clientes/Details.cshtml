@@ -3,3 +3,71 @@
     ViewData["Title"] = "Visualizar Cliente";
 }
 <h3>@ViewData["Title"]</h3>
+
+
+<div>
+    <h4>Estado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CliCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliRaz)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliRaz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliNomFan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliNomFan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliCpfCnpj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliCpfCnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliSts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliSts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliRua)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliRua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliBai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliBai)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade.CidNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cidade.CidNom)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CliCod" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" class="btn btn-light">Voltar</a>
+</div>

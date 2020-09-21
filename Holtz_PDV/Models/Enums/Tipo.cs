@@ -21,8 +21,8 @@
         public const string STATUS_PEDIDO = "TINYINT";
 
         public const string TIPO_USUARIO = "TINYINT"; //0 - 255
+        public const string TIPO_PESSOA = "TINYINT"; //0-255
 
-        //public const string IBGE = "VARCHAR(2)"; //não precisa? int [MaxLenght(8)] ?
         public const string UF = "VARCHAR(2)";
         public const string CPF_CNPJ = "VARCHAR(18)";
         public const string MOEDA = "DECIMAL(17,2)";

@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations; //MaxLenght and Key
-using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
-using Holtz_PDV.Models.Enums;
+﻿using Holtz_PDV.Models.Enums;
 
 namespace Holtz_PDV.Models
 {
@@ -22,6 +19,7 @@ namespace Holtz_PDV.Models
         public string CliCpfCnpj { get; set; } = null!; //CPF/CNPJ 
 
         public Cidade Cidade { get; set; } = null!;
+        public Tipo_Pessoa CliTip { get; set; } //Tipo
 
         public int? CidCod { get; set; }  //isso define como pk, e não deixa cadastrar null //CidCod tem q ser igualzinho
 

@@ -41,7 +41,7 @@ namespace Holtz_PDV.Controllers
             }
             //List<Cidade> cidades = await _cidadeService.FindAllAsync();
             //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(_mapper.Map<List<ClienteFromViewModel>>(obj));
+            return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -57,7 +57,7 @@ namespace Holtz_PDV.Controllers
             }
             //List<Cidade> cidades = await _cidadeService.FindAllAsync();
             //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(_mapper.Map<List<ClienteFromViewModel>>(obj));
+            return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
         public async Task<IActionResult> Delete(int? id)
         {
@@ -72,7 +72,7 @@ namespace Holtz_PDV.Controllers
             }
             //List<Cidade> cidades = await _cidadeService.FindAllAsync();
             //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
-            return View(_mapper.Map<List<ClienteFromViewModel>>(obj));
+            return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
         public IActionResult Error(string message)
         {
