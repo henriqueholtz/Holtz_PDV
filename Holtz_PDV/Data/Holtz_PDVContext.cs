@@ -27,6 +27,7 @@ namespace Holtz_PDV.Models
             modelBuilder.ApplyConfiguration(new CidadeConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new MarcaConfiguration());
         }
     }
 }
