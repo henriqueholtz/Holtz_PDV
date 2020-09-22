@@ -23,6 +23,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(x => x.EstCod)
                 .HasColumnType(Tipo.CODIGO)
                 .ValueGeneratedNever(); //não é AutoNumber
+
         }
     }
 }

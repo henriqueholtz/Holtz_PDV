@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Holtz_PDV.Models.Produto>
+﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.ProdutoFromViewModel>
 @{
     ViewData["Title"] = "Listagem de Produtos";
 }
@@ -44,9 +44,9 @@
                 @Html.DisplayFor(modelItem => item.ProVlrVen)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProCod">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.ProCod">Detalhes</a>
-                <a asp-action="Delete" asp-route-id="@item.ProCod">Remover</a>
+                <a asp-action="Edit" asp-route-id="@item.ProCod" class="btn btn-primary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.ProCod" class="btn btn-light btn-sm">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.ProCod" class="btn btn-danger btn-sm">Remover</a>
             </td>
         </tr>
         }

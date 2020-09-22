@@ -1,0 +1,55 @@
+﻿@model Holtz_PDV.Models.ViewModels.CidadeFromViewModel
+@{
+    ViewData["Title"] = "Deletar Cidade";
+}
+
+<div class="alert-warning">
+    <h3>@ViewData["Title"]</h3>
+    <h3>Tem certeza que deseja excluir esta Cidade?</h3>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CidCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CidCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CidNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CidNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CidIBGE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CidIBGE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado.EstNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado.EstNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado.EstUf)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado.EstUf)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CidCod" /> <!-- Campo oculto para enviar o comando delete -->
+        <input type="submit" value="Delete" class="btn btn-danger" title="EXCLUIR"/> 
+        <a asp-action="Index" class="btn btn-light">Voltar</a>
+    </form>
+</div>

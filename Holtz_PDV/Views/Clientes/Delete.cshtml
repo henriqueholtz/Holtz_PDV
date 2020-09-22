@@ -2,4 +2,77 @@
 @{
     ViewData["Title"] = "Deletar Cliente";
 }
-<h3>@ViewData["Title"]</h3>
+
+
+<div class="alert-warning">
+    <h3>@ViewData["Title"]</h3>
+    <h3>Tem certeza que deseja excluir este Cliente?</h3>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CliCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliRaz)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliRaz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliNomFan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliNomFan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliCpfCnpj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliCpfCnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliSts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliSts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliRua)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliRua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CliBai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CliBai)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade.CidNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cidade.CidNom)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CliCod" /> <!-- Campo oculto para enviar o comando delete -->
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-light">Voltar</a>
+    </form>
+</div>

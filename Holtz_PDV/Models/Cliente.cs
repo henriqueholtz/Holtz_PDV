@@ -20,7 +20,7 @@ namespace Holtz_PDV.Models
         public string CliCpfCnpj { get; set; } = null!; //CPF/CNPJ 
 
         [ForeignKey("Cidade")]
-        public int? CidCod { get; set; } //isso define como fk, e não deixa cadastrar null //CidCod tem q ser igualzinho
+        public int CidCod { get; set; } //isso define como fk, e não deixa cadastrar null //CidCod tem q ser igualzinho
         public virtual Cidade Cidade { get; set; } = null!;
         public Tipo_Pessoa CliTip { get; set; } //Tipo
 

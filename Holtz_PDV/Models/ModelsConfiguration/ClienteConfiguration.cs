@@ -2,9 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Holtz_PDV.Data;
-using AutoMapper;
-using System.ComponentModel.DataAnnotations; //MaxLenght and Key
-using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 
 namespace Holtz_PDV.Models.ModelsConfiguration
 {

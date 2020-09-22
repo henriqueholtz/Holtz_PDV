@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200922091548_AddTableProduto")]
+    partial class AddTableProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("CidNom")
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<int>("EstCod")
+                    b.Property<int?>("EstCod")
                         .HasColumnType("INT");
 
                     b.HasKey("CidCod");
@@ -43,7 +45,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<int>("CliCod")
                         .HasColumnType("INT");
 
-                    b.Property<int>("CidCod")
+                    b.Property<int?>("CidCod")
                         .HasColumnType("INT");
 
                     b.Property<string>("CliBai")
@@ -138,18 +140,14 @@ namespace Holtz_PDV.Migrations
                 {
                     b.HasOne("Holtz_PDV.Models.Estado", "Estado")
                         .WithMany()
-                        .HasForeignKey("EstCod")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EstCod");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
                 {
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
                         .WithMany()
-                        .HasForeignKey("CidCod")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CidCod");
                 });
 #pragma warning restore 612, 618
         }

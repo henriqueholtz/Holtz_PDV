@@ -24,10 +24,7 @@ namespace Holtz_PDV.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            //var cidades = await _cidadeService.FindAllAsync();
-            //return View(cidades);
             List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            //return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
             return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
         }
 
@@ -45,7 +42,6 @@ namespace Holtz_PDV.Controllers
             List<Estado> estados = await _estadoService.FindAllAsync();
             CidadeFromViewModel viewModel = new CidadeFromViewModel { Estados = await _estadoService.FindAllAsync() };
             ViewData["Estados"] = estados.ToList();
-            //CidadeFromViewModel viewModel = new CidadeFromViewModel(await _estadoService.FindAllAsync());
             return View(_mapper.Map<CidadeFromViewModel>(cidade));
         }
 
@@ -63,6 +59,19 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<CidadeFromViewModel>(obj));
         }
 
+        public async Task<IActionResult> Delete (int? id)
+        {
+            if (id == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
+            }
+            var obj = await _cidadeService.FindByCodAsync(id.Value);
+            if (obj == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Código  não localizado!" });
+            }
+            return View(_mapper.Map<CidadeFromViewModel>(obj));
+        }
 
         public IActionResult Error(string message)
         {

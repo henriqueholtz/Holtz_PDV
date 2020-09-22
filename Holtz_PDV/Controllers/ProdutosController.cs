@@ -7,20 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using System.Diagnostics;
+using AutoMapper;
 
 namespace Holtz_PDV.Controllers
 {
     public class ProdutosController : Controller
     {
         private readonly ProdutoService _produtoService;
-        public ProdutosController(ProdutoService produtoService)
+        private readonly IMapper _mapper;
+        public ProdutosController(ProdutoService produtoService, IMapper mapper)
         {
             _produtoService = produtoService;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
             var produtos = await _produtoService.FindAllAsync();
-            return View(produtos);
+            return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));
         }
 
         public async Task<IActionResult> Edit(int? id) 
@@ -34,8 +37,7 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
             }
-            ProdutoFromViewModel viewModel = new ProdutoFromViewModel { Produto = prod };
-            return View(viewModel);
+            return View();
         }
 
         public IActionResult Error(string message)
