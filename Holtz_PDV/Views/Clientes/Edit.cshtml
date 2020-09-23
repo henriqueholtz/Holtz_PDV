@@ -11,36 +11,54 @@
     <div class="col-md-4">
         <!-- Vai ocupar 1/3 da tela, pois o bootstrap divide em 12 partes, e estamos pegando 4 partes-->
         <form asp-action="Edit">
+
+            <div class="form-group">
+                <label asp-for="CliSts" class="control-label"></label>
+                <select asp-for="CliSts" asp-items="@(new SelectList(Enum.GetValues(typeof(Holtz_PDV.Models.Enums.Status_AtivoInativo))))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="CliSts" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="hidden" asp-for="CliCod" />
                 <label asp-for="CliRaz" class="control-label">Nome/Razão</label>
                 <input asp-for="CliRaz" class="form-control" />
                 <span asp-validation-for="CliRaz" class="text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
+
             <div class="form-group">
                 <label asp-for="CliNomFan" class="control-label"></label>
                 <input asp-for="CliNomFan" class="form-control" />
                 <span asp-validation-for="CliNomFan" class="text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
+
+            <div class="form-group">
+                <label asp-for="CliTip" class="control-label"></label>
+                <select asp-for="CliTip" asp-items="@(new SelectList(Enum.GetValues(typeof(Holtz_PDV.Models.Enums.Tipo_Pessoa))))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="CliTip" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="CliCpfCnpj" class="control-label"></label>
                 <input asp-for="CliCpfCnpj" class="form-control" />
                 <span asp-validation-for="CliCpfCnpj" class="text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
+
             <div class="form-group">
                 <label asp-for="CliBai" class="control-label"></label>
                 <input asp-for="CliBai" class="form-control" />
                 <span asp-validation-for="CliBai" class="text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
+
             <div class="form-group">
                 <label asp-for="CliRua" class="control-label"></label>
                 <input asp-for="CliRua" class="form-control" />
                 <span asp-validation-for="CliRua" class="text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
             <div class="form-group">
-                ComboBox de Cidades
-                <label asp-for="CidCod" class="control-label"></label>
-                <select asp-for="CidCod" asp-items="@(new SelectList(Model.Cidades,"CidCod","CidNom"))" class="form-control"></select>
+                <!-- ComboBox de Cidades -->
+                <label asp-for="Cidade.CidCod" class="control-label"></label>
+                <select asp-for="Cidade.CidCod" asp-items="@(new SelectList(Model.Cidades,"CidCod","CidNom"))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="Cidade.CidCod" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-success" />

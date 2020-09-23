@@ -1,4 +1,4 @@
-﻿@model Holtz_PDV.Models.Marca
+﻿@model Holtz_PDV.Models.ViewModels.MarcaFromViewModel
 @{
     ViewData["Title"] = "Editar Marca";
 }
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-success" />
-                <a asp-action="Index">Voltar</a>
+                <a asp-action="Index" class="btn btn-light">Voltar</a>
             </div>
         </form>
     </div>

@@ -37,7 +37,34 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
             }
-            return View();
+            return View(_mapper.Map<ProdutoFromViewModel>(prod));
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
+            }
+            Produto prod = await _produtoService.FindByCodAsync(id.Value);
+            if (prod == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
+            }
+            return View(_mapper.Map<ProdutoFromViewModel>(prod));
+        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Código não fornecido!" });
+            }
+            Produto prod = await _produtoService.FindByCodAsync(id.Value);
+            if (prod == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
+            }
+            return View(_mapper.Map<ProdutoFromViewModel>(prod));
         }
 
         public IActionResult Error(string message)

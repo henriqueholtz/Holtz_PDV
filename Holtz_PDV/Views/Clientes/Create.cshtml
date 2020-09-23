@@ -1,5 +1,73 @@
 ﻿@model Holtz_PDV.Models.ViewModels.ClienteFromViewModel
+
 @{
+    
     ViewData["Title"] = "Cadastrar Cliente";
 }
 <h3>@ViewData["Title"]</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CliSts" class="control-label"></label>
+                <select asp-for="CliSts" asp-items="@(new SelectList(Enum.GetValues(typeof(Holtz_PDV.Models.Enums.Status_AtivoInativo))))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="CliSts" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CliRaz" class="control-label"></label>
+                <input asp-for="CliRaz" class="form-control" />
+                <span asp-validation-for="CliRaz" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CliNomFan" class="control-label"></label>
+                <input asp-for="CliNomFan" class="form-control" />
+                <span asp-validation-for="CliNomFan" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CliTip" class="control-label"></label>
+                <select asp-for="CliTip" asp-items="@(new SelectList(Enum.GetValues(typeof(Holtz_PDV.Models.Enums.Tipo_Pessoa))))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="CliTip" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CliCpfCnpj" class="control-label"></label>
+                <input asp-for="CliCpfCnpj" class="form-control" />
+                <span asp-validation-for="CliCpfCnpj" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CliRua" class="control-label"></label>
+                <input asp-for="CliRua" class="form-control" />
+                <span asp-validation-for="CliRua" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CliBai" class="control-label"></label>
+                <input asp-for="CliBai" class="form-control" />
+                <span asp-validation-for="CliBai" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <!-- ComboBox de Cidades -->
+                <label asp-for="Cidade.CidCod" class="control-label"></label>
+                <select asp-for="Cidade.CidCod" asp-items="@(new SelectList(Model.Cidades,"CidCod","CidNom"))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="Cidade.CidCod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-light">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Holtz_PDV.Models.ViewModels;
+using System.Diagnostics;
 
 namespace Holtz_PDV.Controllers
 {
@@ -22,6 +23,29 @@ namespace Holtz_PDV.Controllers
         {
             var marcas = await _marcaService.FindAllAsync();
             return View(_mapper.Map<List<MarcaFromViewModel>>(marcas));
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Código não fornecido" });
+            }
+            var obj = await _marcaService.FindByCodAsync(id.Value);
+            if (obj == null)
+            {
+                RedirectToAction(nameof(Error), new { message = "Código não existe" });
+            }
+            return View(_mapper.Map<MarcaFromViewModel>(obj));
+        }
+        public IActionResult Error(string message)
+        {
+            ErrorViewModel viewModel = new ErrorViewModel()
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

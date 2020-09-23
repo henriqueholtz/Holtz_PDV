@@ -22,6 +22,7 @@ namespace Holtz_PDV.Models.ViewModels
 
         [Display(Name = "Nome")]
         [Column(TypeName = Tipo.VARCHAR050)]
+        [Required(ErrorMessage ="Informe o nome da Cidade.")]
         public string CidNom { get; set; } //Nome
 
         [Display(Name = "IBGE")]

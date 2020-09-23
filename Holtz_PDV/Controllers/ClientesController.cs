@@ -22,10 +22,18 @@ namespace Holtz_PDV.Controllers
             _cidadeService = cidadeService;
             _mapper = mapper;
         }
+
+        //GET
         public async Task<IActionResult> Index()
         {
             var list = await _clienteService.FindAllAsync();
             return View(_mapper.Map<List<ClienteFromViewModel>>(list));
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            return View(_mapper.Map<ClienteFromViewModel>(new ClienteFromViewModel(cidades)));
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -39,8 +47,6 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
             return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
 
@@ -55,8 +61,6 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
             return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
         public async Task<IActionResult> Delete(int? id)
@@ -70,10 +74,9 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            //ClienteFromViewModel viewModel = new ClienteFromViewModel { Cliente = obj, Cidades = cidades };
             return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
+
         public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel
@@ -82,6 +85,19 @@ namespace Holtz_PDV.Controllers
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             };
             return View(viewModel);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public  async Task<IActionResult> Create(Cliente cliente)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(_mapper.Map<ClienteFromViewModel>(new ClienteFromViewModel()));
+            }
+            await _clienteService.InsertAsync(cliente);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

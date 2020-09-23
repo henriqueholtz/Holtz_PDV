@@ -28,6 +28,11 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
         }
 
+        public IActionResult Create()
+        {
+            return View(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel()));
+        }
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

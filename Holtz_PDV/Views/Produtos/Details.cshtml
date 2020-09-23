@@ -1,0 +1,57 @@
+﻿@model Holtz_PDV.Models.ViewModels.ProdutoFromViewModel
+@{
+    ViewData["Title"] = "Visualizar Produto";
+}
+<h3>@ViewData["Title"]</h3>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProSts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProSts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProObs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProObs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProVlrCus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProVlrCus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProVlrVen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProVlrVen)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ProCod" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" class="btn btn-light">Voltar</a>
+</div>
