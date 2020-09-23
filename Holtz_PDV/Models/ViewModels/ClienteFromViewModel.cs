@@ -8,7 +8,7 @@ namespace Holtz_PDV.Models.ViewModels
 {
     public class ClienteFromViewModel
     {
-        public ClienteFromViewModel(ICollection<Cidade> cidades = null) //inicia com null
+        public ClienteFromViewModel(ICollection<Cidade> cidades = null, Cliente cliente = null) //inicia com null
         {
             if (cidades == null)
             {
@@ -17,6 +17,19 @@ namespace Holtz_PDV.Models.ViewModels
             else
             {
                 Cidades = cidades;
+            }
+            if (cliente != null)
+            {
+                CliCod = cliente.CliCod;
+                CliRaz = cliente.CliRaz;
+                CliNomFan = cliente.CliNomFan;
+                CliCpfCnpj = cliente.CliCpfCnpj;
+                CliSts = cliente.CliSts;
+                CliRua = cliente.CliRua;
+                CliTip = cliente.CliTip;
+                CliBai = cliente.CliBai;
+                Cidade = cliente.Cidade;
+                CidCod = cliente.CidCod;
             }
         }
 

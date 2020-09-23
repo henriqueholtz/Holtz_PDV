@@ -8,6 +8,7 @@ using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using Holtz_PDV.Services.Exceptions;
 
 namespace Holtz_PDV.Controllers
 {
@@ -47,7 +48,11 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
-            return View(_mapper.Map<ClienteFromViewModel>(obj));
+            List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            ClienteFromViewModel viewModel = new ClienteFromViewModel(cidades,obj);
+            //mapeia do Cliente para o viewModel, e o source : (mapeia do viewModel para o Cliente)
+            return View(_mapper.Map<ClienteFromViewModel>(_mapper.Map<ClienteFromViewModel>(viewModel)));
+            //return View(_mapper.Map<ClienteFromViewModel>(obj)); assim funciona direto, antes de incluir as cidades
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -98,6 +103,48 @@ namespace Holtz_PDV.Controllers
             }
             await _clienteService.InsertAsync(cliente);
             return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _clienteService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e) // exceção a nível de Serviço
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task <IActionResult> Edit(Cliente cliente)
+        { //UPDATE
+            TempData["mensagemErro"] = "Teste";
+            if (!ModelState.IsValid)
+            {
+                TempData["mensagemErro"] = "Não foi possível alterar este cliente.";
+                return View(_mapper.Map<ClienteFromViewModel>(new ClienteFromViewModel(null, cliente)));
+            }
+            try
+            {
+                await _clienteService.UpdateAsync(cliente);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            catch (DbConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
     }
 }
