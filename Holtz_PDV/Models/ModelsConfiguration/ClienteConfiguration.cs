@@ -10,8 +10,10 @@ namespace Holtz_PDV.Models.ModelsConfiguration
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             DefaultConfigs(builder, tableName: "CLIENTE");
+
             builder.HasKey(key => key.CliCod);
             builder.Property(x => x.CliCod)
+                .HasDefaultValue(0)
                 .HasColumnType(Tipo.CODIGO)
                 .ValueGeneratedOnAdd();
             //.ValueGeneratedNever(); //não é AutoNumber

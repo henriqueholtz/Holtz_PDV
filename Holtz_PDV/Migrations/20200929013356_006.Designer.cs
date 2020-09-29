@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200929013356_006")]
+    partial class _006
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,8 +46,7 @@ namespace Holtz_PDV.Migrations
                 {
                     b.Property<int>("CliCod")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasDefaultValue(0);
+                        .HasColumnType("INT");
 
                     b.Property<int?>("CidadeCidCod")
                         .HasColumnName("CidCod")

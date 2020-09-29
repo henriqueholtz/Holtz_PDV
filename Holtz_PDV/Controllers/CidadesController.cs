@@ -8,6 +8,7 @@ using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services; //Activity
 using System.Diagnostics;
 using AutoMapper;
+using Holtz_PDV.Services.Exceptions;
 
 namespace Holtz_PDV.Controllers
 {
@@ -28,9 +29,10 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel()));
+            List<Estado> estados = await _estadoService.FindAllAsync();
+            return View(_mapper.Map<CidadeFromViewModel>(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel(estados))));
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -45,9 +47,8 @@ namespace Holtz_PDV.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Código não existe" });
             }
             List<Estado> estados = await _estadoService.FindAllAsync();
-            CidadeFromViewModel viewModel = new CidadeFromViewModel { Estados = await _estadoService.FindAllAsync() };
-            ViewData["Estados"] = estados.ToList();
-            return View(_mapper.Map<CidadeFromViewModel>(cidade));
+            CidadeFromViewModel viewModel = new CidadeFromViewModel(estados,cidade);
+            return View(_mapper.Map<CidadeFromViewModel>(_mapper.Map<CidadeFromViewModel>(viewModel)));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -86,6 +87,44 @@ namespace Holtz_PDV.Controllers
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             };
             return View(viewModel);
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Create(Cidade cidade)
+        {
+            if (!ModelState.IsValid)
+            {
+                List<Estado> estados = await _estadoService.FindAllAsync();
+                return View(_mapper.Map<CidadeFromViewModel>(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel(estados))));
+            }
+            await _cidadeService.InsertAsync(cidade);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Edit(Cidade cidade)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel(null, cidade)));
+            }
+            try
+            {
+                await _cidadeService.UpdateAsync(cidade);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            catch (DbConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
     }
 }

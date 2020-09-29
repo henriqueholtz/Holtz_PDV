@@ -28,7 +28,8 @@ namespace Holtz_PDV.Models.ViewModels
                 CliRua = cliente.CliRua;
                 CliTip = cliente.CliTip;
                 CliBai = cliente.CliBai;
-                Cidade = cliente.Cidade;
+                //Cidade = cliente.Cidade;
+                //Cidade.CidNom = cliente.Cidade.CidNom;
                 CidCod = cliente.CidadeCidCod;
             }
         }

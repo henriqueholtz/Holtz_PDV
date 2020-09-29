@@ -29,7 +29,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
-                obj.Cidade = null;
+                obj.Cidade = null; // para o EFCore não tentar inserir/atualizar a cidade tambem... 
                 _context.Clientes.Add(obj);
                 
                 await _context.SaveChangesAsync();
@@ -63,6 +63,7 @@ namespace Holtz_PDV.Services
             }
             try
             {
+                obj.Cidade = null; // para o EFCore não tentar atualizar a cidade tambem... 
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
             }

@@ -7,9 +7,25 @@ namespace Holtz_PDV.Models.ViewModels
 {
     public class CidadeFromViewModel
     {
-        public CidadeFromViewModel()
+        public CidadeFromViewModel(ICollection<Estado> estados = null, Cidade cidade = null)
         {
-            Estados = new List<Estado>();
+            if (estados == null)
+            {
+                Estados = new List<Estado>();
+            }
+            else
+            {
+                Estados = estados;
+            }
+            if (cidade != null)
+            {
+                CidCod = cidade.CidCod;
+                CidNom = cidade.CidNom;
+                CidIBGE = cidade.CidIBGE;
+                Estado = cidade.Estado;
+                //Estado.EstUf = cidade.Estado.EstUf;
+                EstCod = cidade.EstadoEstCod;
+            }
         }
        
 

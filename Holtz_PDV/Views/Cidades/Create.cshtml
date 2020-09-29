@@ -21,7 +21,7 @@
             <div class="form-group">
                 <!-- ComboBox de Uf -->
                 <label asp-for="Estado.EstCod" class="control-label"></label>
-                <select asp-for="Estado.EstCod" asp-items="@(new SelectList(Model.Estados))" class="form-control">--Selecione--</select>
+                <select asp-for="Estado.EstCod" asp-items="@(new SelectList(Model.Estados,"EstCod","EstNom"))" class="form-control">--Selecione--</select>
                 <span asp-validation-for="Estado.EstCod" class="text-danger"></span>
             </div>
             <div class="form-group">
