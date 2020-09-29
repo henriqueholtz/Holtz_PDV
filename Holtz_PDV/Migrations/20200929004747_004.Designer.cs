@@ -3,14 +3,16 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    partial class Holtz_PDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200929004747_004")]
+    partial class _004
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,7 +22,6 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
                 {
                     b.Property<int>("CidCod")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INT");
 
                     b.Property<int?>("CidIBGE")
@@ -29,7 +30,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("CidNom")
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<int?>("EstadoEstCod")
+                    b.Property<int>("EstadoEstCod")
                         .HasColumnName("EstCod")
                         .HasColumnType("INT");
 
@@ -46,7 +47,7 @@ namespace Holtz_PDV.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INT");
 
-                    b.Property<int?>("CidadeCidCod")
+                    b.Property<int>("CidadeCidCod")
                         .HasColumnName("CidCod")
                         .HasColumnType("INT");
 
@@ -81,7 +82,6 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Estado", b =>
                 {
                     b.Property<int>("EstCod")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INT");
 
                     b.Property<string>("EstNom")
@@ -142,7 +142,8 @@ namespace Holtz_PDV.Migrations
                     b.HasOne("Holtz_PDV.Models.Estado", "Estado")
                         .WithMany("Cidades")
                         .HasForeignKey("EstadoEstCod")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
@@ -150,7 +151,8 @@ namespace Holtz_PDV.Migrations
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
                         .WithMany("Clientes")
                         .HasForeignKey("CidadeCidCod")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

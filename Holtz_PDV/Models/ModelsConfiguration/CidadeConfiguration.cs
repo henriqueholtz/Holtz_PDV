@@ -14,7 +14,8 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.HasKey(key => key.CidCod);
             builder.Property(x => x.CidCod)
                 .HasColumnType(Tipo.CODIGO)
-                .ValueGeneratedNever(); //Remove Identity
+                .ValueGeneratedOnAdd();
+                //.ValueGeneratedNever(); //Remove Identity
 
             builder.Property(p => p.CidNom)
                 .HasColumnType(Tipo.VARCHAR050)

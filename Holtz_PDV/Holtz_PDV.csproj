@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200929005151_005.cs" />
+    <Compile Remove="Migrations\20200929005151_005.Designer.cs" />
+    <Compile Remove="Migrations\20200929005457_005.cs" />
+    <Compile Remove="Migrations\20200929005457_005.Designer.cs" />
+    <Compile Remove="Migrations\20200929005628_005.cs" />
+    <Compile Remove="Migrations\20200929005628_005.Designer.cs" />
+    <Compile Remove="Migrations\20200929005921_005.cs" />
+    <Compile Remove="Migrations\20200929005921_005.Designer.cs" />
+    <Compile Remove="Migrations\20200929010522_005.cs" />
+    <Compile Remove="Migrations\20200929010522_005.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />

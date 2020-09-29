@@ -14,7 +14,8 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.HasKey(key => key.EstCod);
             builder.Property(x => x.EstCod)
                 .HasColumnType(Tipo.CODIGO)
-                .ValueGeneratedNever(); //Remove Identity
+                .ValueGeneratedOnAdd();
+                //.ValueGeneratedNever(); //Remove Identity
 
             builder.Property(x => x.EstNom)
                 .HasColumnType(Tipo.VARCHAR050)

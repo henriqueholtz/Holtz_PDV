@@ -126,7 +126,6 @@ namespace Holtz_PDV.Controllers
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
         public async Task <IActionResult> Edit(Cliente cliente)
         { //UPDATE
-            TempData["mensagemErro"] = "Teste";
             if (!ModelState.IsValid)
             {
                 TempData["mensagemErro"] = "Não foi possível alterar este cliente.";
