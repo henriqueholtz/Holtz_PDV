@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Holtz_PDV.Models.ModelsConfiguration;
+using System.Data.
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Holtz_PDV.Models
 {
@@ -26,6 +28,7 @@ namespace Holtz_PDV.Models
             modelBuilder.ApplyConfiguration(new EstadoConfiguration());
             modelBuilder.ApplyConfiguration(new CidadeConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new MarcaConfiguration());
         }

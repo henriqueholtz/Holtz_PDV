@@ -15,6 +15,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
 using Holtz_PDV.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Holtz_PDV
 {
@@ -30,10 +33,20 @@ namespace Holtz_PDV
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
 
             services.AddControllersWithViews();
             //Install-Package Pomelo.EntityFrameworkCore.MySql
             services.AddDbContext<Holtz_PDVContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("SQLServer"))); //appsettings.json
             options.UseMySql(Configuration.GetConnectionString("MySql"), builder => builder.MigrationsAssembly("Holtz_PDV")));
 
             //Injeção de serviços : services
@@ -43,14 +56,9 @@ namespace Holtz_PDV
             services.AddScoped<EstadoService>();
             services.AddScoped<ProdutoService>();
             services.AddScoped<MarcaService>();
-            //var config = new AutoMapper.MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap <EstadoFromViewModel, Estado>();
-            //});
-            //IMapper mapper = config.CreateMapper();
-            //services.AddSingleton(mapper);
-            services.AddAutoMapper(typeof(Startup));
 
+            services.AddAutoMapper(typeof(Startup));
+            services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins("https://localhost:44379/").AllowAnyHeader().AllowAnyMethod()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,10 +77,12 @@ namespace Holtz_PDV
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(); //services.AddCors
 
             app.UseEndpoints(endpoints =>
             {

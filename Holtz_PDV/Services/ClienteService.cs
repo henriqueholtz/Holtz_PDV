@@ -29,7 +29,9 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
-                _context.Add(obj);
+                obj.Cidade = null;
+                _context.Clientes.Add(obj);
+                
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e) //exceção do banco de dados

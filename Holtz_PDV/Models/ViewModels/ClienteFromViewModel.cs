@@ -29,7 +29,7 @@ namespace Holtz_PDV.Models.ViewModels
                 CliTip = cliente.CliTip;
                 CliBai = cliente.CliBai;
                 Cidade = cliente.Cidade;
-                CidCod = cliente.CidCod;
+                CidCod = cliente.CidadeCidCod;
             }
         }
 
@@ -78,6 +78,7 @@ namespace Holtz_PDV.Models.ViewModels
         [Required(ErrorMessage ="Obrigatório informar o Tipo.")]
         public Tipo_Pessoa CliTip { get; set; } //Tipo
 
+        [Display(Name = "Cidade")]
         public Cidade Cidade { get; set; } = null!;
 
         [Display(Name = "Cód. Cidade")]
@@ -87,6 +88,7 @@ namespace Holtz_PDV.Models.ViewModels
 
 
         //-----
+        [Display(Name = "Cidades")]
         public ICollection<Cidade> Cidades { get; set; } = new List<Cidade>();
     }
 }

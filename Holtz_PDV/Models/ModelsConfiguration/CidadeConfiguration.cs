@@ -20,7 +20,9 @@ namespace Holtz_PDV.Models.ModelsConfiguration
                 .HasColumnType(Tipo.VARCHAR050)
                 .ValueGeneratedNever(); //Remove Identity
 
-            builder.Property(x => x.EstCod)
+
+            builder.Property(x => x.EstadoEstCod)
+                .HasColumnName("EstCod")
                 .HasColumnType(Tipo.CODIGO)
                 .ValueGeneratedNever(); //não é AutoNumber
 

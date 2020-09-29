@@ -13,7 +13,8 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.HasKey(key => key.CliCod);
             builder.Property(x => x.CliCod)
                 .HasColumnType(Tipo.CODIGO)
-                .ValueGeneratedNever(); //não é AutoNumber
+                .ValueGeneratedOnAdd();
+            //.ValueGeneratedNever(); //não é AutoNumber
 
             builder.Property(x => x.CliRaz)
                 .HasColumnType(Tipo.VARCHAR150);
@@ -36,10 +37,10 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(x => x.CliTip)
                 .HasColumnType(Tipo.TIPO_PESSOA);
 
-            builder.Property(x => x.CidCod)
+            builder.Property(x => x.CidadeCidCod)
+                .HasColumnName("CidCod")
                 .HasColumnType(Tipo.CODIGO)
                 .ValueGeneratedNever(); //não é AutoNumber
-
         }
     }
 }

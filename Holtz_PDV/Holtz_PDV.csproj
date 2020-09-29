@@ -5,26 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200901085504_Initial.cs" />
-    <Compile Remove="Migrations\20200901085504_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20200911095948_FluentApi_Estado.cs" />
-    <Compile Remove="Migrations\20200911095948_FluentApi_Estado.Designer.cs" />
-    <Compile Remove="Migrations\20200921223455_Cliente.cs" />
-    <Compile Remove="Migrations\20200921223455_Cliente.Designer.cs" />
-    <Compile Remove="Migrations\20200921225456_Cidade_NOFK_CidCod.cs" />
-    <Compile Remove="Migrations\20200921225456_Cidade_NOFK_CidCod.Designer.cs" />
-    <Compile Remove="Migrations\20200921225639_Cidade_NOFK_CidCod.cs" />
-    <Compile Remove="Migrations\20200921225639_Cidade_NOFK_CidCod.Designer.cs" />
-    <Compile Remove="Migrations\20200921230722_Cidade_Remove_EstadoEstCod.cs" />
-    <Compile Remove="Migrations\20200921230722_Cidade_Remove_EstadoEstCod.Designer.cs" />
-    <Compile Remove="Migrations\20200921231610_teste.cs" />
-    <Compile Remove="Migrations\20200921231610_teste.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

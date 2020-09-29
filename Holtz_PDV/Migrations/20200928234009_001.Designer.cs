@@ -3,21 +3,23 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    [Migration("20200921225137_Cliente_Cidade_virtual")]
-    partial class Cliente_Cidade_virtual
+    [Migration("20200928234009_001")]
+    partial class _001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
                 {
@@ -29,9 +31,6 @@ namespace Holtz_PDV.Migrations
 
                     b.Property<string>("CidNom")
                         .HasColumnType("VARCHAR(50)");
-
-                    b.Property<int>("EstCod")
-                        .HasColumnType("int");
 
                     b.Property<int?>("EstadoEstCod")
                         .HasColumnType("INT");
@@ -46,9 +45,12 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
                 {
                     b.Property<int>("CliCod")
-                        .HasColumnType("INT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CidCod")
+                    b.Property<int?>("CidadeCidCod")
+                        .HasColumnName("CliCidCod")
                         .HasColumnType("INT");
 
                     b.Property<string>("CliBai")
@@ -66,15 +68,15 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("CliRua")
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<sbyte?>("CliSts")
+                    b.Property<byte?>("CliSts")
                         .HasColumnType("TINYINT");
 
-                    b.Property<sbyte>("CliTip")
+                    b.Property<byte>("CliTip")
                         .HasColumnType("TINYINT");
 
                     b.HasKey("CliCod");
 
-                    b.HasIndex("CidCod");
+                    b.HasIndex("CidadeCidCod");
 
                     b.ToTable("CLIENTE");
                 });
@@ -99,27 +101,23 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Marca", b =>
                 {
                     b.Property<int>("MarCod")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasMaxLength(8);
+                        .HasColumnType("INT");
 
                     b.Property<string>("MarNom")
                         .HasColumnType("VARCHAR(130)");
 
-                    b.Property<sbyte?>("MarSts")
+                    b.Property<byte?>("MarSts")
                         .HasColumnType("TINYINT");
 
                     b.HasKey("MarCod");
 
-                    b.ToTable("Marcas");
+                    b.ToTable("MARCA");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Produto", b =>
                 {
                     b.Property<int>("ProCod")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasMaxLength(8);
+                        .HasColumnType("INT");
 
                     b.Property<string>("ProNom")
                         .HasColumnType("VARCHAR(150)");
@@ -127,7 +125,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("ProObs")
                         .HasColumnType("VARCHAR(1000)");
 
-                    b.Property<sbyte?>("ProSts")
+                    b.Property<byte?>("ProSts")
                         .HasColumnType("TINYINT");
 
                     b.Property<decimal>("ProVlrCus")
@@ -138,21 +136,21 @@ namespace Holtz_PDV.Migrations
 
                     b.HasKey("ProCod");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
                 {
-                    b.HasOne("Holtz_PDV.Models.Estado", "Estado")
-                        .WithMany()
+                    b.HasOne("Holtz_PDV.Models.Estado", null)
+                        .WithMany("Cidades")
                         .HasForeignKey("EstadoEstCod");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
                 {
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
-                        .WithMany()
-                        .HasForeignKey("CidCod");
+                        .WithMany("Clientes")
+                        .HasForeignKey("CidadeCidCod");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,6 @@
 ﻿using Holtz_PDV.Models.Enums;
-using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
+using System.ComponentModel.DataAnnotations.Schema;
+//using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 
 namespace Holtz_PDV.Models
 {
@@ -19,9 +20,9 @@ namespace Holtz_PDV.Models
 
         public string CliCpfCnpj { get; set; } = null!; //CPF/CNPJ 
 
-        [ForeignKey("Cidade")]
-        public int CidCod { get; set; } //isso define como fk, e não deixa cadastrar null //CidCod tem q ser igualzinho
-        public virtual Cidade Cidade { get; set; } = null!;
+        public int CidadeCidCod { get; set; }  //isso define como fk, e não deixa cadastrar null //CidCod tem q ser igualzinho
+
+        public virtual Cidade Cidade { get; set; }
         public Tipo_Pessoa CliTip { get; set; } //Tipo
 
 

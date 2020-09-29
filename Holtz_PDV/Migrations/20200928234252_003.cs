@@ -2,7 +2,7 @@
 
 namespace Holtz_PDV.Migrations
 {
-    public partial class NotNull_FK : Migration
+    public partial class _003 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

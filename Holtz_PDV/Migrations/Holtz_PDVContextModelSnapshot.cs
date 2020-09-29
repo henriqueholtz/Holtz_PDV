@@ -3,6 +3,7 @@ using System;
 using Holtz_PDV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Holtz_PDV.Migrations
@@ -15,7 +16,8 @@ namespace Holtz_PDV.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
                 {
@@ -28,12 +30,13 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("CidNom")
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<int>("EstCod")
+                    b.Property<int>("EstadoEstCod")
+                        .HasColumnName("EstCod")
                         .HasColumnType("INT");
 
                     b.HasKey("CidCod");
 
-                    b.HasIndex("EstCod");
+                    b.HasIndex("EstadoEstCod");
 
                     b.ToTable("CIDADE");
                 });
@@ -41,9 +44,12 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
                 {
                     b.Property<int>("CliCod")
-                        .HasColumnType("INT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CidCod")
+                    b.Property<int>("CidadeCidCod")
+                        .HasColumnName("CidCod")
                         .HasColumnType("INT");
 
                     b.Property<string>("CliBai")
@@ -61,15 +67,15 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("CliRua")
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<sbyte?>("CliSts")
+                    b.Property<byte?>("CliSts")
                         .HasColumnType("TINYINT");
 
-                    b.Property<sbyte>("CliTip")
+                    b.Property<byte>("CliTip")
                         .HasColumnType("TINYINT");
 
                     b.HasKey("CliCod");
 
-                    b.HasIndex("CidCod");
+                    b.HasIndex("CidadeCidCod");
 
                     b.ToTable("CLIENTE");
                 });
@@ -99,7 +105,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("MarNom")
                         .HasColumnType("VARCHAR(130)");
 
-                    b.Property<sbyte?>("MarSts")
+                    b.Property<byte?>("MarSts")
                         .HasColumnType("TINYINT");
 
                     b.HasKey("MarCod");
@@ -118,7 +124,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<string>("ProObs")
                         .HasColumnType("VARCHAR(1000)");
 
-                    b.Property<sbyte?>("ProSts")
+                    b.Property<byte?>("ProSts")
                         .HasColumnType("TINYINT");
 
                     b.Property<decimal>("ProVlrCus")
@@ -135,8 +141,8 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
                 {
                     b.HasOne("Holtz_PDV.Models.Estado", "Estado")
-                        .WithMany()
-                        .HasForeignKey("EstCod")
+                        .WithMany("Cidades")
+                        .HasForeignKey("EstadoEstCod")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -144,8 +150,8 @@ namespace Holtz_PDV.Migrations
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
                 {
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
-                        .WithMany()
-                        .HasForeignKey("CidCod")
+                        .WithMany("Clientes")
+                        .HasForeignKey("CidadeCidCod")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
