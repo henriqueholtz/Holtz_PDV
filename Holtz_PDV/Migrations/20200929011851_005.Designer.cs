@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    [Migration("20200929010627_005")]
+    [Migration("20200929011851_005")]
     partial class _005
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,7 +144,7 @@ namespace Holtz_PDV.Migrations
                     b.HasOne("Holtz_PDV.Models.Estado", "Estado")
                         .WithMany("Cidades")
                         .HasForeignKey("EstadoEstCod")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
@@ -152,7 +152,7 @@ namespace Holtz_PDV.Migrations
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
                         .WithMany("Clientes")
                         .HasForeignKey("CidadeCidCod")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,6 @@
 }
 <h3>@ViewData["Title"]</h3>
 
-<p>@ViewData["Estados"].ToString()</p>
 <hr /> <!-- Quebra de linha -->
 <div class="row">
     <!-- Vai garantir que a linha vai ocupar toda a tela -->
@@ -13,7 +12,7 @@
         <form asp-action="Edit">
             <div class="form-group">
                 <input type="hidden" asp-for="CidCod" />
-                <label asp-for="CidNom" class="control-label">Nome/Razão</label>
+                <label asp-for="CidNom" class="control-label"></label>
                 <input asp-for="CidNom" class="form-control" />
                 <span asp-validation-for="CidNom" class="text-danger"></span> <!-- msg erro em baixo do campo -->
             </div>
