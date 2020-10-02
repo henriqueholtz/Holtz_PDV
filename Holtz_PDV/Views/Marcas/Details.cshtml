@@ -1,0 +1,37 @@
+﻿@model Holtz_PDV.Models.ViewModels.MarcaFromViewModel
+@{
+    ViewData["Title"] = "Visualizar Marca";
+}
+<h3>@ViewData["Title"]</h3>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MarCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarSts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarSts)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MarCod" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" class="btn btn-light">Voltar</a>
+</div>

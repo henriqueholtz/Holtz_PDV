@@ -13,9 +13,11 @@ namespace Holtz_PDV.Models.ViewModels
 
         [Display(Name = "Nome")]
         [Column(TypeName = Tipo.VARCHAR150)]
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "Nome do Produto deve conter de 3 a 150 caracteres.")]
         public string ProNom { get; set; } = null!; //Nome 
 
 
+        [Display(Name = "Obs.")]
         [Column(TypeName = Tipo.VARCHAR1000)]
         public string ProObs { get; set; } = null!;
 

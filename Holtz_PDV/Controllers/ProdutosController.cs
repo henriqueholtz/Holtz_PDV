@@ -6,6 +6,7 @@ using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using System.Diagnostics;
 using AutoMapper;
+using Holtz_PDV.Services.Exceptions;
 
 namespace Holtz_PDV.Controllers
 {
@@ -22,6 +23,12 @@ namespace Holtz_PDV.Controllers
         {
             var produtos = await _produtoService.FindAllAsync();
             return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            //agora não esta implementado, mas depois vai trazer todas as marcas, por isso ja deixei async
+            return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel()));
         }
 
         public async Task<IActionResult> Edit(int? id) 
@@ -73,6 +80,59 @@ namespace Holtz_PDV.Controllers
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             };
             return View(viewModel);
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Create(Produto produto)
+        {//INSERT
+            if (!ModelState.IsValid)
+            {
+                return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel()));
+            }
+            await _produtoService.InsertAsync(produto);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Edit(Produto obj)
+        {//UPDATE
+            if(!ModelState.IsValid)
+            {
+                return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel()));
+            }
+            try
+            {
+                await _produtoService.UpdateAsync(obj);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            catch (DbConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _produtoService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e) // exceção a nível de Serviço
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
     }
 }
