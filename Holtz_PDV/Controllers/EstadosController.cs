@@ -143,6 +143,17 @@ namespace Holtz_PDV.Controllers
 
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Create(Estado estado)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(_mapper.Map<EstadoFromViewModel>(new EstadoFromViewModel()));
+            }
+            await _estadoService.InsertAsync(estado);
+            return RedirectToAction(nameof(Index));
+        }
 
         public IActionResult Error(string message)
         {
