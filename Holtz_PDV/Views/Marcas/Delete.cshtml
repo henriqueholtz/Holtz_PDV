@@ -1,0 +1,43 @@
+﻿@model Holtz_PDV.Models.ViewModels.MarcaFromViewModel
+@{
+    ViewData["Title"] = "Deletar Marca";
+}
+
+
+<div class="alert-warning">
+    <h3>@ViewData["Title"]</h3>
+    <h3>Tem certeza que deseja excluir este Marente?</h3>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MarCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarNom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarSts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarSts)
+        </dd>
+
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="@Model.MarCod" /> <!-- Campo oculto para enviar o comando delete -->
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-light">Voltar</a>
+    </form>
+</div>

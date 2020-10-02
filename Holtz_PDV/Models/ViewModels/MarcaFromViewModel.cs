@@ -13,6 +13,7 @@ namespace Holtz_PDV.Models.ViewModels
 
         [Display(Name = "Nome")]
         [Column(TypeName = Tipo.VARCHAR130)]
+        [StringLength(130, MinimumLength = 3, ErrorMessage = "Nome da Marca deve conter de 3 a 130 caracteres.")]
         public string MarNom { get; set; } = null!;
 
         [Display(Name = "Status")]

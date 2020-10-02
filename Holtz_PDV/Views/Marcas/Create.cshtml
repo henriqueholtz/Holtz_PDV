@@ -1,0 +1,34 @@
+﻿@model Holtz_PDV.Models.ViewModels.MarcaFromViewModel
+@{
+    ViewData["Title"] = "Cadastrar Marca";
+}
+<h3>@ViewData["Title"]</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MarNom" class="control-label"></label>
+                <input asp-for="MarNom" class="form-control" />
+                <span asp-validation-for="MarNom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MarSts" class="control-label"></label>
+                <select asp-for="MarSts" asp-items="@(new SelectList(Enum.GetValues(typeof(Holtz_PDV.Models.Enums.Status_AtivoInativo))))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="MarSts" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-light">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
