@@ -29,9 +29,8 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
-                obj.Cidade = null; // para o EFCore não tentar inserir/atualizar a cidade tambem... 
+                obj.Cidade = null; // para o EFCore não tentar inserir a cidade NOVAMENTE... 
                 _context.Clientes.Add(obj);
-                
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e) //exceção do banco de dados
@@ -63,7 +62,7 @@ namespace Holtz_PDV.Services
             }
             try
             {
-                obj.Cidade = null; // para o EFCore não tentar atualizar a cidade tambem... 
+                //obj.Cidade = null; // para o EFCore não tentar atualizar a cidade tambem... 
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
             }

@@ -5,20 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200929005151_005.cs" />
-    <Compile Remove="Migrations\20200929005151_005.Designer.cs" />
-    <Compile Remove="Migrations\20200929005457_005.cs" />
-    <Compile Remove="Migrations\20200929005457_005.Designer.cs" />
-    <Compile Remove="Migrations\20200929005628_005.cs" />
-    <Compile Remove="Migrations\20200929005628_005.Designer.cs" />
-    <Compile Remove="Migrations\20200929005921_005.cs" />
-    <Compile Remove="Migrations\20200929005921_005.Designer.cs" />
-    <Compile Remove="Migrations\20200929010522_005.cs" />
-    <Compile Remove="Migrations\20200929010522_005.Designer.cs" />
-    <Compile Remove="Migrations\20200929010627_005.cs" />
-    <Compile Remove="Migrations\20200929010627_005.Designer.cs" />
-    <Compile Remove="Migrations\20200929011642_005.cs" />
-    <Compile Remove="Migrations\20200929011642_005.Designer.cs" />
+    <Compile Remove="Migrations\20200930235112_001.cs" />
+    <Compile Remove="Migrations\20200930235112_001.Designer.cs" />
+    <Compile Remove="Migrations\20201001084332_002.cs" />
+    <Compile Remove="Migrations\20201001084332_002.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

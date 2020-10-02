@@ -13,7 +13,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
 
             builder.HasKey(key => key.CliCod);
             builder.Property(x => x.CliCod)
-                .HasDefaultValue(0)
+                //.HasDefaultValue(0) - sql não permite
                 .HasColumnType(Tipo.CODIGO)
                 .ValueGeneratedOnAdd();
             //.ValueGeneratedNever(); //não é AutoNumber

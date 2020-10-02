@@ -18,8 +18,7 @@ namespace Holtz_PDV.Models.ViewModels
         }
 
         [Display(Name = "Código")] [Key]
-        [Range(1, 8, ErrorMessage = "Código Inválido.")]
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[Range(1, 8, ErrorMessage = "Código Inválido.")]
         public int EstCod { get; set; } //Código
 
 

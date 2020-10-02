@@ -25,11 +25,15 @@ namespace Holtz_PDV.Models
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new MarcaConfiguration());
-
+            
             foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.NoAction;  //Para não deletar e atualizar em cascata !!?
             }
+            //foreach (var fk in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetCheckConstraints()))
+            //{
+            //    modelBuilder.Model.GetEntityTypes().Select(x => x.RemoveCheckConstraint(fk.Name));
+            //}
         }
     }
 }

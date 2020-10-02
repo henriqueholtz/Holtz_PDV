@@ -1,6 +1,4 @@
 ﻿using Holtz_PDV.Models.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
-//using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 
 namespace Holtz_PDV.Models
 {

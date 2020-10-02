@@ -63,9 +63,9 @@
 
             <div class="form-group">
                 <!-- ComboBox de Cidades -->
-                <label asp-for="Cidade.CidCod" class="control-label">Cidade</label>
-                <select asp-for="Cidade.CidCod" asp-items="@(new SelectList(Model.Cidades,"CidCod","CidNom"))" class="form-control">--Selecione--</select>
-                <span asp-validation-for="Cidade.CidCod" class="text-danger"></span>
+                <label asp-for="CidadeCidCod" class="control-label">Cidade</label>
+                <select asp-for="CidadeCidCod" asp-items="@(new SelectList(Model.Cidades,"CidCod","CidNom"))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="CidadeCidCod" class="text-danger"></span>
             </div>
             @using (Html.BeginForm())
             {

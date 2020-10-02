@@ -1,10 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 
 namespace Holtz_PDV.Models
 {
     public class Cidade
     {
+        public Cidade(int cidCod, string cidNom, int estCod)
+        {
+            CidCod = cidCod;
+            CidNom = cidNom;
+            EstadoEstCod = estCod;
+        }
+        public Cidade()
+        {
+        }
         public int CidCod { get; set; } //Código
         public string CidNom { get; set; } //Nome
 

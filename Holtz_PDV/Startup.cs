@@ -1,23 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Holtz_PDV.Data;
 using Holtz_PDV.Models;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
-using Holtz_PDV.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Holtz_PDV
 {
@@ -46,8 +38,13 @@ namespace Holtz_PDV
             services.AddControllersWithViews();
             //Install-Package Pomelo.EntityFrameworkCore.MySql
             services.AddDbContext<Holtz_PDVContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("SQLServer"))); //appsettings.json
-            options.UseMySql(Configuration.GetConnectionString("MySql"), builder => builder.MigrationsAssembly("Holtz_PDV")));
+            options.UseSqlServer(Configuration.GetConnectionString("SQLServer"))//appsettings.json
+            /*, ServiceLifetime.Transient*/); //para resolver dupla instância do context
+                                              //options.UseMySql(Configuration.GetConnectionString("MySql"), builder => builder.MigrationsAssembly("Holtz_PDV")));
+
+
+            //inject interface
+            services.AddScoped<IEFCore, EFCoreRepo>();
 
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();

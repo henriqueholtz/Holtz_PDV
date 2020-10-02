@@ -18,7 +18,8 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.HasKey(key => key.MarCod);
             builder.Property(x => x.MarCod)
                 .HasColumnType(Tipo.CODIGO)
-                .ValueGeneratedNever(); //não é AutoNumber
+                .ValueGeneratedOnAdd();
+                //.ValueGeneratedNever(); //Remove Identity
 
             builder.Property(x => x.MarNom)
                 .HasColumnType(Tipo.VARCHAR130)

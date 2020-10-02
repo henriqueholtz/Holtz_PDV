@@ -2,7 +2,7 @@
 
 namespace Holtz_PDV.Migrations
 {
-    public partial class initialSQLServer : Migration
+    public partial class _001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,7 +10,8 @@ namespace Holtz_PDV.Migrations
                 name: "ESTADO",
                 columns: table => new
                 {
-                    EstCod = table.Column<int>(type: "INT", nullable: false),
+                    EstCod = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EstNom = table.Column<string>(type: "VARCHAR(50)", nullable: true),
                     EstUf = table.Column<string>(type: "VARCHAR(2)", nullable: false)
                 },
@@ -23,7 +24,8 @@ namespace Holtz_PDV.Migrations
                 name: "MARCA",
                 columns: table => new
                 {
-                    MarCod = table.Column<int>(type: "INT", nullable: false),
+                    MarCod = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     MarNom = table.Column<string>(type: "VARCHAR(130)", nullable: true),
                     MarSts = table.Column<byte>(type: "TINYINT", nullable: true)
                 },
@@ -36,7 +38,8 @@ namespace Holtz_PDV.Migrations
                 name: "Produto",
                 columns: table => new
                 {
-                    ProCod = table.Column<int>(type: "INT", nullable: false),
+                    ProCod = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProNom = table.Column<string>(type: "VARCHAR(150)", nullable: true),
                     ProObs = table.Column<string>(type: "VARCHAR(1000)", nullable: true),
                     ProSts = table.Column<byte>(type: "TINYINT", nullable: true),
@@ -52,20 +55,20 @@ namespace Holtz_PDV.Migrations
                 name: "CIDADE",
                 columns: table => new
                 {
-                    CidCod = table.Column<int>(type: "INT", nullable: false),
+                    CidCod = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CidNom = table.Column<string>(type: "VARCHAR(50)", nullable: true),
-                    EstadoEstCod = table.Column<int>(nullable: true),
+                    EstCod = table.Column<int>(type: "INT", nullable: true),
                     CidIBGE = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CIDADE", x => x.CidCod);
                     table.ForeignKey(
-                        name: "FK_CIDADE_ESTADO_EstadoEstCod",
-                        column: x => x.EstadoEstCod,
+                        name: "FK_CIDADE_ESTADO_EstCod",
+                        column: x => x.EstCod,
                         principalTable: "ESTADO",
-                        principalColumn: "EstCod",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "EstCod");
                 });
 
             migrationBuilder.CreateTable(
@@ -80,29 +83,28 @@ namespace Holtz_PDV.Migrations
                     CliRua = table.Column<string>(type: "VARCHAR(100)", nullable: true),
                     CliSts = table.Column<byte>(type: "TINYINT", nullable: true),
                     CliCpfCnpj = table.Column<string>(type: "VARCHAR(18)", nullable: true),
-                    CidadeCidCod = table.Column<int>(nullable: true),
+                    CidCod = table.Column<int>(type: "INT", nullable: true),
                     CliTip = table.Column<byte>(type: "TINYINT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CLIENTE", x => x.CliCod);
                     table.ForeignKey(
-                        name: "FK_CLIENTE_CIDADE_CidadeCidCod",
-                        column: x => x.CidadeCidCod,
+                        name: "FK_CLIENTE_CIDADE_CidCod",
+                        column: x => x.CidCod,
                         principalTable: "CIDADE",
-                        principalColumn: "CidCod",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "CidCod");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CIDADE_EstadoEstCod",
+                name: "IX_CIDADE_EstCod",
                 table: "CIDADE",
-                column: "EstadoEstCod");
+                column: "EstCod");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CLIENTE_CidadeCidCod",
+                name: "IX_CLIENTE_CidCod",
                 table: "CLIENTE",
-                column: "CidadeCidCod");
+                column: "CidCod");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

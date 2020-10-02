@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations; //MaxLenght and Key
 using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 using Holtz_PDV.Models.Enums;
-using Holtz_PDV.Services;
 
 namespace Holtz_PDV.Models.ViewModels
 {
@@ -18,7 +17,7 @@ namespace Holtz_PDV.Models.ViewModels
             {
                 Cidades = cidades;
             }
-            if (cliente != null)
+            if (cliente != null) 
             {
                 CliCod = cliente.CliCod;
                 CliRaz = cliente.CliRaz;
@@ -28,9 +27,8 @@ namespace Holtz_PDV.Models.ViewModels
                 CliRua = cliente.CliRua;
                 CliTip = cliente.CliTip;
                 CliBai = cliente.CliBai;
-                //Cidade = cliente.Cidade;
-                //Cidade.CidNom = cliente.Cidade.CidNom;
-                CidCod = cliente.CidadeCidCod;
+                Cidade = cliente.Cidade;
+                CidadeCidCod = cliente.CidadeCidCod;
             }
         }
 
@@ -78,14 +76,15 @@ namespace Holtz_PDV.Models.ViewModels
         [Column(TypeName = Tipo.TIPO_PESSOA)] 
         [Required(ErrorMessage ="Obrigatório informar o Tipo.")]
         public Tipo_Pessoa CliTip { get; set; } //Tipo
+        [Display(Name = "Cód. Cidade")]
+        [MaxLength(8)]
+        [Required(ErrorMessage = "Você deve selecionar uma cidade.")]
+        public int? CidadeCidCod { get; set; }  //isso define como pk, e não deixa cadastrar null //CidCod tem q ser igualzinho
 
         [Display(Name = "Cidade")]
         public Cidade Cidade { get; set; } = null!;
 
-        [Display(Name = "Cód. Cidade")]
-        [MaxLength(8)] [Required(ErrorMessage ="Você deve selecionar uma cidade.")]
-        public int? CidCod { get; set; }  //isso define como pk, e não deixa cadastrar null //CidCod tem q ser igualzinho
-
+        
 
 
         //-----
