@@ -29,6 +29,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
+                obj.CidadeCidCod = obj.Cidade.CidCod;
                 obj.Cidade = null; // para o EFCore não tentar inserir a cidade NOVAMENTE... 
                 _context.Clientes.Add(obj);
                 await _context.SaveChangesAsync();

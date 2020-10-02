@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
-using System.Threading.Tasks;
 
 namespace Holtz_PDV
 {
@@ -33,7 +32,6 @@ namespace Holtz_PDV
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
 
             services.AddControllersWithViews();
             //Install-Package Pomelo.EntityFrameworkCore.MySql
@@ -64,7 +62,7 @@ namespace Holtz_PDV
             if (env.IsDevelopment()) //Desenvolvimento
             {
                 app.UseDeveloperExceptionPage();
-                seedingService.Seed(); //Popular o banco de dados
+                //seedingService.Seed(); //Popular o banco de dados
             }
             else
             {
@@ -79,7 +77,6 @@ namespace Holtz_PDV
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCors(); //services.AddCors
 
             app.UseEndpoints(endpoints =>
             {

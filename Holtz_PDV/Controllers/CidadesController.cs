@@ -126,5 +126,20 @@ namespace Holtz_PDV.Controllers
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Delete(int id)
+        {//DELETE
+            try
+            {
+                await _cidadeService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e) // exceção a nível de Serviço
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
     }
 }

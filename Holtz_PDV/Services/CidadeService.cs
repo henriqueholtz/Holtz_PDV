@@ -33,6 +33,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
+                obj.EstadoEstCod = obj.Estado.EstCod;
                 obj.Estado = null; //para o EF não tentar inserir o Estado novamente
                 _context.Cidades.Add(obj);
                 await _context.SaveChangesAsync();
