@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Holtz_PDV.Data
@@ -13,5 +11,6 @@ namespace Holtz_PDV.Data
         void Delete<t>(t entity) where t : class;
         void Clear();
         Task<bool> SaveChangeAsync();
+        void SaveChange();
     }
 }

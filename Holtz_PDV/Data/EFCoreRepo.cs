@@ -43,5 +43,10 @@ namespace Holtz_PDV.Data
         {
             _context.AddRange(entities);
         }
+
+        public void SaveChange()
+        {
+            _context.SaveChanges();
+        }
     }
 }
