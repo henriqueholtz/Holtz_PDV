@@ -62,7 +62,7 @@ namespace Holtz_PDV
             if (env.IsDevelopment()) //Desenvolvimento
             {
                 app.UseDeveloperExceptionPage();
-                //seedingService.Seed(); //Popular o banco de dados
+                seedingService.Seed(); //Popular o banco de dados
             }
             else
             {

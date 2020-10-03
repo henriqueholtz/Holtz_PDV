@@ -38,5 +38,10 @@ namespace Holtz_PDV.Data
         {
             return (await _context.SaveChangesAsync()) > 0; //waiting while this context saving changes, return after. 
         }
+
+        public void AddRange<t>(ICollection<t> entities) where t : class
+        {
+            _context.AddRange(entities);
+        }
     }
 }

@@ -9,13 +9,15 @@ namespace Holtz_PDV.Models.ModelsConfiguration
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            DefaultConfigs(builder, tableName: "Produto");
+            DefaultConfigs(builder, tableName: "PRODUTO");
 
             builder.HasKey(key => key.ProCod);
+
             builder.Property(x => x.ProCod)
                 .HasColumnType(Tipo.CODIGO)
-                .ValueGeneratedOnAdd();
+                .HasDefaultValueSql("NEXT VALUE FOR seq_ProCod2");
                 //.ValueGeneratedNever(); //Remove Identity
+                //.ValueGeneratedOnAdd(); - Este Ativar AutoNumber no insert
 
             builder.Property(x => x.ProNom)
                 .HasColumnType(Tipo.VARCHAR150)

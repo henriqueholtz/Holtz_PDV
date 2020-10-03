@@ -6,6 +6,9 @@ namespace Holtz_PDV.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateSequence<int>(
+                name: "seq_ProCod2");
+
             migrationBuilder.CreateTable(
                 name: "ESTADO",
                 columns: table => new
@@ -35,11 +38,10 @@ namespace Holtz_PDV.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Produto",
+                name: "PRODUTO",
                 columns: table => new
                 {
-                    ProCod = table.Column<int>(type: "INT", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR seq_ProCod2"),
                     ProNom = table.Column<string>(type: "VARCHAR(150)", nullable: true),
                     ProObs = table.Column<string>(type: "VARCHAR(1000)", nullable: true),
                     ProSts = table.Column<byte>(type: "TINYINT", nullable: true),
@@ -48,7 +50,7 @@ namespace Holtz_PDV.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produto", x => x.ProCod);
+                    table.PrimaryKey("PK_PRODUTO", x => x.ProCod);
                 });
 
             migrationBuilder.CreateTable(
@@ -116,13 +118,16 @@ namespace Holtz_PDV.Migrations
                 name: "MARCA");
 
             migrationBuilder.DropTable(
-                name: "Produto");
+                name: "PRODUTO");
 
             migrationBuilder.DropTable(
                 name: "CIDADE");
 
             migrationBuilder.DropTable(
                 name: "ESTADO");
+
+            migrationBuilder.DropSequence(
+                name: "seq_ProCod2");
         }
     }
 }

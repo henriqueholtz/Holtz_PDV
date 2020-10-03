@@ -19,21 +19,24 @@ namespace Holtz_PDV.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //FluentApi
+            //FluentApi -> ApplyConfiguration
             modelBuilder.ApplyConfiguration(new EstadoConfiguration());
             modelBuilder.ApplyConfiguration(new CidadeConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new MarcaConfiguration());
-            
+
+
+            //Disable DeleteBehavior.Cascade
             foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.NoAction;  //Para não deletar e atualizar em cascata !!?
             }
-            //foreach (var fk in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetCheckConstraints()))
-            //{
-            //    modelBuilder.Model.GetEntityTypes().Select(x => x.RemoveCheckConstraint(fk.Name));
-            //}
+
+            //Sequencies
+            modelBuilder.HasSequence<int>("seq_ProCod2"/*, schema: "shared"*/)
+                .StartsAt(1)
+                .IncrementsBy(1);
         }
     }
 }

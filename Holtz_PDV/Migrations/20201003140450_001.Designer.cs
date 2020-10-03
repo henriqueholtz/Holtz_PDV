@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    [Migration("20200930235225_001")]
+    [Migration("20201003140450_001")]
     partial class _001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,6 +19,7 @@ namespace Holtz_PDV.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("Relational:Sequence:.seq_ProCod2", "'seq_ProCod2', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
@@ -126,7 +127,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<int>("ProCod")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasDefaultValueSql("NEXT VALUE FOR seq_ProCod2");
 
                     b.Property<string>("ProNom")
                         .HasColumnType("VARCHAR(150)");
@@ -145,7 +146,7 @@ namespace Holtz_PDV.Migrations
 
                     b.HasKey("ProCod");
 
-                    b.ToTable("Produto");
+                    b.ToTable("PRODUTO");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>

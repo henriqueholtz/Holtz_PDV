@@ -1,5 +1,6 @@
 ﻿using Holtz_PDV.Models;
 using Holtz_PDV.Models.Enums;
+using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,14 @@ namespace Holtz_PDV.Data
     public class SeedingService
     {
         private readonly Holtz_PDVContext _context;
-        //public readonly IEFCore _repo;
-        public SeedingService(Holtz_PDVContext context/*, IEFCore repo*/)
+        private readonly IEFCore _repo;
+        private readonly MarcaService _marcaService;
+
+        public SeedingService(Holtz_PDVContext context, IEFCore repo, MarcaService marcaService)
         {
             _context = context;
-            //_repo = repo;
+            _repo = repo;
+            //_marcaService = marcaService;
         }
 
         public void Seed()
@@ -52,22 +56,22 @@ namespace Holtz_PDV.Data
 
             //_repo.SaveChangeAsync();
 
-            if (_context.Estados.Any() || _context.Cidades.Any())
-            {
-                return;
-            }
+            //if (_context.Estados.Any() || _context.Cidades.Any())
+            //{
+            //    return;
+            //}
 
             //Estados
-            Estado e1 = new Estado(0, "PARANÁ", UF.PR);
-            Estado e2 = new Estado(0, "SANTA CATARINA", UF.SC );
-            Estado e3 = new Estado(0, "RIO GRANDE DO SUL",  UF.RS );
-            Estado e4 = new Estado(0, "SÃO PAULO", UF.SP );
-            Estado e5 = new Estado(0, "MATO GROSSO",  UF.MT );
-            Estado e6 = new Estado(0, "MATO GROSSO DO SUL",  UF.MS );
-            Estado e7 = new Estado(0, "MINAS GERAIS", UF.MG );
-            Estado e8 = new Estado(0, "RIO DE JANEIRO", UF.RJ );
+            //Estado e1 = new Estado(0, "PARANÁ", UF.PR);
+            //Estado e2 = new Estado(0, "SANTA CATARINA", UF.SC );
+            //Estado e3 = new Estado(0, "RIO GRANDE DO SUL",  UF.RS );
+            //Estado e4 = new Estado(0, "SÃO PAULO", UF.SP );
+            //Estado e5 = new Estado(0, "MATO GROSSO",  UF.MT );
+            //Estado e6 = new Estado(0, "MATO GROSSO DO SUL",  UF.MS );
+            //Estado e7 = new Estado(0, "MINAS GERAIS", UF.MG );
+            //Estado e8 = new Estado(0, "RIO DE JANEIRO", UF.RJ );
 
-            //Estado e1 = new Estado() { EstCod = 1, EstNom = "PARANÁ", EstUf = UF.PR };
+            //Estado e1 = new Estado() { EstNom = "PARANÁ", EstUf = UF.PR };
             //Estado e2 = new Estado() { EstNom = "SANTA CATARINA", EstUf = UF.SC };
             //Estado e3 = new Estado() { EstNom = "RIO GRANDE DO SUL", EstUf = UF.RS };
             //Estado e4 = new Estado() { EstNom = "SÃO PAULO", EstUf = UF.SP };
@@ -75,21 +79,23 @@ namespace Holtz_PDV.Data
             //Estado e6 = new Estado() { EstNom = "MATO GROSSO DO SUL", EstUf = UF.MS };
             //Estado e7 = new Estado() { EstNom = "MINAS GERAIS", EstUf = UF.MG };
             //Estado e8 = new Estado() { EstNom = "RIO DE JANEIRO", EstUf = UF.RJ };
+            //_repo.AddRange(new List<Estado>() { e1, e2, e3, e4, e5, e6, e7, e8 });
+            //_repo.SaveChangeAsync();
             //}
 
             //if (!_context.Cidades.Any())
             //{
             //    //Cidades
-            Cidade cd1 = new Cidade(0, "PALOTINA", 0 );
-            Cidade cd2 = new Cidade(0, "MARIPÁ", 0 );
-            Cidade cd3 = new Cidade(0, "RIO DE JANEIRO", 0 );
-            Cidade cd4 = new Cidade(0, "ITAQUIRAI", 0 );
-            Cidade cd5 = new Cidade(0, "DOURADOS", 0 );
-            Cidade cd6 = new Cidade(0, "SCHROEDER", 0 );
+            //Cidade cd1 = new Cidade(0, "PALOTINA", 0 );
+            //Cidade cd2 = new Cidade(0, "MARIPÁ", 0 );
+            //Cidade cd3 = new Cidade(0, "RIO DE JANEIRO", 0 );
+            //Cidade cd4 = new Cidade(0, "ITAQUIRAI", 0 );
+            //Cidade cd5 = new Cidade(0, "DOURADOS", 0 );
+            //Cidade cd6 = new Cidade(0, "SCHROEDER", 0 );
 
-            _context.Estados.AddRange(e1, e2, e3, e4, e5, e6, e7, e8);
-            _context.Cidades.AddRange(cd1, cd2, cd3, cd4, cd5, cd6);
-            _context.SaveChangesAsync();
+            //_context.Estados.AddRange(e1, e2, e3, e4, e5, e6, e7, e8);
+            //_context.Cidades.AddRange(cd1, cd2, cd3, cd4, cd5, cd6);
+            //_context.SaveChangesAsync();
             //}
 
             //if (!_context.Clientes.Any())
@@ -110,26 +116,31 @@ namespace Holtz_PDV.Data
             //if (!_context.Produtos.Any())
             //{
             //    //Produtos
-            //    Produto p1 = new Produto { ProNom = "Notebook i3", ProVlrCus = 1500, ProVlrVen = 1800 };
-            //    Produto p2 = new Produto { ProNom = "PenDrive 8gb", ProVlrCus = 25, ProVlrVen = 30 };
-            //    Produto p3 = new Produto { ProNom = "Monitor 19'", ProVlrCus = 420, ProVlrVen = 510 };
-            //    Produto p4 = new Produto { ProNom = "Memória RAM DDR4 4gb", ProVlrCus = 250, ProVlrVen = 350 };
-            //    Produto p5 = new Produto { ProNom = "Mouse USB", ProVlrCus = 25, ProVlrVen = 32 };
-            //    Produto p6 = new Produto { ProNom = "Mouse USB s/ Fio", ProVlrCus = 45, ProVlrVen = 56 };
-            //    Produto p7 = new Produto { ProNom = "Teclado USB", ProVlrCus = 40, ProVlrVen = 50 };
-            //    Produto p8 = new Produto { ProNom = "Teclado USB s/ Fio", ProVlrCus = 75, ProVlrVen = 88 };
-            //    Produto p9 = new Produto { ProNom = "Processador i3", ProVlrCus = 750, ProVlrVen = 880 };
-            //    Produto p10 = new Produto { ProNom = "Processador i5", ProVlrCus = 1050, ProVlrVen = 1320 };
-            //    _context.Produtos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+            //Produto p1 = new Produto { ProNom = "Notebook i3", ProVlrCus = 1500, ProVlrVen = 1800 };
+            //Produto p2 = new Produto { ProNom = "PenDrive 8gb", ProVlrCus = 25, ProVlrVen = 30 };
+            //Produto p3 = new Produto { ProNom = "Monitor 19'", ProVlrCus = 420, ProVlrVen = 510 };
+            //Produto p4 = new Produto { ProNom = "Memória RAM DDR4 4gb", ProVlrCus = 250, ProVlrVen = 350 };
+            //Produto p5 = new Produto { ProNom = "Mouse USB", ProVlrCus = 25, ProVlrVen = 32 };
+            //Produto p6 = new Produto { ProNom = "Mouse USB s/ Fio", ProVlrCus = 45, ProVlrVen = 56 };
+            //Produto p7 = new Produto { ProNom = "Teclado USB", ProVlrCus = 40, ProVlrVen = 50 };
+            //Produto p8 = new Produto { ProNom = "Teclado USB s/ Fio", ProVlrCus = 75, ProVlrVen = 88 };
+            //Produto p9 = new Produto { ProNom = "Processador i3", ProVlrCus = 750, ProVlrVen = 880 };
+            //Produto p10 = new Produto { ProNom = "Processador i5", ProVlrCus = 1050, ProVlrVen = 1320 };
+            //_repo.AddRange(new List<Produto>() { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 });
+            //_context.Produtos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+            //_context.SaveChangesAsync();
+            //pro
             //}
 
             //if (!_context.Marcas.Any())
             //{
             //    //Marcas
-            //    Marca m1 = new Marca { MarNom = "Dell" };
-            //    Marca m2 = new Marca { MarNom = "Acer" };
-            //    Marca m3 = new Marca { MarNom = "Kingston" };
-            //    Marca m4 = new Marca { MarNom = "Positivo" };
+            //Marca m1 = new Marca { MarNom = "Dell" };
+            //Marca m2 = new Marca { MarNom = "Acer" };
+            //Marca m3 = new Marca { MarNom = "Kingston" };
+            //Marca m4 = new Marca { MarNom = "Positivo" };
+            //_repo.AddRange(new List<Marca>() { m1, m2, m3, m4 });
+
             //    _context.Marcas.AddRange(m1, m2, m3, m4);
             //}
             //_context.SaveChangesAsync();
