@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    [Migration("20201003140450_001")]
+    [Migration("20201003141400_001")]
     partial class _001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,8 @@ namespace Holtz_PDV.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("Relational:Sequence:.seq_ProCod2", "'seq_ProCod2', '', '1', '1', '', '', 'Int32', 'False'")
+                .HasAnnotation("Relational:Sequence:.Seq_MarCod", "'Seq_MarCod', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.Seq_ProCod", "'Seq_ProCod', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
@@ -109,7 +110,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<int>("MarCod")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasDefaultValueSql("NEXT VALUE FOR Seq_MarCod");
 
                     b.Property<string>("MarNom")
                         .HasColumnType("VARCHAR(130)");
@@ -127,7 +128,7 @@ namespace Holtz_PDV.Migrations
                     b.Property<int>("ProCod")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INT")
-                        .HasDefaultValueSql("NEXT VALUE FOR seq_ProCod2");
+                        .HasDefaultValueSql("NEXT VALUE FOR Seq_ProCod");
 
                     b.Property<string>("ProNom")
                         .HasColumnType("VARCHAR(150)");

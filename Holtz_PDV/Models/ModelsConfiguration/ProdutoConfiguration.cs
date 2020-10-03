@@ -15,7 +15,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
 
             builder.Property(x => x.ProCod)
                 .HasColumnType(Tipo.CODIGO)
-                .HasDefaultValueSql("NEXT VALUE FOR seq_ProCod2");
+                .HasDefaultValueSql("NEXT VALUE FOR Seq_ProCod"); //Use Sequence-SQL
                 //.ValueGeneratedNever(); //Remove Identity
                 //.ValueGeneratedOnAdd(); - Este Ativar AutoNumber no insert
 

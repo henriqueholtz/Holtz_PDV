@@ -14,8 +14,6 @@ namespace Holtz_PDV.Data
             CreateMap<Cliente, ClienteFromViewModel>().ReverseMap();
             CreateMap<Produto, ProdutoFromViewModel>().ReverseMap();
             CreateMap<Marca, MarcaFromViewModel>().ReverseMap();
-
-            //CreateMap<Cliente, ClienteFromViewModel>(); //para declarar as cidades no combobox (Edit e Create)
             
         }
     }

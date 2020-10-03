@@ -6,8 +6,11 @@ namespace Holtz_PDV.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateSequence(
+                name: "Seq_MarCod");
+
             migrationBuilder.CreateSequence<int>(
-                name: "seq_ProCod2");
+                name: "Seq_ProCod");
 
             migrationBuilder.CreateTable(
                 name: "ESTADO",
@@ -27,8 +30,7 @@ namespace Holtz_PDV.Migrations
                 name: "MARCA",
                 columns: table => new
                 {
-                    MarCod = table.Column<int>(type: "INT", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MarCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR Seq_MarCod"),
                     MarNom = table.Column<string>(type: "VARCHAR(130)", nullable: true),
                     MarSts = table.Column<byte>(type: "TINYINT", nullable: true)
                 },
@@ -41,7 +43,7 @@ namespace Holtz_PDV.Migrations
                 name: "PRODUTO",
                 columns: table => new
                 {
-                    ProCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR seq_ProCod2"),
+                    ProCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR Seq_ProCod"),
                     ProNom = table.Column<string>(type: "VARCHAR(150)", nullable: true),
                     ProObs = table.Column<string>(type: "VARCHAR(1000)", nullable: true),
                     ProSts = table.Column<byte>(type: "TINYINT", nullable: true),
@@ -127,7 +129,10 @@ namespace Holtz_PDV.Migrations
                 name: "ESTADO");
 
             migrationBuilder.DropSequence(
-                name: "seq_ProCod2");
+                name: "Seq_MarCod");
+
+            migrationBuilder.DropSequence(
+                name: "Seq_ProCod");
         }
     }
 }

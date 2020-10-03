@@ -33,10 +33,9 @@ namespace Holtz_PDV.Models
                 foreignKey.DeleteBehavior = DeleteBehavior.NoAction;  //Para não deletar e atualizar em cascata !!?
             }
 
-            //Sequencies
-            modelBuilder.HasSequence<int>("seq_ProCod2"/*, schema: "shared"*/)
-                .StartsAt(1)
-                .IncrementsBy(1);
+            //Sequencies => Default SQL: Start = 1,  Increment = 1
+            modelBuilder.HasSequence<int>("Seq_ProCod");
+            modelBuilder.HasSequence("Seq_MarCod");
         }
     }
 }

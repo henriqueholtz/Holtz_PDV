@@ -18,7 +18,8 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.HasKey(key => key.MarCod);
             builder.Property(x => x.MarCod)
                 .HasColumnType(Tipo.CODIGO)
-                .ValueGeneratedOnAdd();
+                .HasDefaultValueSql("NEXT VALUE FOR Seq_MarCod"); //Use Sequence-SQL
+                //.ValueGeneratedOnAdd();
                 //.ValueGeneratedNever(); //Remove Identity
 
             builder.Property(x => x.MarNom)
