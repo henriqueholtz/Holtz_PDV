@@ -4,6 +4,9 @@
     {
         public const string CODIGO = "INT";
 
+        public const string DATETIME = "DATETIME";
+        public const string DATE = "DATE";
+
         public const string VARCHAR030 = "VARCHAR(30)";
         public const string VARCHAR050 = "VARCHAR(50)";
         public const string VARCHAR075 = "VARCHAR(75)";

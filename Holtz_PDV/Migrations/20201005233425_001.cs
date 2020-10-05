@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Holtz_PDV.Migrations
 {
@@ -6,14 +7,17 @@ namespace Holtz_PDV.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
+            migrationBuilder.CreateSequence<int>(
                 name: "Seq_MarCod");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "Seq_PedCod");
 
             migrationBuilder.CreateSequence<int>(
                 name: "Seq_ProCod");
 
             migrationBuilder.CreateTable(
-                name: "ESTADO",
+                name: "Estado",
                 columns: table => new
                 {
                     EstCod = table.Column<int>(type: "INT", nullable: false)
@@ -23,11 +27,11 @@ namespace Holtz_PDV.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ESTADO", x => x.EstCod);
+                    table.PrimaryKey("PK_Estado", x => x.EstCod);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MARCA",
+                name: "Marca",
                 columns: table => new
                 {
                     MarCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR Seq_MarCod"),
@@ -36,27 +40,26 @@ namespace Holtz_PDV.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MARCA", x => x.MarCod);
+                    table.PrimaryKey("PK_Marca", x => x.MarCod);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PRODUTO",
+                name: "Pedido",
                 columns: table => new
                 {
-                    ProCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR Seq_ProCod"),
-                    ProNom = table.Column<string>(type: "VARCHAR(150)", nullable: true),
-                    ProObs = table.Column<string>(type: "VARCHAR(1000)", nullable: true),
-                    ProSts = table.Column<byte>(type: "TINYINT", nullable: true),
-                    ProVlrVen = table.Column<decimal>(type: "DECIMAL(17,2)", nullable: false),
-                    ProVlrCus = table.Column<decimal>(type: "DECIMAL(17,2)", nullable: false)
+                    PedCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR Seq_PedCod"),
+                    PedCliCod = table.Column<int>(type: "INT", nullable: true),
+                    PedDtaEms = table.Column<DateTime>(type: "DATETIME", nullable: true),
+                    PedDtaFat = table.Column<DateTime>(type: "DATETIME", nullable: true),
+                    PedSts = table.Column<byte>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PRODUTO", x => x.ProCod);
+                    table.PrimaryKey("PK_Pedido", x => x.PedCod);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CIDADE",
+                name: "Cidade",
                 columns: table => new
                 {
                     CidCod = table.Column<int>(type: "INT", nullable: false)
@@ -67,16 +70,38 @@ namespace Holtz_PDV.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CIDADE", x => x.CidCod);
+                    table.PrimaryKey("PK_Cidade", x => x.CidCod);
                     table.ForeignKey(
-                        name: "FK_CIDADE_ESTADO_EstCod",
+                        name: "FK_Cidade_Estado_EstCod",
                         column: x => x.EstCod,
-                        principalTable: "ESTADO",
+                        principalTable: "Estado",
                         principalColumn: "EstCod");
                 });
 
             migrationBuilder.CreateTable(
-                name: "CLIENTE",
+                name: "Produto",
+                columns: table => new
+                {
+                    ProCod = table.Column<int>(type: "INT", nullable: false, defaultValueSql: "NEXT VALUE FOR Seq_ProCod"),
+                    ProNom = table.Column<string>(type: "VARCHAR(150)", nullable: true),
+                    ProObs = table.Column<string>(type: "VARCHAR(1000)", nullable: true),
+                    ProSts = table.Column<byte>(type: "TINYINT", nullable: true),
+                    ProVlrVen = table.Column<decimal>(type: "DECIMAL(17,2)", nullable: false),
+                    ProVlrCus = table.Column<decimal>(type: "DECIMAL(17,2)", nullable: false),
+                    MarCod = table.Column<int>(type: "INT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.ProCod);
+                    table.ForeignKey(
+                        name: "FK_Produto_Marca_MarCod",
+                        column: x => x.MarCod,
+                        principalTable: "Marca",
+                        principalColumn: "MarCod");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cliente",
                 columns: table => new
                 {
                     CliCod = table.Column<int>(type: "INT", nullable: false)
@@ -92,44 +117,55 @@ namespace Holtz_PDV.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CLIENTE", x => x.CliCod);
+                    table.PrimaryKey("PK_Cliente", x => x.CliCod);
                     table.ForeignKey(
-                        name: "FK_CLIENTE_CIDADE_CidCod",
+                        name: "FK_Cliente_Cidade_CidCod",
                         column: x => x.CidCod,
-                        principalTable: "CIDADE",
+                        principalTable: "Cidade",
                         principalColumn: "CidCod");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CIDADE_EstCod",
-                table: "CIDADE",
+                name: "IX_Cidade_EstCod",
+                table: "Cidade",
                 column: "EstCod");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CLIENTE_CidCod",
-                table: "CLIENTE",
+                name: "IX_Cliente_CidCod",
+                table: "Cliente",
                 column: "CidCod");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produto_MarCod",
+                table: "Produto",
+                column: "MarCod");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CLIENTE");
+                name: "Cliente");
 
             migrationBuilder.DropTable(
-                name: "MARCA");
+                name: "Pedido");
 
             migrationBuilder.DropTable(
-                name: "PRODUTO");
+                name: "Produto");
 
             migrationBuilder.DropTable(
-                name: "CIDADE");
+                name: "Cidade");
 
             migrationBuilder.DropTable(
-                name: "ESTADO");
+                name: "Marca");
+
+            migrationBuilder.DropTable(
+                name: "Estado");
 
             migrationBuilder.DropSequence(
                 name: "Seq_MarCod");
+
+            migrationBuilder.DropSequence(
+                name: "Seq_PedCod");
 
             migrationBuilder.DropSequence(
                 name: "Seq_ProCod");

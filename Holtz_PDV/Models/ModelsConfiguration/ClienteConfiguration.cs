@@ -9,7 +9,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
-            DefaultConfigs(builder, tableName: "CLIENTE");
+            DefaultConfigs(builder, tableName: "Cliente");
 
             builder.HasKey(key => key.CliCod);
             builder.Property(x => x.CliCod)

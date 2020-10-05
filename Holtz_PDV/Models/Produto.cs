@@ -15,5 +15,7 @@ namespace Holtz_PDV.Models
         public double ProVlrVen { get; set; }
 
         public double ProVlrCus { get; set; }
+        public int? MarcaMarCod { get; set; }
+        public virtual Marca Marca { get; set; }
     }
 }

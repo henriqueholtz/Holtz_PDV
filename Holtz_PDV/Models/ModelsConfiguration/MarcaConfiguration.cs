@@ -13,7 +13,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
     {
         public void Configure(EntityTypeBuilder<Marca> builder)
         {
-            DefaultConfigs(builder, tableName: "MARCA");
+            DefaultConfigs(builder, tableName: "Marca");
 
             builder.HasKey(key => key.MarCod);
             builder.Property(x => x.MarCod)

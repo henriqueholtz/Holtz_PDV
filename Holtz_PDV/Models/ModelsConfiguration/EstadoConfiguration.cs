@@ -9,7 +9,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
     {
         public void Configure (EntityTypeBuilder<Estado> builder)
         {
-            DefaultConfigs(builder, tableName: "ESTADO");
+            DefaultConfigs(builder, tableName: "Estado");
 
             builder.HasKey(key => key.EstCod);
             builder.Property(x => x.EstCod)

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Holtz_PDV.Migrations
 {
     [DbContext(typeof(Holtz_PDVContext))]
-    [Migration("20201003141400_001")]
+    [Migration("20201005233425_001")]
     partial class _001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,8 @@ namespace Holtz_PDV.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("Relational:Sequence:.Seq_MarCod", "'Seq_MarCod', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.Seq_MarCod", "'Seq_MarCod', '', '1', '1', '', '', 'Int32', 'False'")
+                .HasAnnotation("Relational:Sequence:.Seq_PedCod", "'Seq_PedCod', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.Seq_ProCod", "'Seq_ProCod', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -44,7 +45,7 @@ namespace Holtz_PDV.Migrations
 
                     b.HasIndex("EstadoEstCod");
 
-                    b.ToTable("CIDADE");
+                    b.ToTable("Cidade");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cliente", b =>
@@ -83,7 +84,7 @@ namespace Holtz_PDV.Migrations
 
                     b.HasIndex("CidadeCidCod");
 
-                    b.ToTable("CLIENTE");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Estado", b =>
@@ -102,7 +103,7 @@ namespace Holtz_PDV.Migrations
 
                     b.HasKey("EstCod");
 
-                    b.ToTable("ESTADO");
+                    b.ToTable("Estado");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Marca", b =>
@@ -120,7 +121,31 @@ namespace Holtz_PDV.Migrations
 
                     b.HasKey("MarCod");
 
-                    b.ToTable("MARCA");
+                    b.ToTable("Marca");
+                });
+
+            modelBuilder.Entity("Holtz_PDV.Models.Pedido", b =>
+                {
+                    b.Property<int>("PedCod")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasDefaultValueSql("NEXT VALUE FOR Seq_PedCod");
+
+                    b.Property<int?>("PedCliCod")
+                        .HasColumnType("INT");
+
+                    b.Property<DateTime?>("PedDtaEms")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<DateTime?>("PedDtaFat")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<byte?>("PedSts")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("PedCod");
+
+                    b.ToTable("Pedido");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Produto", b =>
@@ -129,6 +154,10 @@ namespace Holtz_PDV.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INT")
                         .HasDefaultValueSql("NEXT VALUE FOR Seq_ProCod");
+
+                    b.Property<int?>("MarcaMarCod")
+                        .HasColumnName("MarCod")
+                        .HasColumnType("INT");
 
                     b.Property<string>("ProNom")
                         .HasColumnType("VARCHAR(150)");
@@ -147,7 +176,9 @@ namespace Holtz_PDV.Migrations
 
                     b.HasKey("ProCod");
 
-                    b.ToTable("PRODUTO");
+                    b.HasIndex("MarcaMarCod");
+
+                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("Holtz_PDV.Models.Cidade", b =>
@@ -163,6 +194,14 @@ namespace Holtz_PDV.Migrations
                     b.HasOne("Holtz_PDV.Models.Cidade", "Cidade")
                         .WithMany("Clientes")
                         .HasForeignKey("CidadeCidCod")
+                        .OnDelete(DeleteBehavior.NoAction);
+                });
+
+            modelBuilder.Entity("Holtz_PDV.Models.Produto", b =>
+                {
+                    b.HasOne("Holtz_PDV.Models.Marca", "Marca")
+                        .WithMany("Produtos")
+                        .HasForeignKey("MarcaMarCod")
                         .OnDelete(DeleteBehavior.NoAction);
                 });
 #pragma warning restore 612, 618

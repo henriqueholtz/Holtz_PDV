@@ -9,7 +9,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
     {
         public void Configure(EntityTypeBuilder<Cidade> builder)
         {
-            DefaultConfigs(builder, tableName: "CIDADE");
+            DefaultConfigs(builder, tableName: "Cidade");
 
             builder.HasKey(key => key.CidCod);
             builder.Property(x => x.CidCod)

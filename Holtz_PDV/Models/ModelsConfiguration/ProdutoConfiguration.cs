@@ -9,7 +9,7 @@ namespace Holtz_PDV.Models.ModelsConfiguration
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            DefaultConfigs(builder, tableName: "PRODUTO");
+            DefaultConfigs(builder, tableName: "Produto");
 
             builder.HasKey(key => key.ProCod);
 
@@ -38,6 +38,15 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(x => x.ProVlrVen)
                 .HasColumnType(Tipo.MOEDA)
                 .ValueGeneratedNever(); //Remove Identity
+
+            builder.Property(x => x.MarcaMarCod)
+                .HasColumnName("MarCod")
+                .HasColumnType(Tipo.CODIGO)
+                .ValueGeneratedNever(); //Remove Identity
+
+            //builder.Property(x => x.ProNom)
+            //    .HasColumnType(Tipo.VARCHAR150)
+            //    .ValueGeneratedNever(); //Remove Identity
 
             //builder.Property(x => x.ProNom)
             //    .HasColumnType(Tipo.VARCHAR150)

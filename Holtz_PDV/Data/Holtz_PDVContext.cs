@@ -25,6 +25,7 @@ namespace Holtz_PDV.Models
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new MarcaConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoConfiguration());
 
 
             //Disable DeleteBehavior.Cascade
@@ -35,7 +36,8 @@ namespace Holtz_PDV.Models
 
             //Sequencies => Default SQL: Start = 1,  Increment = 1
             modelBuilder.HasSequence<int>("Seq_ProCod");
-            modelBuilder.HasSequence("Seq_MarCod");
+            modelBuilder.HasSequence<int>("Seq_MarCod");
+            modelBuilder.HasSequence<int>("Seq_PedCod");
         }
     }
 }

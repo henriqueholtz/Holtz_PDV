@@ -37,5 +37,13 @@ namespace Holtz_PDV.Models.ViewModels
         [Column(TypeName = Tipo.MOEDA)]
         [DisplayFormat(DataFormatString = "{0:F2}")] //Duas casas decimais
         public double ProVlrCus { get; set; }
+
+        [Display(Name = "Cód. Marca")]
+        [MaxLength(8)]
+        [Required(ErrorMessage = "Você deve selecionar uma Marca.")]
+        public int? MarcaMarCod { get; set; }  //isso define como pk, e não deixa cadastrar null //CidCod tem q ser igualzinho
+
+        [Display(Name = "Marca")]
+        public Marca Marca { get; set; } = null!;
     }
 }
