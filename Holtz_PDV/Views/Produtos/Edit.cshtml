@@ -26,6 +26,13 @@
             </div>
 
             <div class="form-group">
+                <!-- ComboBox de Marcas -->
+                <label asp-for="MarcaMarCod" class="control-label">Marca</label>
+                <select asp-for="MarcaMarCod" asp-items="@(new SelectList(Model.Marcas,"MarCod","MarNom"))" class="form-control">--Selecione--</select>
+                <span asp-validation-for="MarcaMarCod" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="ProVlrCus" class="control-label"></label>
                 <input asp-for="ProVlrCus" class="form-control" />
                 <span asp-validation-for="ProVlrCus" class="text-danger"></span> <!-- msg erro em baixo do campo -->

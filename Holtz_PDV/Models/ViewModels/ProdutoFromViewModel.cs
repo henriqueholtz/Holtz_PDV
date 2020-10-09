@@ -7,6 +7,21 @@ namespace Holtz_PDV.Models.ViewModels
 {
     public class ProdutoFromViewModel
     {
+        public ProdutoFromViewModel(ICollection<Marca> marcas = null, Produto produto = null)
+        {
+            if (marcas == null)
+                Marcas = new List<Marca>();
+            else
+                Marcas = marcas;
+
+            if (produto != null)
+            {
+                ProCod = produto.ProCod;
+                ProNom = produto.ProNom;
+            }
+        }
+
+
         [Display(Name = "Código")]
         [MaxLength(8)] [Key]
         public int ProCod { get; set; } //Código 
@@ -45,5 +60,11 @@ namespace Holtz_PDV.Models.ViewModels
 
         [Display(Name = "Marca")]
         public Marca Marca { get; set; } = null!;
+
+
+
+        //-----
+        [Display(Name = "Marcas")]
+        public ICollection<Marca> Marcas { get; set; } = new List<Marca>();
     }
 }

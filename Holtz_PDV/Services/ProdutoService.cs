@@ -15,6 +15,12 @@ namespace Holtz_PDV.Services
             _context = context;
         }
 
+
+        public async Task<List<Marca>> FindAllMarcasAsync()
+        {
+            return await _context.Marcas.OrderBy(x => x.MarNom).ToListAsync();
+        }
+
         public async Task<List<Produto>> FindAllAsync()
         {
             return await _context.Produtos.OrderBy(x => x.ProNom).ToListAsync();
@@ -22,7 +28,7 @@ namespace Holtz_PDV.Services
 
         public async Task<Produto> FindByCodAsync(int cod)
         {
-            return await _context.Produtos.FirstOrDefaultAsync(x => x.ProCod == cod);
+            return await _context.Produtos.Include(marca => marca.Marca).FirstOrDefaultAsync(x => x.ProCod == cod);
         }
 
         public async Task InsertAsync(Produto obj)

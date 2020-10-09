@@ -27,8 +27,8 @@ namespace Holtz_PDV.Controllers
 
         public async Task<IActionResult> Create()
         {
-            //agora não esta implementado, mas depois vai trazer todas as marcas, por isso ja deixei async
-            return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel()));
+            ICollection<Marca> marcas = await _produtoService.FindAllMarcasAsync();
+            return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel(marcas)));
         }
 
         public async Task<IActionResult> Edit(int? id) 
@@ -42,7 +42,8 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
             }
-            return View(_mapper.Map<ProdutoFromViewModel>(prod));
+            ICollection<Marca> marcas = await _produtoService.FindAllMarcasAsync();
+            return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel(marcas,prod)));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -56,7 +57,8 @@ namespace Holtz_PDV.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = "Não existe Produto com este código." });
             }
-            return View(_mapper.Map<ProdutoFromViewModel>(prod));
+            ICollection<Marca> marcas = await _produtoService.FindAllMarcasAsync();
+            return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel(marcas, prod)));
         }
         public async Task<IActionResult> Delete(int? id)
         {

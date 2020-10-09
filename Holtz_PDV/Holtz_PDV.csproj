@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="External\" />
+    <Folder Include="Views\Pedidos\" />
   </ItemGroup>
 
 </Project>

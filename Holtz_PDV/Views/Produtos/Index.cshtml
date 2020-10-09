@@ -23,9 +23,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProVlrVen)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marca.MarNom)
-            </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
     </thead>
@@ -44,9 +41,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProVlrVen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca.MarNom)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProCod" class="btn btn-primary btn-sm">Editar</a>
