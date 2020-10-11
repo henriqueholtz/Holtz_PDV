@@ -18,6 +18,11 @@ namespace Holtz_PDV.Models.ViewModels
             {
                 ProCod = produto.ProCod;
                 ProNom = produto.ProNom;
+                ProObs = produto.ProObs;
+                ProVlrCus = produto.ProVlrCus;
+                ProVlrVen = produto.ProVlrVen;
+                Marca = produto.Marca;
+                MarcaMarCod = produto.MarcaMarCod;
             }
         }
 

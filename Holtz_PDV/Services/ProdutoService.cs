@@ -23,7 +23,7 @@ namespace Holtz_PDV.Services
 
         public async Task<List<Produto>> FindAllAsync()
         {
-            return await _context.Produtos.OrderBy(x => x.ProNom).ToListAsync();
+            return await _context.Produtos.Include(marca => marca.Marca).OrderBy(x => x.ProNom).ToListAsync();
         }
 
         public async Task<Produto> FindByCodAsync(int cod)

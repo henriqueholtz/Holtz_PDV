@@ -17,7 +17,7 @@ namespace Holtz_PDV.Services
 
         public async Task<List<Cidade>> FindAllAsync()
         {
-            return await _context.Cidades.OrderBy(x => x.CidNom).ToListAsync();
+            return await _context.Cidades.Include(estado => estado.Estado).OrderBy(x => x.CidNom).ToListAsync();
             //return await _context.Cidades.ToListAsync();
             //return await _context.Cidades.Include(obj => obj.Estado).ToListAsync();
         }

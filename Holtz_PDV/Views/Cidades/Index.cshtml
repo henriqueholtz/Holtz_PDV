@@ -20,28 +20,34 @@
             <th>
                 @Html.DisplayNameFor(model => model.CidIBGE)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CidCod)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CidNom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CidIBGE)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CidCod" class="btn btn-primary btn-sm">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.CidCod" class="btn btn-light btn-sm">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.CidCod" class="btn btn-danger btn-sm">Remover</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CidCod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CidNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CidIBGE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado.EstUf)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CidCod" class="btn btn-primary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.CidCod" class="btn btn-light btn-sm">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.CidCod" class="btn btn-danger btn-sm">Remover</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
