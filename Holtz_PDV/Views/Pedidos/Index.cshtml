@@ -1,0 +1,65 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Pedido>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Listagem de Pedidos";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>
+    <a asp-action="Create" class="btn btn-info">Novo</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-uppercase bg-info">
+            <th>
+                PedCod
+            </th>
+            <th>
+                PedCliCod
+            </th>
+            <th>
+                PedDtaEms
+            </th>
+            <th>
+                PedDtaFat
+            </th>
+            <th>
+                PedSts
+            </th>
+            <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedCliCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedDtaEms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedDtaFat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedSts)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PedCod" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.PedCod" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.PedCod" class="btn btn-danger btn-sm">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Pedido Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

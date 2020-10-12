@@ -24,13 +24,13 @@ namespace Holtz_PDV.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            var model = await PagingList.CreateAsync(_marcaService.FindAllQueryable(), 5, page);
-            return View(model);
+            //var model = await PagingList.CreateAsync(_marcaService.FindAllQueryable(), 5, page);
+            return View(await PagingList.CreateAsync(_marcaService.FindAllQueryable(), 5, page));
             //var marcas = await _marcaService.FindAllAsync();
             //return View(_mapper.Map<List<MarcaFromViewModel>>(marcas));
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View(_mapper.Map<MarcaFromViewModel>(new MarcaFromViewModel()));
         }

@@ -58,6 +58,7 @@ namespace Holtz_PDV
             services.AddScoped<EstadoService>();
             services.AddScoped<ProdutoService>();
             services.AddScoped<MarcaService>();
+            services.AddScoped<PedidoService>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins("https://localhost:44379/").AllowAnyHeader().AllowAnyMethod()));

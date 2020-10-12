@@ -1,0 +1,56 @@
+﻿@model Holtz_PDV.Models.ViewModels.PedidoFromViewModel
+@{
+    ViewData["Title"] = "Deletar Pedido";
+}
+
+
+<div class="alert-warning">
+    <h3>@ViewData["Title"]</h3>
+    <h3>Tem certeza que deseja excluir este Produto?</h3>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PedCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PedCod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PedDtaEms)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PedDtaEms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PedDtaFat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PedDtaFat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PedSts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PedSts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PedCliCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PedCliCod)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PedCod" /> <!-- Campo oculto para enviar o comando delete -->
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-light">Voltar</a>
+    </form>
+</div>
