@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.EstadoFromViewModel>
+﻿@model PaginatedList<Holtz_PDV.Models.Estado>
 @{
     ViewData["Title"] = "Listagem de Estados";
 }
@@ -13,13 +13,13 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                @Html.DisplayNameFor(model => model.EstCod)
+                EstCod
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EstNom)
+                EstNom
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EstUf)
+                EstUf
             </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
@@ -46,3 +46,21 @@
         }
     </tbody>
 </table>
+
+
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NestPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex -1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex +1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

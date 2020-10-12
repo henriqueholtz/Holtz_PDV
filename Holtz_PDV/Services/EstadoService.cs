@@ -17,6 +17,11 @@ namespace Holtz_PDV.Services
             _context = context;
         }
 
+        public IOrderedQueryable<Estado> FindAllQueryable()
+        {
+            return _context.Estados.AsNoTracking().OrderBy(x => x.EstCod);
+        }
+
         public async Task<List<Estado>> FindAllAsync()
         {
             return await _context.Estados.ToListAsync();

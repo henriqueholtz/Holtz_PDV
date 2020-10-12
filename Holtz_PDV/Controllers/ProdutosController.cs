@@ -16,18 +16,15 @@ namespace Holtz_PDV.Controllers
     {
         private readonly ProdutoService _produtoService;
         private readonly IMapper _mapper;
-        private readonly Holtz_PDVContext _context;
-        public ProdutosController(ProdutoService produtoService, IMapper mapper,Holtz_PDVContext context)
+        public ProdutosController(ProdutoService produtoService, IMapper mapper)
         {
             _produtoService = produtoService;
             _mapper = mapper;
-            _context = context;
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-
-            return View(await PaginatedList<Produto>.CreateAsync(_context.Produtos, page, 5));
-
+            var model = await PagingList.CreateAsync(_produtoService.FindAllQueryable(), 5, page);
+            return View(model);
 
             //var produtos = await _produtoService.FindAllAsync();
             //return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));

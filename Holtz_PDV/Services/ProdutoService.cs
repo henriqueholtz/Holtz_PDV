@@ -15,6 +15,10 @@ namespace Holtz_PDV.Services
             _context = context;
         }
 
+        public IOrderedQueryable<Produto> FindAllQueryable()
+        {
+            return _context.Produtos.Include(marca => marca.Marca).AsNoTracking().OrderBy(x => x.ProCod);
+        }
 
         public async Task<List<Marca>> FindAllMarcasAsync()
         {

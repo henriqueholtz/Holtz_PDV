@@ -16,10 +16,13 @@ namespace Holtz_PDV.Services
         {
             _context = context;
         }
-
         public async Task<List<Cliente>> FindAllAsync()
         {
             return await _context.Clientes.OrderBy(x => x.CliRaz).ToListAsync();
+        }
+        public IOrderedQueryable<Cliente> FindAllQueryable()
+        {
+            return _context.Clientes.AsNoTracking().OrderBy(x => x.CliRaz);
         }
 
         public async Task<Cliente> FindByCodAsync(int cod)

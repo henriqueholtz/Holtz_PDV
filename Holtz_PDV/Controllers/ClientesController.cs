@@ -17,29 +17,24 @@ namespace Holtz_PDV.Controllers
 {
     public class ClientesController : Controller
     {
-        private readonly Holtz_PDVContext _context;
         private readonly ClienteService _clienteService;
         private readonly CidadeService _cidadeService;
         private readonly IMapper _mapper;
-        public ClientesController(ClienteService clienteService, CidadeService cidadeService,IMapper mapper, Holtz_PDVContext context)
+        public ClientesController(ClienteService clienteService, CidadeService cidadeService,IMapper mapper)
         {
             _clienteService = clienteService;
             _cidadeService = cidadeService;
             _mapper = mapper;
-            _context = context;
         }
 
         //GET
         public async Task<IActionResult> Index(int page = 1)
         {
-            var query = _context.Clientes.AsNoTracking().OrderBy(x => x.CliCod);
-            var model = await PagingList.CreateAsync(query, 5, page);
+
+            var model = await PagingList.CreateAsync(_clienteService.FindAllQueryable(), 5, page);
             return View(model);
             //return View(_mapper.Map<ClienteFromViewModel>(model));
             //return View(_mapper.Map<List<ClienteFromViewModel>>(list));
-
-            //page/pageNumber
-            //return View(await PaginatedList<Cliente>.CreateAsync(_context.Clientes, pageNumber, 5));
         }
 
         public async Task<IActionResult> Create()

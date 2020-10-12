@@ -24,10 +24,11 @@ namespace Holtz_PDV.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            List<Estado> estados = await _estadoService.FindAllAsync();
-            return View(_mapper.Map<List<EstadoFromViewModel>>(estados));
+            return View(await PaginatedList<Estado>.CreateAsync(_estadoService.FindAllQueryable(), page, 5));
+            //List<Estado> estados = await _estadoService.FindAllAsync();
+            //return View(_mapper.Map<List<EstadoFromViewModel>>(estados));
         }
 
 

@@ -44,7 +44,12 @@ namespace Holtz_PDV
 
             //inject interface
             services.AddScoped<IEFCore, EFCoreRepo>();
-            services.AddPaging(); //ReflectionIT.Mvc.Paging;
+            services.AddPaging(options =>
+            {
+                options.ViewName = "Bootstrap5";
+                options.HtmlIndicatorDown = " <span>&darr;</span>";
+                options.HtmlIndicatorUp = " <span>&uarr;</span>";
+            }); //ReflectionIT.Mvc.Paging;
 
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();

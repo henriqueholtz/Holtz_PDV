@@ -1,9 +1,16 @@
-﻿@model PaginatedList<Holtz_PDV.Models.Produto>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Produto>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Listagem de Produtos";
 }
 
 <h2>@ViewData["Title"]</h2>
+
+<nav aria-label="Cliente Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+
 <p>
     <a asp-action="Create" class="btn btn-info">Novo</a>
 </p>
@@ -58,19 +65,6 @@
     </tbody>
 </table>
 
-@{
-    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.NestPage ? "disabled" : "";
-}
-
-<a asp-action="Index"
-   asp-route-page="@(Model.PageIndex -1)"
-   class="btn btn-default @prevDisabled">
-    Previous
-</a>
-
-<a asp-action="Index"
-   asp-route-page="@(Model.PageIndex +1)"
-   class="btn btn-default @nextDisabled">
-    Next
-</a>
+<nav aria-label="Paginacao">
+    <vc:pager paging-list="@Model" />
+</nav>
