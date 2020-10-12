@@ -9,6 +9,7 @@ using Holtz_PDV.Services; //Activity
 using System.Diagnostics;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Controllers
 {
@@ -23,10 +24,12 @@ namespace Holtz_PDV.Controllers
             _estadoService = estadoService;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            List<Cidade> cidades = await _cidadeService.FindAllAsync();
-            return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
+            var model = await PagingList.CreateAsync(_cidadeService.FindAllQueryable(),5,page);
+            return View(model);
+            //List<Cidade> cidades = await _cidadeService.FindAllAsync();
+            //return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
         }
 
         public async Task<IActionResult> Create()

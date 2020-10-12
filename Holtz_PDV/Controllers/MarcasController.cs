@@ -9,6 +9,7 @@ using Holtz_PDV.Models.ViewModels;
 using System.Diagnostics;
 using Holtz_PDV.Models;
 using Holtz_PDV.Services.Exceptions;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Controllers
 {
@@ -21,10 +22,12 @@ namespace Holtz_PDV.Controllers
             _marcaService = marcaService;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var marcas = await _marcaService.FindAllAsync();
-            return View(_mapper.Map<List<MarcaFromViewModel>>(marcas));
+            var model = await PagingList.CreateAsync(_marcaService.FindAllQueryable(), 5, page);
+            return View(model);
+            //var marcas = await _marcaService.FindAllAsync();
+            //return View(_mapper.Map<List<MarcaFromViewModel>>(marcas));
         }
 
         public async Task<IActionResult> Create()

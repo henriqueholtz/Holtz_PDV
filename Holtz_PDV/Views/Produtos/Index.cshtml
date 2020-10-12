@@ -6,11 +6,6 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-
-<nav aria-label="Cliente Paging">
-    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
-</nav>
-
 <p>
     <a asp-action="Create" class="btn btn-info">Novo</a>
 </p>
@@ -65,6 +60,6 @@
     </tbody>
 </table>
 
-<nav aria-label="Paginacao">
-    <vc:pager paging-list="@Model" />
+<nav aria-label="Produto Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
 </nav>

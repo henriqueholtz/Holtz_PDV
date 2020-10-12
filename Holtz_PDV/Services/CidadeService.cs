@@ -15,6 +15,11 @@ namespace Holtz_PDV.Services
             _context = context;
         }
 
+        public IOrderedQueryable<Cidade> FindAllQueryable()
+        {
+            return _context.Cidades.Include(estado => estado.Estado).AsNoTracking().OrderBy(x => x.CidCod);
+        }
+
         public async Task<List<Cidade>> FindAllAsync()
         {
             return await _context.Cidades.Include(estado => estado.Estado).OrderBy(x => x.CidNom).ToListAsync();

@@ -46,7 +46,13 @@ namespace Holtz_PDV.Data
                 Cidade cd4 = new Cidade() {CidNom = "ITAQUIRAI", EstadoEstCod =  6};
                 Cidade cd5 = new Cidade() {CidNom = "DOURADOS", EstadoEstCod =  5};
                 Cidade cd6 = new Cidade() {CidNom = "SCHROEDER", EstadoEstCod =  2};
-                _context.Cidades.AddRange(cd1, cd2, cd3, cd4, cd5, cd6);
+                Cidade cd7 = new Cidade() { CidNom = "CURITIBA", EstadoEstCod = 1 };
+                Cidade cd8 = new Cidade() { CidNom = "TOLEDO", EstadoEstCod = 1 };
+                Cidade cd9 = new Cidade() { CidNom = "CASCAVEL", EstadoEstCod = 1 };
+                Cidade cd10 = new Cidade() { CidNom = "JOENVILE", EstadoEstCod = 2 };
+                Cidade cd11 = new Cidade() { CidNom = "JARAGUA", EstadoEstCod = 2 };
+                Cidade cd12 = new Cidade() { CidNom = "FLORIANÓPOLIS", EstadoEstCod = 2 };
+                _context.Cidades.AddRange(cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9, cd10, cd11, cd12);
             }
 
             if (!_context.Clientes.Any())
@@ -111,17 +117,43 @@ namespace Holtz_PDV.Data
             if (!_context.Marcas.Any())
             {
                 //Marcas
-                Marca m1 = new Marca { MarCod = 0, MarNom = "Dell" };
+                Marca m1 = new Marca { MarNom = "Dell" };
                 Marca m2 = new Marca { MarNom = "Acer" };
                 Marca m3 = new Marca { MarNom = "Kingston" };
                 Marca m4 = new Marca { MarNom = "Positivo" };
-                _context.Marcas.AddRange(m1, m2, m3, m4);
+                Marca m5 = new Marca { MarNom = "Fisher" };
+                Marca m6 = new Marca { MarNom = "Faber" };
+                Marca m7 = new Marca { MarNom = "AOC" };
+                Marca m8 = new Marca { MarNom = "OMO" };
+                Marca m9 = new Marca { MarNom = "XIAOMI" };
+                Marca m10 = new Marca { MarNom = "IPHONE" };
+                Marca m11 = new Marca { MarNom = "SAMSUNG" };
+                Marca m12 = new Marca { MarNom = "IPÊ" };
+                _context.Marcas.AddRange(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12);
                 //_context.SaveChanges();
                 //_repo.AddRange(new List<Marca>() { m1, m2, m3, m4 });
                 //_repo.SaveChange();
             }
 
-            _context.SaveChanges();
+            if (!_context.Pedidos.Any())
+            {
+                Pedido p1 = new Pedido  { PedCliCod = 1,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p2 = new Pedido  { PedCliCod = 2,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p3 = new Pedido  { PedCliCod = 3,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p4 = new Pedido  { PedCliCod = 4,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p5 = new Pedido  { PedCliCod = 5,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p6 = new Pedido  { PedCliCod = 6,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p7 = new Pedido  { PedCliCod = 7,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p8 = new Pedido  { PedCliCod = 8,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p9 = new Pedido  { PedCliCod = 9,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p10 = new Pedido { PedCliCod = 10, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p11 = new Pedido { PedCliCod = 11, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p12 = new Pedido { PedCliCod = 12, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                _context.Pedidos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
+            }
+
+
+                _context.SaveChanges();
             //_repo.SaveChange();
         }
 

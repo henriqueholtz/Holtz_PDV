@@ -16,6 +16,7 @@ namespace Holtz_PDV.Models
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

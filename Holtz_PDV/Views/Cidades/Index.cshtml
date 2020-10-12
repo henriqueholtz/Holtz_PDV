@@ -1,8 +1,11 @@
-﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.CidadeFromViewModel>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Cidade>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Listagem de Cidades";
 }
 <h2>@ViewData["Title"]</h2>
+
 
 <p>
     <a asp-action="Create" class="btn btn-info">Novo</a>
@@ -29,25 +32,29 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CidCod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CidNom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CidIBGE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado.EstUf)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CidCod" class="btn btn-primary btn-sm">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.CidCod" class="btn btn-light btn-sm">Detalhes</a>
-                <a asp-action="Delete" asp-route-id="@item.CidCod" class="btn btn-danger btn-sm">Remover</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CidCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CidNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CidIBGE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado.EstUf)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CidCod" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.CidCod" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.CidCod" class="btn btn-danger btn-sm">Remover</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+<nav aria-label="Cidade Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

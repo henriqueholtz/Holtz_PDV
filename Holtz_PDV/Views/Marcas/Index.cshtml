@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.MarcaFromViewModel>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Marca>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Listagem de Marcas";
 }
@@ -12,13 +14,13 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                @Html.DisplayNameFor(model => model.MarCod)
+                MarCod
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MarNom)
+                MarNom
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MarSts)
+                MarSts
             </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
@@ -45,3 +47,7 @@
         }
     </tbody>
 </table>
+
+<nav aria-label="Marca Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

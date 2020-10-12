@@ -10,6 +10,6 @@ namespace Holtz_PDV.Models
 
         public DateTime? PedDtaEms { get; set; }
         public DateTime? PedDtaFat { get; set; }
-        public Status_Duplicata? PedSts { get; set; } //Status
+        public Status_Pedido? PedSts { get; set; } //Status
     }
 }
