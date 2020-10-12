@@ -61,7 +61,26 @@ namespace Holtz_PDV.Data
                 Cliente c7 = new Cliente() { CliRaz = "Miguel Junior", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 4, CliCpfCnpj = "451.261.411-10", CliTip = Tipo_Pessoa.FÍSICA };
                 Cliente c8 = new Cliente() { CliRaz = "Larissa Dilkin", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 3, CliCpfCnpj = "534.456.322-70", CliTip = Tipo_Pessoa.FÍSICA };
                 Cliente c9 = new Cliente() { CliRaz = "Henrique Holtz", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 2, CliCpfCnpj = "123.652.666-02", CliTip = Tipo_Pessoa.FÍSICA };
-                _context.Clientes.AddRange(c1, c2, c3, c4, c5, c6, c7, c8, c9);
+                Cliente c10 = new Cliente() { CliRaz = "EMPRESA X", CliNomFan = "X FANTASIA", CliCpfCnpj = "12.121.423/0001-45", CliTip = Tipo_Pessoa.JURÍDICA, CliBai = "BAIRRO E", CliRua = "RUA E", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 5 };
+                Cliente c11 = new Cliente() { CliRaz = "Maicol Oscar", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 6, CliCpfCnpj = "123.456.789-00", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c12 = new Cliente() { CliRaz = "Miquelito Junior", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 4, CliCpfCnpj = "451.261.411-10", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c13 = new Cliente() { CliRaz = "Leticia Dilkin", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 3, CliCpfCnpj = "534.456.322-70", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c14 = new Cliente() { CliRaz = "Ilson Holtz", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 2, CliCpfCnpj = "123.652.666-02", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c15 = new Cliente() { CliRaz = "EMPRESA Y", CliNomFan = "Y FANTASIA", CliCpfCnpj = "12.121.423/0001-45", CliTip = Tipo_Pessoa.JURÍDICA, CliBai = "BAIRRO E", CliRua = "RUA E", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 5 };
+                Cliente c16 = new Cliente() { CliRaz = "Vennon Oscar", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 6, CliCpfCnpj = "123.456.789-00", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c17 = new Cliente() { CliRaz = "Mateus Junior", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 4, CliCpfCnpj = "451.261.411-10", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c18 = new Cliente() { CliRaz = "Loivo Dilkin", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 3, CliCpfCnpj = "534.456.322-70", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c19 = new Cliente() { CliRaz = "Nelsi Holtz", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 2, CliCpfCnpj = "123.652.666-02", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c20 = new Cliente() { CliRaz = "LIVRARIA A ESTUNDATIL", CliNomFan = "A ESTUNDATIL", CliCpfCnpj = "12.121.423/0001-45", CliTip = Tipo_Pessoa.JURÍDICA, CliBai = "BAIRRO E", CliRua = "RUA E", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 5 };
+                Cliente c21 = new Cliente() { CliRaz = "Jeovane Oscar", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 6, CliCpfCnpj = "123.456.789-00", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c22 = new Cliente() { CliRaz = "Jean Junior", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 4, CliCpfCnpj = "451.261.411-10", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c23 = new Cliente() { CliRaz = "Marcilene Dilkin", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 3, CliCpfCnpj = "534.456.322-70", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c24 = new Cliente() { CliRaz = "Jhonatan Holtz", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 2, CliCpfCnpj = "123.652.666-02", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c25 = new Cliente() { CliRaz = "Osvino Oscar", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 6, CliCpfCnpj = "123.456.789-00", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c26 = new Cliente() { CliRaz = "Marcio Junior", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 4, CliCpfCnpj = "451.261.411-10", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c27 = new Cliente() { CliRaz = "Alisson Souza", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 3, CliCpfCnpj = "534.456.322-70", CliTip = Tipo_Pessoa.FÍSICA };
+                Cliente c28 = new Cliente() { CliRaz = "Jonatan Store", CliSts = Status_AtivoInativo.ATIVO, CidadeCidCod = 2, CliCpfCnpj = "123.652.666-02", CliTip = Tipo_Pessoa.FÍSICA };
+                _context.Clientes.AddRange(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20 , c21, c22, c23,c24,c25,c26,c27,c28);
             }
 
             if (!_context.Produtos.Any())

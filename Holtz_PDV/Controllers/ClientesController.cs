@@ -9,26 +9,32 @@ using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
+using X.PagedList;
 
 namespace Holtz_PDV.Controllers
 {
     public class ClientesController : Controller
     {
+        private readonly Holtz_PDVContext _context;
         private readonly ClienteService _clienteService;
         private readonly CidadeService _cidadeService;
         private readonly IMapper _mapper;
-        public ClientesController(ClienteService clienteService, CidadeService cidadeService,IMapper mapper)
+        public ClientesController(ClienteService clienteService, CidadeService cidadeService,IMapper mapper, Holtz_PDVContext context)
         {
             _clienteService = clienteService;
             _cidadeService = cidadeService;
             _mapper = mapper;
+            _context = context;
         }
 
         //GET
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 1)
         {
-            var list = await _clienteService.FindAllAsync();
-            return View(_mapper.Map<List<ClienteFromViewModel>>(list));
+            //var pageNumber = page ?? 1; 
+            //int pageSize = 10;
+            //var list = await _context.Clientes.OrderBy(x => x.CliCod).ToPagedListAsync(1, 7);
+            return View(await PaginatedList<Cliente>.CreateAsync(_context.Clientes,pageNumber,5));
+            //return View(_mapper.Map<IEnumerable<ClienteFromViewModel>>(list.ToPagedList(pageNumber, pageSize)));
         }
 
         public async Task<IActionResult> Create()
