@@ -96,7 +96,13 @@ namespace Holtz_PDV.Data
                 Produto p8 = new Produto { ProNom = "Teclado USB s/ Fio", ProVlrCus = 75, ProVlrVen = 88 };
                 Produto p9 = new Produto { ProNom = "Processador i3", ProVlrCus = 750, ProVlrVen = 880 };
                 Produto p10 = new Produto { ProNom = "Processador i5", ProVlrCus = 1050, ProVlrVen = 1320 };
-                _context.Produtos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+                Produto p11 = new Produto { ProNom = "Processador i3-4", ProVlrCus = 750, ProVlrVen = 880 };
+                Produto p12 = new Produto { ProNom = "Processador i5-4", ProVlrCus = 1050, ProVlrVen = 1320 };
+                Produto p13 = new Produto { ProNom = "Processador i3-5", ProVlrCus = 750, ProVlrVen = 880 };
+                Produto p14 = new Produto { ProNom = "Processador i5-5", ProVlrCus = 1050, ProVlrVen = 1320 };
+                Produto p15 = new Produto { ProNom = "Processador i3-6", ProVlrCus = 750, ProVlrVen = 880 };
+                Produto p16 = new Produto { ProNom = "Processador i5-6", ProVlrCus = 1050, ProVlrVen = 1320 };
+                _context.Produtos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16);
                 //_context.SaveChanges();
                 //_repo.AddRange(new List<Produto>() { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 });
                 //_repo.SaveChange();

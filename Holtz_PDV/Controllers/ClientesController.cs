@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
 using X.PagedList;
+using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Controllers
 {
@@ -28,13 +30,16 @@ namespace Holtz_PDV.Controllers
         }
 
         //GET
-        public async Task<IActionResult> Index(int pageNumber = 1)
+        public async Task<IActionResult> Index(int page = 1)
         {
-            //var pageNumber = page ?? 1; 
-            //int pageSize = 10;
-            //var list = await _context.Clientes.OrderBy(x => x.CliCod).ToPagedListAsync(1, 7);
-            return View(await PaginatedList<Cliente>.CreateAsync(_context.Clientes,pageNumber,5));
-            //return View(_mapper.Map<IEnumerable<ClienteFromViewModel>>(list.ToPagedList(pageNumber, pageSize)));
+            var query = _context.Clientes.AsNoTracking().OrderBy(x => x.CliCod);
+            var model = await PagingList.CreateAsync(query, 5, page);
+            return View(model);
+            //return View(_mapper.Map<ClienteFromViewModel>(model));
+            //return View(_mapper.Map<List<ClienteFromViewModel>>(list));
+
+            //page/pageNumber
+            //return View(await PaginatedList<Cliente>.CreateAsync(_context.Clientes, pageNumber, 5));
         }
 
         public async Task<IActionResult> Create()

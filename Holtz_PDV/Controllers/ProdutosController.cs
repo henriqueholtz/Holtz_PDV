@@ -7,6 +7,8 @@ using Holtz_PDV.Models.ViewModels;
 using System.Diagnostics;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Controllers
 {
@@ -14,15 +16,21 @@ namespace Holtz_PDV.Controllers
     {
         private readonly ProdutoService _produtoService;
         private readonly IMapper _mapper;
-        public ProdutosController(ProdutoService produtoService, IMapper mapper)
+        private readonly Holtz_PDVContext _context;
+        public ProdutosController(ProdutoService produtoService, IMapper mapper,Holtz_PDVContext context)
         {
             _produtoService = produtoService;
             _mapper = mapper;
+            _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var produtos = await _produtoService.FindAllAsync();
-            return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));
+
+            return View(await PaginatedList<Produto>.CreateAsync(_context.Produtos, page, 5));
+
+
+            //var produtos = await _produtoService.FindAllAsync();
+            //return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));
         }
 
         public async Task<IActionResult> Create()

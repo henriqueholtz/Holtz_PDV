@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV
 {
@@ -43,6 +44,7 @@ namespace Holtz_PDV
 
             //inject interface
             services.AddScoped<IEFCore, EFCoreRepo>();
+            services.AddPaging(); //ReflectionIT.Mvc.Paging;
 
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();

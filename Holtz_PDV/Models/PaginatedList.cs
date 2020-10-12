@@ -4,6 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*
+ 
+ //só pega next e previous
+ 
+ 
+ 
+ index:
+@model PaginatedList<Holtz_PDV.Models.Cliente>
+ @{ 
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NestPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex -1)"
+   class="btn btn-default @prevDisabled">
+   Previous
+</a>
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex +1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+ * */
+
 namespace Holtz_PDV.Models
 {
     public class PaginatedList<T> : List<T>

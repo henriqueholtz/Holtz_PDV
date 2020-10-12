@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Holtz_PDV.Models.ViewModels.ProdutoFromViewModel>
+﻿@model PaginatedList<Holtz_PDV.Models.Produto>
 @{
     ViewData["Title"] = "Listagem de Produtos";
 }
@@ -12,19 +12,19 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                @Html.DisplayNameFor(model => model.ProCod)
+                ProCod
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProNom)
+                ProNom
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProVlrCus)
+                ProVlrCus
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProVlrVen)
+                ProVlrVen
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Marca)
+                Marca
             </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
@@ -32,28 +32,45 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProCod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProNom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProVlrCus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProVlrVen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca.MarNom)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProCod" class="btn btn-primary btn-sm">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.ProCod" class="btn btn-light btn-sm">Detalhes</a>
-                <a asp-action="Delete" asp-route-id="@item.ProCod" class="btn btn-danger btn-sm">Remover</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProVlrCus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProVlrVen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca.MarNom)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProCod" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.ProCod" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProCod" class="btn btn-danger btn-sm">Remover</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NestPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex -1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex +1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
