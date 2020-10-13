@@ -17,6 +17,25 @@
                 <label asp-for="PedCliCod" class="control-label">Cód. Cliente</label>
                 <input asp-for="PedCliCod" class="form-control" />
                 <span asp-validation-for="PedCliCod" class="text-danger"></span> <!-- msg erro em baixo do campo -->
+                <a class="btn btn-success" data-toggle="modal" data-target=".bootstrapmodal"><span class="glyphicon glyphicon-eye-open"> </span> PopUp </a>
+                
+                <div class="modal fade bootstrapmodal" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">Clientes</div>
+                                <button data-dismiss="modal" class="close"> <span>&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="form-group">

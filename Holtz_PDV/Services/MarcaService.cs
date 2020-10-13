@@ -1,4 +1,6 @@
-﻿using Holtz_PDV.Models;
+﻿using AutoMapper;
+using Holtz_PDV.Models;
+using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services.Exceptions;
 using Microsoft.EntityFrameworkCore; //ToListAsync
 using System;

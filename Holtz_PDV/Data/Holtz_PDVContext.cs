@@ -17,6 +17,8 @@ namespace Holtz_PDV.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        //public Usuario Login { get; }
+        //Context não tem acesso a lista de usuarios diretamente
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +29,7 @@ namespace Holtz_PDV.Models
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new MarcaConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());
+            //modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
 
 
             //Disable DeleteBehavior.Cascade
@@ -37,8 +40,9 @@ namespace Holtz_PDV.Models
 
             //Sequencies => Default SQL: Start = 1,  Increment = 1
             modelBuilder.HasSequence<int>("Seq_ProCod");
-            modelBuilder.HasSequence<int>("Seq_MarCod");
+            modelBuilder.HasSequence<int>("Seq_MarCod"); 
             modelBuilder.HasSequence<int>("Seq_PedCod");
+            modelBuilder.HasSequence<int>("Seq_UsuCod");
         }
     }
 }

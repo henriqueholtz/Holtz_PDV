@@ -28,9 +28,12 @@ namespace Holtz_PDV.Controllers
         }
 
         //GET
+        public async Task<IActionResult> PromptCliente()
+        {
+            return View();
+        }
         public async Task<IActionResult> Index(int page = 1)
         {
-
             var model = await PagingList.CreateAsync(_clienteService.FindAllQueryable(), 5, page);
             return View(model);
             //return View(_mapper.Map<ClienteFromViewModel>(model));

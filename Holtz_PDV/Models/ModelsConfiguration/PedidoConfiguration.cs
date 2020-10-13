@@ -31,6 +31,9 @@ namespace Holtz_PDV.Models.ModelsConfiguration
             builder.Property(x => x.PedDtaFat)
                 .HasColumnType(Tipo.DATETIME)
                 .ValueGeneratedNever(); //Remove Identity
+
+            builder.Property(x => x.PedSts)
+                .HasColumnType(Tipo.STATUS_PEDIDO);
         }
     }
 }

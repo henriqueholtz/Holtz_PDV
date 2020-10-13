@@ -10,6 +10,7 @@
 /*FINISH*/
 
 :root {
+  --black: #000000;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -9923,6 +9924,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-muted {
   color: #6c757d !important;
+}
+
+.text-black {
+    color: rgba(0, 0, 0, 0) !important;
 }
 
 .text-black-50 {

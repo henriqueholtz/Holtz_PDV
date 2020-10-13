@@ -21,7 +21,7 @@
 
         public const string STATUS_ATIVO_INATIVO = "TINYINT"; //0 - 255
         public const string STATUS_DUPLICATA = "TINYINT"; //0 - 255
-        public const string STATUS_PEDIDO = "TINYINT";
+        public const string STATUS_PEDIDO = "TINYINT"; //0 - 255
 
         public const string TIPO_USUARIO = "TINYINT"; //0 - 255
         public const string TIPO_PESSOA = "TINYINT"; //0-255

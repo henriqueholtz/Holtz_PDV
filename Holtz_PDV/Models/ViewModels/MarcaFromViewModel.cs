@@ -1,11 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations; //MaxLenght and Key
 using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 using Holtz_PDV.Models.Enums;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Models.ViewModels
 {
     public class MarcaFromViewModel
     {
+        public MarcaFromViewModel(Marca marca = null)
+        {
+            if (marca != null)
+            {
+                MarCod = marca.MarCod;
+                MarNom = marca.MarNom;
+            }
+        }
+
         [Display(Name = "Código")]
         [MaxLength(8)] [Key]
         public int MarCod { get; set; }
