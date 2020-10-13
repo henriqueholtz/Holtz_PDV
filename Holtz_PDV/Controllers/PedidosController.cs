@@ -9,6 +9,7 @@ using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using ReflectionIT.Mvc.Paging;
 using AutoMapper;
+using X.PagedList;
 
 namespace Holtz_PDV.Controllers
 {
@@ -23,7 +24,10 @@ namespace Holtz_PDV.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await PagingList.CreateAsync(_pedidoService.FindAllQueryable(),5,page));
+            //ReflectionIT.Mvc.Paging;
+            //return View(await PagingList.CreateAsync(_pedidoService.FindAllQueryableView(),5,page));
+
+            return View(_pedidoService.FindALLPaged(page));
         }
 
         public IActionResult Create()

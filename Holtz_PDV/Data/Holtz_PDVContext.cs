@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Holtz_PDV.Models.ModelsConfiguration;
 using System.Linq;
+using Holtz_PDV.Models.ViewModels;
 
 namespace Holtz_PDV.Models
 {

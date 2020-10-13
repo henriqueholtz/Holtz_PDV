@@ -1,6 +1,5 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Pedido>
-@using ReflectionIT.Mvc.Paging
-@addTagHelper *,ReflectionIT.Mvc.Paging
+﻿@model X.PagedList.IPagedList<Holtz_PDV.Models.Pedido>
+@using X.PagedList.Mvc.Core;
 @{
     ViewData["Title"] = "Listagem de Pedidos";
 }
@@ -60,6 +59,4 @@
     </tbody>
 </table>
 
-<nav aria-label="Pedido Paging">
-    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
-</nav>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

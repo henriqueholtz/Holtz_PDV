@@ -15,6 +15,7 @@ namespace Holtz_PDV.Data
             CreateMap<Produto, ProdutoFromViewModel>().ReverseMap();
             CreateMap<Marca, MarcaFromViewModel>().ReverseMap();
             CreateMap<Pedido, PedidoFromViewModel>().ReverseMap();
+            CreateMap<Pedido, PedidoFromViewModel>();
         }
     }
 }
