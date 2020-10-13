@@ -29,6 +29,6 @@ namespace Holtz_PDV.Models.ViewModels
 
         [Display(Name = "Status")]
         [Column(TypeName = Tipo.STATUS_PEDIDO)]
-        public Status_Duplicata? PedSts { get; set; } //Status
+        public Status_Pedido? PedSts { get; set; } //Status
     }
 }
