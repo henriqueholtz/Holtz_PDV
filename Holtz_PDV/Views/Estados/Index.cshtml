@@ -13,13 +13,13 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                EstCod
+                Código
             </th>
             <th>
-                EstNom
+                Nome
             </th>
             <th>
-                EstUf
+                UF
             </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
@@ -27,7 +27,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="text-uppercase">
                 <td>
                     @Html.DisplayFor(modelItem => item.EstCod)
                 </td>

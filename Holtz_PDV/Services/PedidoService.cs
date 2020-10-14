@@ -22,16 +22,6 @@ namespace Holtz_PDV.Services
             _mapper = mapper;
         }
 
-        //public IOrderedQueryable<Pedido> FindAllQueryableView()
-        //{
-            //da exceção no cast para IOrderedQueryable => ReflectionIT.Mvc.Paging;
-            //var list = _context.Pedidos.AsNoTracking().OrderBy(order => order.PedCod);
-            //var listReturn = _mapper.Map<IOrderedQueryable<PedidoFromViewModel>>(list);
-            //return listReturn;
-
-            
-        //}
-        
         public IPagedList<Pedido> FindALLPaged(int page = 1)
         {
             //using X.PagedList;

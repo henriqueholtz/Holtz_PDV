@@ -18,11 +18,11 @@ namespace Holtz_PDV.Services
         }
         public async Task<List<Cliente>> FindAllAsync()
         {
-            return await _context.Clientes.OrderBy(x => x.CliRaz).ToListAsync();
+            return await _context.Clientes.Include(inc => inc.Cidade).OrderBy(x => x.CliRaz).ToListAsync();
         }
         public IOrderedQueryable<Cliente> FindAllQueryable()
         {
-            return _context.Clientes.AsNoTracking().OrderBy(x => x.CliRaz);
+            return _context.Clientes.Include(inc => inc.Cidade).AsNoTracking().OrderBy(x => x.CliRaz);
         }
 
         public async Task<Cliente> FindByCodAsync(int cod)

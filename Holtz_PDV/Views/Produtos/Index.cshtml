@@ -14,16 +14,16 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                ProCod
+                Código
             </th>
             <th>
-                ProNom
+                Nome
             </th>
             <th>
-                ProVlrCus
+                Valor Custo
             </th>
             <th>
-                ProVlrVen
+                Valor Venda
             </th>
             <th>
                 Marca
@@ -34,7 +34,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="text-uppercase">
                 <td>
                     @Html.DisplayFor(modelItem => item.ProCod)
                 </td>

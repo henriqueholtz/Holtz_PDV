@@ -9,8 +9,8 @@ using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
-using X.PagedList;
-using Microsoft.EntityFrameworkCore;
+//using X.PagedList;
+//using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Controllers
@@ -28,16 +28,12 @@ namespace Holtz_PDV.Controllers
         }
 
         //GET
-        public async Task<IActionResult> PromptCliente()
-        {
-            return View();
-        }
         public async Task<IActionResult> Index(int page = 1)
         {
+            //ReflectionIT.Mvc.Paging;
             var model = await PagingList.CreateAsync(_clienteService.FindAllQueryable(), 5, page);
             return View(model);
-            //return View(_mapper.Map<ClienteFromViewModel>(model));
-            //return View(_mapper.Map<List<ClienteFromViewModel>>(list));
+
         }
 
         public async Task<IActionResult> Create()

@@ -7,6 +7,10 @@ namespace Holtz_PDV.Models.ViewModels
 {
     public class ClienteFromViewModel
     {
+        public ClienteFromViewModel()
+        {
+
+        }
         public ClienteFromViewModel(ICollection<Cidade> cidades = null, Cliente cliente = null) //inicia com null
         {
             if (cidades == null)

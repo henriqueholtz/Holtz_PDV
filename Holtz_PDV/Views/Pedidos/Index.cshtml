@@ -1,5 +1,6 @@
-﻿@model X.PagedList.IPagedList<Holtz_PDV.Models.Pedido>
-@using X.PagedList.Mvc.Core;
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Pedido>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Listagem de Pedidos";
 }
@@ -13,19 +14,19 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                PedCod
+                Código
             </th>
             <th>
-                PedCliCod
+                Cód. Cliente
             </th>
             <th>
-                PedDtaEms
+                Dta Emissão
             </th>
             <th>
-                PedDtaFat
+                Dta Faturamento
             </th>
             <th>
-                PedSts
+                Status
             </th>
             <th></th> <!-- Para criar uma titulo vazio para as funções editar, excluir etc -->
         </tr>
@@ -33,7 +34,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="text-uppercase">
                 <td>
                     @Html.DisplayFor(modelItem => item.PedCod)
                 </td>
@@ -59,4 +60,6 @@
     </tbody>
 </table>
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<nav aria-label="Cliente Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

@@ -5,11 +5,17 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations; //MaxLenght and Key
 using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 using Holtz_PDV.Models.Enums;
+using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Models.ViewModels
 {
     public class PedidoFromViewModel
     {
+        public PedidoFromViewModel()
+        {
+
+        }
+
         [Display(Name = "Código")]
         [MaxLength(8)] [Key]
         public int PedCod { get; set; }
