@@ -1,4 +1,5 @@
 ﻿using Holtz_PDV.Models;
+using Holtz_PDV.Models.Enums;
 using Holtz_PDV.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,22 @@ namespace Holtz_PDV.Services
             {
                 throw new DbConcurrencyException(e.Message);
             }
+        }
+
+        private void FormataCPF(Cliente cliente)
+        {
+            //retornaSoNumeros
+            if (cliente.CliTip == Tipo_Pessoa.FÍSICA)
+            {
+                string Cpf = cliente.CliCpfCnpj;
+                //formataCPF
+            }
+            else
+            {
+                string Cnpj = cliente.CliCpfCnpj;
+                //formata CNPJ
+            }
+
         }
     }
 }

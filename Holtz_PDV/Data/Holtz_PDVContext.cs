@@ -18,6 +18,7 @@ namespace Holtz_PDV.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<ClienteEmails> ClienteEmails { get; set; }
         //public Usuario Login { get; }
         //Context não tem acesso a lista de usuarios diretamente
 
@@ -27,6 +28,7 @@ namespace Holtz_PDV.Models
             modelBuilder.ApplyConfiguration(new EstadoConfiguration());
             modelBuilder.ApplyConfiguration(new CidadeConfiguration());
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            //modelBuilder.ApplyConfiguration(new ClienteEmailsConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new MarcaConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());
@@ -44,6 +46,7 @@ namespace Holtz_PDV.Models
             modelBuilder.HasSequence<int>("Seq_MarCod"); 
             modelBuilder.HasSequence<int>("Seq_PedCod");
             modelBuilder.HasSequence<int>("Seq_UsuCod");
+            modelBuilder.HasSequence<int>("Seq_CliEmlCod");
         }
     }
 }
