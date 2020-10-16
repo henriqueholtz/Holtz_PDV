@@ -1,8 +1,6 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
-using System.Collections.Generic;
 
 namespace Holtz_PDV.Data
 {
@@ -17,6 +15,5 @@ namespace Holtz_PDV.Data
             CreateMap<Marca, MarcaFromViewModel>().ReverseMap();
             CreateMap<Pedido, PedidoFromViewModel>().ReverseMap();
         }
-        //para PagedList.Mvc  https://stackoverflow.com/questions/26961860/using-automapper-with-pagedlist-mvc
     }
 }
