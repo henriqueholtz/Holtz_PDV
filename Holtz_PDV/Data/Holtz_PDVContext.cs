@@ -18,7 +18,7 @@ namespace Holtz_PDV.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<ClienteEmails> ClienteEmails { get; set; }
+        //public DbSet<ClienteEmails> ClienteEmails { get; set; }
         //public Usuario Login { get; }
         //Context não tem acesso a lista de usuarios diretamente
 

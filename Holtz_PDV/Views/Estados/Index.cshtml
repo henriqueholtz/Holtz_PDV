@@ -3,9 +3,9 @@
     ViewData["Title"] = "Listagem de Estados";
 }
 
-<h2>@ViewData["Title"]</h2>
 
-<div>
+<div class="justify-content-center">
+    <h2>@ViewData["Title"]</h2>
     <a asp-action="Create" class="btn btn-info">Novo</a>
 </div>
 
@@ -47,20 +47,28 @@
     </tbody>
 </table>
 
-
 @{
-    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.NestPage ? "disabled" : "";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="Index"
-   asp-route-page="@(Model.PageIndex -1)"
-   class="btn btn-default @prevDisabled">
-    Anterior
-</a>
+<div class="justify-content-center">
+    <a asp-action="Index" asp-route-page="1" class="btn btn-sm btn-info @prevDisabled"> |< </a>
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex -1)" class="btn btn-sm btn-info @prevDisabled"> < </a>
+    @if (Model.TotalPages > 1)
+    {
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var classPag = "btn-info";
+            @if (@Model.PageIndex == @i)
+            {
+                classPag = "btn-primary";
+            }
+            
+            <a asp-action="Index" asp-route-page="@i" class="btn btn-sm @classPag"> @i </a>
+        }
+    }
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex +1)" class="btn btn-sm btn-info @nextDisabled"> > </a>
+    <a asp-action="Index" asp-route-page="@(Model.TotalPages)" class="btn btn-sm btn-info @nextDisabled"> >| </a>
+</div>
 
-<a asp-action="Index"
-   asp-route-page="@(Model.PageIndex +1)"
-   class="btn btn-default @nextDisabled">
-    Próximo
-</a>

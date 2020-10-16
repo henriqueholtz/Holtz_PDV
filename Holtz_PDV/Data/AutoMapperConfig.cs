@@ -3,7 +3,6 @@ using AutoMapper;
 using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using System.Collections.Generic;
-using X.PagedList;
 
 namespace Holtz_PDV.Data
 {

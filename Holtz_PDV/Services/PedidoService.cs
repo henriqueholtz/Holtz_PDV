@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using X.PagedList;
 
 namespace Holtz_PDV.Services
 {
@@ -20,13 +19,6 @@ namespace Holtz_PDV.Services
         {
             _context = context;
             _mapper = mapper;
-        }
-
-        public IPagedList<Pedido> FindALLPaged(int page = 1)
-        {
-            //using X.PagedList;
-            //tentar fazer igual o  FindAllQueryableView() - converter para PedidoFromViewModel
-            return _context.Pedidos.ToPagedList(page, 5);
         }
 
         public IOrderedQueryable<Pedido> FindAllQueryable()
