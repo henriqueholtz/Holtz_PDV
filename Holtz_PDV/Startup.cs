@@ -52,13 +52,6 @@ namespace Holtz_PDV
                 options.HtmlIndicatorUp = " <span>&uarr;</span>";
             }); //ReflectionIT.Mvc.Paging;
 
-            services.AddPaging(options =>
-            {
-                options.ViewName = "PaginatedListH_Bootstrap5";
-                options.HtmlIndicatorDown = " <span>&darr;</span>";
-                options.HtmlIndicatorUp = " <span>&uarr;</span>";
-            }); //RPaginatedListH
-
             //Injeção de serviços : services
             services.AddScoped<SeedingService>();
             services.AddScoped<ClienteService>();
