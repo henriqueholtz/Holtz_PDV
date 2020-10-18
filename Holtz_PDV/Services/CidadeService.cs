@@ -38,6 +38,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
+                ToUpper(obj);
                 obj.EstadoEstCod = obj.Estado.EstCod;
                 obj.Estado = null; //para o EF não tentar inserir o Estado novamente
                 _context.Cidades.Add(obj);
@@ -72,7 +73,7 @@ namespace Holtz_PDV.Services
             }
             try
             {
-                //obj.Estado = null;
+                ToUpper(obj);
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
             }
@@ -80,6 +81,11 @@ namespace Holtz_PDV.Services
             {
                 throw new DbConcurrencyException(e.Message);
             }
+        }
+
+        private void ToUpper(Cidade cidade)
+        {
+            cidade.CidNom = (cidade.CidNom == null) ? "" : cidade.CidNom.ToUpper();
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Holtz_PDV.Services
 
         public async Task InsertAsync(Estado obj)
         {
+            ToUpper(obj);
             _context.Estados.Add(obj);
             await _context.SaveChangesAsync();
         }
@@ -47,6 +48,7 @@ namespace Holtz_PDV.Services
             }
             try
             {
+                ToUpper(obj);
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
             }
@@ -68,6 +70,11 @@ namespace Holtz_PDV.Services
             {
                 throw new IntegrityException("Não é possível deletar um Estado !?");
             }
+        }
+
+        private void ToUpper(Estado estado)
+        {
+            estado.EstNom = (estado.EstNom == null) ? "" : estado.EstNom.ToUpper();
         }
     }
 }
