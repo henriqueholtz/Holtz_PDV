@@ -34,6 +34,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
+                ToUpper(obj);
                 obj.CidadeCidCod = obj.Cidade.CidCod;
                 obj.Cidade = null; // para o EFCore não tentar inserir a cidade NOVAMENTE... 
                 _context.Clientes.Add(obj);
@@ -68,6 +69,8 @@ namespace Holtz_PDV.Services
             }
             try
             {
+
+                ToUpper(obj);
                 //obj.Cidade = null; // para o EFCore não tentar atualizar a cidade tambem... 
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
@@ -92,6 +95,14 @@ namespace Holtz_PDV.Services
                 //formata CNPJ
             }
 
+        }
+
+        private void ToUpper(Cliente cliente)
+        {
+            cliente.CliBai    = (cliente.CliBai == null)    ? "" : cliente.CliBai.ToUpper();
+            cliente.CliNomFan = (cliente.CliNomFan == null) ? "" : cliente.CliNomFan.ToUpper();
+            cliente.CliRaz    = (cliente.CliRaz == null)    ? "" : cliente.CliRaz.ToUpper();
+            cliente.CliRua    = (cliente.CliRua == null)    ? "" : cliente.CliRua.ToUpper();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Cliente>
-@using ReflectionIT.Mvc.Paging
-@addTagHelper *,ReflectionIT.Mvc.Paging
+﻿@model PaginatedListH<Holtz_PDV.Models.Cliente>
 @{
     ViewData["Title"] = "Listagem de Clientes";
 }
@@ -10,6 +8,14 @@
     <a asp-action="Create" class="btn btn-info">Novo</a>
 </p>
 
+
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Razão ou Nome Fantasia do Cliente" value="@ViewData["GetCustomers"]" name="clientName" style="width:500px;" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index">Todos Clientes</a>
+    </p>
+</form>
 
 <table class="table table-striped table-hover">
     <thead>
@@ -55,6 +61,27 @@
     </tbody>
 </table>
 
-<nav aria-label="Cliente Paging">
-    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
-</nav>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="justify-content-center">
+    <a asp-action="Index" asp-route-page="1" class="btn btn-sm btn-info @prevDisabled"> |< </a>
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex -1)" class="btn btn-sm btn-info @prevDisabled"> < </a>
+    @if (Model.TotalPages > 1)
+    {
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var classPag = "btn-info";
+            @if (@Model.PageIndex == @i)
+            {
+                classPag = "btn-primary";
+            }
+
+            <a asp-action="Index" asp-route-page="@i" class="btn btn-sm @classPag"> @i </a>
+        }
+    }
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex +1)" class="btn btn-sm btn-info @nextDisabled"> > </a>
+    <a asp-action="Index" asp-route-page="@(Model.TotalPages)" class="btn btn-sm btn-info @nextDisabled"> >| </a>
+</div>

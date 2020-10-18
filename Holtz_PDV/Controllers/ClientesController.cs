@@ -9,7 +9,6 @@ using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
-//using X.PagedList;
 //using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 
@@ -31,11 +30,31 @@ namespace Holtz_PDV.Controllers
         public async Task<IActionResult> Index(int page = 1)
         {
             //ReflectionIT.Mvc.Paging;
-            var model = await PagingList.CreateAsync(_clienteService.FindAllQueryable(), 5, page);
-            return View(model);
+            //var model = await PagingList.CreateAsync(_clienteService.FindAllQueryable(), 5, page);
+            //return View(model);
+            var list = await _clienteService.FindAllAsync();
+            return View(PaginatedListH<Cliente>.Create(list, page, 5));
 
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int page = 1, string clientName = "")
+        {
+            ViewData["GetCustomers"] = clientName;
+            var query = from x in await _clienteService.FindAllAsync() select x;
+            IEnumerable<Cliente> queryResult = new List<Cliente>();
+            if (!String.IsNullOrEmpty(clientName))
+            {
+                query = query.Where(x => x.CliRaz.Contains(clientName.ToUpper())); // || x.CliNomFan.Contains(clientName.ToUpper()));
+                queryResult.Concat(query.Where(x => x.CliNomFan.Contains(clientName.ToUpper())));
+            }
+            else
+            {
+                queryResult = query.ToList();
+            }
+            return View(PaginatedListH<Cliente>.Create(queryResult.ToList(), page, 5));
+        }
         public async Task<IActionResult> Create()
         {
             List<Cidade> cidades = await _cidadeService.FindAllAsync();
