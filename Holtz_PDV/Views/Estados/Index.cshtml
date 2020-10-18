@@ -5,9 +5,20 @@
 
 
 <div class="justify-content-center">
-    <h2>@ViewData["Title"]</h2>
-    <a asp-action="Create" class="btn btn-info">Novo</a>
+    <p>
+        <h2>@ViewData["Title"]</h2>
+        <a asp-action="Create" class="btn btn-info">Novo</a>
+    </p>
 </div>
+
+
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Nome do Estado" value="@ViewData["GetEstados"]" name="stateName" style="width:500px;" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index">Todos Estados</a>
+    </p>
+</form>
 
 <table class="table table-striped table-hover">
     <thead>
@@ -64,7 +75,7 @@
             {
                 classPag = "btn-primary";
             }
-            
+
             <a asp-action="Index" asp-route-page="@i" class="btn btn-sm @classPag"> @i </a>
         }
     }

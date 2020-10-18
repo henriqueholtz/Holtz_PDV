@@ -44,7 +44,8 @@ namespace Holtz_PDV
 
             //inject interface
             services.AddScoped<IEFCore, EFCoreRepo>();
-
+            services.AddRazorPages();
+            
             services.AddPaging(options =>
             {
                 options.ViewName = "Bootstrap5";

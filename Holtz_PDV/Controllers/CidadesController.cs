@@ -26,10 +26,24 @@ namespace Holtz_PDV.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            var model = await PagingList.CreateAsync(_cidadeService.FindAllQueryable(),5,page);
-            return View(model);
+            var list = await _cidadeService.FindAllAsync();
+            return View(PaginatedListH<Cidade>.Create(list, page, 5));
+            //var model = await PagingList.CreateAsync(_cidadeService.FindAllQueryable(), 5, page);
+            //return View(model);
             //List<Cidade> cidades = await _cidadeService.FindAllAsync();
             //return View(_mapper.Map<List<CidadeFromViewModel>>(cidades));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int page = 1, string cityName = "")
+        {
+            ViewData["GetCidades"] = cityName;
+            var query = from x in await _cidadeService.FindAllAsync() select x;
+            if (!String.IsNullOrEmpty(cityName))
+            {
+                query = query.Where(x => x.CidNom.Contains(cityName.ToUpper()));
+            }
+            return View(PaginatedListH<Cidade>.Create(query.ToList(), page, 5));
         }
 
         public async Task<IActionResult> Create()

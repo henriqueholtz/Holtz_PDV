@@ -33,6 +33,18 @@ namespace Holtz_PDV.Controllers
             //return View(_mapper.Map<List<EstadoFromViewModel>>(estados));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(int page = 1, string stateName = "")
+        {
+            ViewData["GetEstados"] = stateName;
+            var query = from x in await _estadoService.FindAllAsync() select x;
+            if (!String.IsNullOrEmpty(stateName))
+            {
+                query = query.Where(x => x.EstNom.Contains(stateName.ToUpper()));
+            }
+            return View(PaginatedListH<Estado>.Create(query.ToList(), page, 5));
+        }
+
 
 
         public async Task<IActionResult> Details(int? id)
