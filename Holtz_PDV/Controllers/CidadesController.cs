@@ -9,7 +9,7 @@ using Holtz_PDV.Services; //Activity
 using System.Diagnostics;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
-using ReflectionIT.Mvc.Paging;
+using Holtz_PDV.Models.Enums;
 
 namespace Holtz_PDV.Controllers
 {
@@ -35,15 +35,25 @@ namespace Holtz_PDV.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int page = 1, string cityName = "")
+        public async Task<IActionResult> Index(int page = 1, string cityName = "", UF_All? UF = UF_All.TODOS)
         {
             ViewData["GetCidades"] = cityName;
+            ViewData["GetUF"] = UF;
             var query = from x in await _cidadeService.FindAllAsync() select x;
+            IEnumerable<Cidade> queryResult = new List<Cidade>();
+            if (UF == UF_All.TODOS)
+            {
+                queryResult = query; //All
+            }
+            else
+            {
+                queryResult = query.Where(x => x.Estado.EstUf.ToString().Equals(UF.ToString()));
+            }
             if (!String.IsNullOrEmpty(cityName))
             {
-                query = query.Where(x => x.CidNom.Contains(cityName.ToUpper()));
+                queryResult = queryResult.Where(x => x.CidNom.Contains(cityName.ToUpper()));
             }
-            return View(PaginatedListH<Cidade>.Create(query.ToList(), page, 5));
+            return View(PaginatedListH<Cidade>.Create(queryResult.ToList(), page, 5));
         }
 
         public async Task<IActionResult> Create()

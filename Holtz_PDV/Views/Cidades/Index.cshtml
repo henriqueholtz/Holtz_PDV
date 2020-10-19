@@ -1,5 +1,6 @@
 ﻿@model PaginatedListH<Holtz_PDV.Models.Cidade>
 @{
+    var Uf = ViewData["GetUF"];
     ViewData["Title"] = "Listagem de Cidades";
 }
 
@@ -12,9 +13,10 @@
 
 <form method="get" asp-action="Index">
     <p>
-        <input type="search" placeholder="Nome da Cidade" value="@ViewData["GetCidades"]" name="cityName" style="width:500px;" />
+        <input type="search" placeholder="Nome da Cidade" value="@ViewData["GetCidades"]" name="cityName" style="width:380px;" />
         <input type="submit" value="Search" class="btn btn-primary" />
         <a asp-action="Index">Todas Cidades</a>
+        <select asp-for="@Uf" type="search" placeholder="UF" value="@Uf" name="UF" style="width:85px;" asp-items="@(new SelectList(Enum.GetValues(typeof(Holtz_PDV.Models.Enums.UF_All))))" class="form-control">--Selecione--</select>
     </p>
 </form>
 
