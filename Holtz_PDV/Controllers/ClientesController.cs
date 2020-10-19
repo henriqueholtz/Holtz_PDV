@@ -61,7 +61,7 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<ClienteFromViewModel>(new ClienteFromViewModel(cidades)));
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page)
         {
             if (id == null)
             {
@@ -79,7 +79,7 @@ namespace Holtz_PDV.Controllers
             //return View(_mapper.Map<ClienteFromViewModel>(obj)); assim funciona direto, antes de incluir as cidades
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page)
         {
             if (id == null)
             {
@@ -92,7 +92,7 @@ namespace Holtz_PDV.Controllers
             }
             return View(_mapper.Map<ClienteFromViewModel>(obj));
         }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int page)
         {
             if (id == null)
             {
@@ -132,12 +132,13 @@ namespace Holtz_PDV.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, int page)
         {
             try
             {
                 await _clienteService.RemoveAsync(id);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
             }
             catch (IntegrityException e) // exceção a nível de Serviço
             {
@@ -148,7 +149,7 @@ namespace Holtz_PDV.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task <IActionResult> Edit(Cliente cliente)
+        public async Task <IActionResult> Edit(Cliente cliente, int page)
         { //UPDATE
             if (!ModelState.IsValid)
             {
@@ -158,7 +159,8 @@ namespace Holtz_PDV.Controllers
             try
             {
                 await _clienteService.UpdateAsync(cliente);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
             }
             catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
             {

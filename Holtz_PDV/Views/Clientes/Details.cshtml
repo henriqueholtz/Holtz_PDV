@@ -1,5 +1,6 @@
 ﻿@model Holtz_PDV.Models.ViewModels.ClienteFromViewModel
 @{
+    var pagina = Context.Request.Query["page"];
     ViewData["Title"] = "Visualizar Cliente";
 }
 <h3>@ViewData["Title"]</h3>
@@ -67,6 +68,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CliCod" class="btn btn-info">Editar</a> |
-    <a asp-action="Index" class="btn btn-light">Voltar</a>
+    <a asp-action="Edit" asp-route-id="@Model.CliCod" asp-route-page="@pagina" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" asp-route-page="@pagina" class="btn btn-light">Voltar</a>
 </div>
