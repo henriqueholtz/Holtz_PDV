@@ -37,6 +37,7 @@ namespace Holtz_PDV.Services
         {
             try
             {
+                ToUpper(marca);
                 _context.Marcas.Add(marca);
                 await _context.SaveChangesAsync();
             }
@@ -55,6 +56,7 @@ namespace Holtz_PDV.Services
             }
             try
             {
+                ToUpper(marca);
                 _context.Update(marca);
                 await _context.SaveChangesAsync();
             }
@@ -81,6 +83,11 @@ namespace Holtz_PDV.Services
         {
             _context.Marcas.AddRange(marcas);
             await _context.SaveChangesAsync();
+        }
+
+        private void ToUpper(Marca marca)
+        {
+            marca.MarNom = (marca.MarNom == null) ? "" : marca.MarNom.ToUpper();
         }
     }
 }
