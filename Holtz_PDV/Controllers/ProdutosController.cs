@@ -7,8 +7,6 @@ using Holtz_PDV.Models.ViewModels;
 using System.Diagnostics;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
-using Microsoft.EntityFrameworkCore;
-using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Controllers
 {
@@ -23,8 +21,10 @@ namespace Holtz_PDV.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            var model = await PagingList.CreateAsync(_produtoService.FindAllQueryable(), 5, page);
-            return View(model);
+            var list = await _produtoService.FindAllAsync();
+            return View(PaginatedListH<Produto>.Create(list,page,5));
+            //var model = await PagingList.CreateAsync(_produtoService.FindAllQueryable(), 5, page);
+            //return View(model);
 
             //var produtos = await _produtoService.FindAllAsync();
             //return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));
@@ -36,7 +36,7 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel(marcas)));
         }
 
-        public async Task<IActionResult> Edit(int? id) 
+        public async Task<IActionResult> Edit(int? id, int page) 
         {
             if (id == null)
             {
@@ -51,7 +51,7 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel(marcas,prod)));
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace Holtz_PDV.Controllers
             ICollection<Marca> marcas = await _produtoService.FindAllMarcasAsync();
             return View(_mapper.Map<ProdutoFromViewModel>(new ProdutoFromViewModel(marcas, prod)));
         }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int page)
         {
             if (id == null)
             {
@@ -106,7 +106,7 @@ namespace Holtz_PDV.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task<IActionResult> Edit(Produto obj)
+        public async Task<IActionResult> Edit(Produto obj, int page)
         {//UPDATE
             if(!ModelState.IsValid)
             {
@@ -115,7 +115,8 @@ namespace Holtz_PDV.Controllers
             try
             {
                 await _produtoService.UpdateAsync(obj);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page});
             }
             catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
             {
@@ -129,12 +130,13 @@ namespace Holtz_PDV.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, int page)
         {
             try
             {
                 await _produtoService.RemoveAsync(id);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
             }
             catch (IntegrityException e) // exceção a nível de Serviço
             {
