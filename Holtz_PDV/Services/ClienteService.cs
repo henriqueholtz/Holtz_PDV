@@ -3,6 +3,7 @@ using Holtz_PDV.Models.Enums;
 using Holtz_PDV.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
-                ToUpper(obj);
+                Format(obj); //UpperCase, and Format CPF/CNPJ
                 obj.CidadeCidCod = obj.Cidade.CidCod;
                 obj.Cidade = null; // para o EFCore não tentar inserir a cidade NOVAMENTE... 
                 _context.Clientes.Add(obj);
@@ -70,7 +71,7 @@ namespace Holtz_PDV.Services
             try
             {
 
-                ToUpper(obj);
+                Format(obj); //UpperCase, and Format CPF/CNPJ
                 //obj.Cidade = null; // para o EFCore não tentar atualizar a cidade tambem... 
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
@@ -81,24 +82,31 @@ namespace Holtz_PDV.Services
             }
         }
 
-        private void FormataCPF(Cliente cliente)
+        private void Format_CPF_CNPJ(Cliente cliente)
         {
             //retornaSoNumeros
             if (cliente.CliTip == Tipo_Pessoa.FÍSICA)
             {
-                string Cpf = cliente.CliCpfCnpj;
                 //formataCPF
+                string Cpf = cliente.CliCpfCnpj;
+                Cpf = String.Join("", System.Text.RegularExpressions.Regex.Split(Cpf, @"[^\d]"));
+                Cpf = Convert.ToUInt64(Cpf).ToString(@"000\.000\.000\-00");
+                cliente.CliCpfCnpj = Cpf;
             }
             else
             {
-                string Cnpj = cliente.CliCpfCnpj;
                 //formata CNPJ
+                string Cnpj = cliente.CliCpfCnpj;
+                Cnpj = String.Join("", System.Text.RegularExpressions.Regex.Split(Cnpj, @"[^\d]"));
+                Cnpj = Convert.ToUInt64(Cnpj).ToString(@"00\.000\.000\/0000\-00");
+                cliente.CliCpfCnpj = Cnpj;
             }
 
         }
 
-        private void ToUpper(Cliente cliente)
+        private void Format(Cliente cliente)
         {
+            Format_CPF_CNPJ(cliente);
             cliente.CliBai    = (cliente.CliBai == null)    ? "" : cliente.CliBai.ToUpper();
             cliente.CliNomFan = (cliente.CliNomFan == null) ? "" : cliente.CliNomFan.ToUpper();
             cliente.CliRaz    = (cliente.CliRaz == null)    ? "" : cliente.CliRaz.ToUpper();
