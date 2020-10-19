@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations; //MaxLenght and Key
 using System.ComponentModel.DataAnnotations.Schema; //Column and TypeName
 using Holtz_PDV.Models.Enums;
-using ReflectionIT.Mvc.Paging;
 
 namespace Holtz_PDV.Models.ViewModels
 {

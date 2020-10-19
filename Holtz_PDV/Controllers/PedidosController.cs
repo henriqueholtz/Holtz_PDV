@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +6,6 @@ using Holtz_PDV.Models;
 using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
-using ReflectionIT.Mvc.Paging;
 using AutoMapper;
 
 namespace Holtz_PDV.Controllers
@@ -23,9 +21,13 @@ namespace Holtz_PDV.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            var model = await PagingList.CreateAsync(_pedidoService.FindAllQueryable(), 5, page);//ReflectionIT.Mvc.Paging;
+            //var model = await PagingList.CreateAsync(_pedidoService.FindAllQueryable(), 5, page);//ReflectionIT.Mvc.Paging;
             //var model = _pedidoService.FindAllQueryable().ToPagedList(page, 5); //X.PagedList
-            return View(model);
+            //return View(model);
+
+            var list = await _pedidoService.FindAllAsync();
+            return View(PaginatedListH<Pedido>.Create(list, page, 5));
+            
         }
 
         public IActionResult Create()

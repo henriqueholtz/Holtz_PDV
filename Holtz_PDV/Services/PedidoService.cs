@@ -30,7 +30,7 @@ namespace Holtz_PDV.Services
             return await _context.Pedidos.Include(inc => inc.ClientePed).FirstOrDefaultAsync(x => x.PedCod == cod);
         }
 
-        public async Task<ICollection<Pedido>> FindAllAsync()
+        public async Task<List<Pedido>> FindAllAsync()
         {
             return await _context.Pedidos.Include(inc => inc.ClientePed).OrderBy(order => order.PedCod).ToListAsync();
         }

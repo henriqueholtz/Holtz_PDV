@@ -1,6 +1,4 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<Holtz_PDV.Models.Pedido>
-@using ReflectionIT.Mvc.Paging
-@addTagHelper *,ReflectionIT.Mvc.Paging
+﻿@model PaginatedListH<Holtz_PDV.Models.Pedido>
 @{
     ViewData["Title"] = "Listagem de Pedidos";
 }
@@ -37,35 +35,56 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr class="text-uppercase">
-            <td>
-                @Html.DisplayFor(modelItem => item.PedCod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientePedCliCod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientePed.CliRaz)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedDtaEms)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedDtaFat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedSts)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PedCod" class="btn btn-primary btn-sm">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.PedCod" class="btn btn-light btn-sm">Detalhes</a>
-                <a asp-action="Delete" asp-route-id="@item.PedCod" class="btn btn-danger btn-sm">Remover</a>
-            </td>
-        </tr>
+            <tr class="text-uppercase">
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientePedCliCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientePed.CliRaz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedDtaEms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedDtaFat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedSts)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PedCod" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.PedCod" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.PedCod" class="btn btn-danger btn-sm">Remover</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
-<nav aria-label="Cliente Paging">
-    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
-</nav>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="justify-content-center">
+    <a asp-action="Index" asp-route-page="1" class="btn btn-sm btn-info @prevDisabled"> |< </a>
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex -1)" class="btn btn-sm btn-info @prevDisabled"> < </a>
+    @if (Model.TotalPages > 1)
+    {
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var classPag = "btn-info";
+            @if (@Model.PageIndex == @i)
+            {
+                classPag = "btn-primary";
+            }
+
+            <a asp-action="Index" asp-route-page="@i" class="btn btn-sm @classPag"> @i </a>
+        }
+    }
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex +1)" class="btn btn-sm btn-info @nextDisabled"> > </a>
+    <a asp-action="Index" asp-route-page="@(Model.TotalPages)" class="btn btn-sm btn-info @nextDisabled"> >| </a>
+</div>
