@@ -43,17 +43,11 @@ namespace Holtz_PDV.Controllers
         {
             ViewData["GetCustomers"] = clientName;
             var query = from x in await _clienteService.FindAllAsync() select x;
-            IEnumerable<Cliente> queryResult = new List<Cliente>();
             if (!String.IsNullOrEmpty(clientName))
             {
-                query = query.Where(x => x.CliRaz.Contains(clientName.ToUpper())); // || x.CliNomFan.Contains(clientName.ToUpper()));
-                queryResult.Concat(query.Where(x => x.CliNomFan.Contains(clientName.ToUpper())));
+                query = query.Where(x => x.CliRaz.Contains(clientName.ToUpper()) || x.CliNomFan.Contains(clientName.ToUpper()));
             }
-            else
-            {
-                queryResult = query.ToList();
-            }
-            return View(PaginatedListH<Cliente>.Create(queryResult.ToList(), page, 5));
+            return View(PaginatedListH<Cliente>.Create(query.ToList(), page, 5));
         }
         public async Task<IActionResult> Create()
         {
