@@ -10,6 +10,14 @@
     <a asp-action="Create" class="btn btn-info">Novo</a>
 </p>
 
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Nome/Descrição da Marca" value="@ViewData["GetBrands"]" name="brandName" style="width:500px;" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index">Todas Marcas</a>
+    </p>
+</form>
+
 <table class="table table-striped table-hover">
     <thead>
         <tr class="text-uppercase bg-info">

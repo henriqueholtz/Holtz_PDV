@@ -31,6 +31,19 @@ namespace Holtz_PDV.Controllers
             //return View(_mapper.Map<List<MarcaFromViewModel>>(marcas));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(int page = 1, string brandName = "")
+        {
+            ViewData["brandName"] = brandName;
+            var query = from x in _marcaService.FindAllQueryable() select x;
+            if (!String.IsNullOrEmpty(brandName))
+            {
+                query = query.Where(x => x.MarNom.Contains(brandName.ToUpper()));
+            }
+            var queryOrder = query.OrderBy(order => order.MarCod);
+            return View(await PagingList.CreateAsync(queryOrder, 5, page));
+        }
+
         public IActionResult Create()
         {
             return View(_mapper.Map<MarcaFromViewModel>(new MarcaFromViewModel()));
