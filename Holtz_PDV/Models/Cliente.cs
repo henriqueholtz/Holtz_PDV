@@ -17,8 +17,8 @@ namespace Holtz_PDV.Models
         public Tipo_Pessoa CliTip { get; set; } //Tipo
 
         
-        public virtual List<ClienteEmails> ClienteEmails { get; set; }
-        public virtual List<Pedido> Pedidos { get; set; }
+        public virtual ICollection<ClienteEmails> ClienteEmails { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
 
     }
 }

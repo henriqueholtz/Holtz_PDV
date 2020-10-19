@@ -23,7 +23,10 @@ namespace Holtz_PDV.Models.ViewModels
 
         [Display(Name = "Código Cliente")]
         [MaxLength(8)]
-        public int? PedCliCod { get; set; }
+        public int? ClientePedCliCod { get; set; }
+
+        [Display(Name = "Cliente")]
+        public virtual ClienteFromViewModel ClientePed { get; set; }
 
 
         [Display(Name = "Data Emissão Pedido")]

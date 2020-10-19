@@ -14,16 +14,19 @@
     <thead>
         <tr class="text-uppercase bg-info">
             <th>
-                Código
+                Pedido
             </th>
             <th>
-                Cód. Cliente
+                Cód.
             </th>
             <th>
-                Dta Emissão
+                Cliente
             </th>
             <th>
-                Dta Faturamento
+                Dta. Emissão
+            </th>
+            <th>
+                Dta. Faturamento
             </th>
             <th>
                 Status
@@ -34,28 +37,31 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr class="text-uppercase">
-                <td>
-                    @Html.DisplayFor(modelItem => item.PedCod)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientePedCliCod)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PedDtaEms)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PedDtaFat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PedSts)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.PedCod" class="btn btn-primary btn-sm">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.PedCod" class="btn btn-light btn-sm">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.PedCod" class="btn btn-danger btn-sm">Remover</a>
-                </td>
-            </tr>
+        <tr class="text-uppercase">
+            <td>
+                @Html.DisplayFor(modelItem => item.PedCod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientePedCliCod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientePed.CliRaz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedDtaEms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedDtaFat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedSts)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PedCod" class="btn btn-primary btn-sm">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.PedCod" class="btn btn-light btn-sm">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.PedCod" class="btn btn-danger btn-sm">Remover</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

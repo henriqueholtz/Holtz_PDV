@@ -23,16 +23,16 @@ namespace Holtz_PDV.Services
 
         public IOrderedQueryable<Pedido> FindAllQueryable()
         {
-            return _context.Pedidos.AsNoTracking().OrderBy(order => order.PedCod);
+            return _context.Pedidos.Include(inc => inc.ClientePed).AsNoTracking().OrderBy(order => order.PedCod);
         }
         public async Task<Pedido> FindByCodAsync(int cod)
         {
-            return await _context.Pedidos.FirstOrDefaultAsync(x => x.PedCod == cod);
+            return await _context.Pedidos.Include(inc => inc.ClientePed).FirstOrDefaultAsync(x => x.PedCod == cod);
         }
 
         public async Task<ICollection<Pedido>> FindAllAsync()
         {
-            return await _context.Pedidos.OrderBy(order => order.PedCod).ToListAsync();
+            return await _context.Pedidos.Include(inc => inc.ClientePed).OrderBy(order => order.PedCod).ToListAsync();
         }
     }
 }
