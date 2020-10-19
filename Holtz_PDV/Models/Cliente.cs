@@ -18,7 +18,7 @@ namespace Holtz_PDV.Models
 
         
         public virtual List<ClienteEmails> ClienteEmails { get; set; }
-
+        public virtual List<Pedido> Pedidos { get; set; }
 
     }
 }

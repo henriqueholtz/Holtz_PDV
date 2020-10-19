@@ -137,18 +137,18 @@ namespace Holtz_PDV.Data
 
             if (!_context.Pedidos.Any())
             {
-                Pedido p1 = new Pedido  { PedCliCod = 1,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p2 = new Pedido  { PedCliCod = 2,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
-                Pedido p3 = new Pedido  { PedCliCod = 3,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p4 = new Pedido  { PedCliCod = 4,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p5 = new Pedido  { PedCliCod = 5,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p6 = new Pedido  { PedCliCod = 6,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
-                Pedido p7 = new Pedido  { PedCliCod = 7,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p8 = new Pedido  { PedCliCod = 8,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p9 = new Pedido  { PedCliCod = 9,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
-                Pedido p10 = new Pedido { PedCliCod = 10, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p11 = new Pedido { PedCliCod = 11, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
-                Pedido p12 = new Pedido { PedCliCod = 12, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p1 = new Pedido  { ClientePedCliCod = 1,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p2 = new Pedido  { ClientePedCliCod = 2,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p3 = new Pedido  { ClientePedCliCod = 3,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p4 = new Pedido  { ClientePedCliCod = 4,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p5 = new Pedido  { ClientePedCliCod = 5,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p6 = new Pedido  { ClientePedCliCod = 6,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p7 = new Pedido  { ClientePedCliCod = 7,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p8 = new Pedido  { ClientePedCliCod = 8,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p9 = new Pedido  { ClientePedCliCod = 9,  PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
+                Pedido p10 = new Pedido { ClientePedCliCod = 10, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p11 = new Pedido { ClientePedCliCod = 11, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.ABERTO };
+                Pedido p12 = new Pedido { ClientePedCliCod = 12, PedDtaEms = DateTime.Now, PedDtaFat = DateTime.Now, PedSts = Status_Pedido.FECHADO };
                 _context.Pedidos.AddRange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
             }
 

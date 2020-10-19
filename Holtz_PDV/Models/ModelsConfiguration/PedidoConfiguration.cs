@@ -20,7 +20,8 @@ namespace Holtz_PDV.Models.ModelsConfiguration
                 .HasColumnType(Tipo.CODIGO)
                 .HasDefaultValueSql("NEXT VALUE FOR Seq_PedCod"); //Use Sequence-SQL
 
-            builder.Property(x => x.PedCliCod)
+            builder.Property(x => x.ClientePedCliCod)
+                .HasColumnName("PedCliCod")
                 .HasColumnType(Tipo.CODIGO)
                 .ValueGeneratedNever(); //Remove Identity
 

@@ -6,7 +6,8 @@ namespace Holtz_PDV.Models
     public class Pedido
     {
         public int PedCod { get; set; }
-        public int? PedCliCod { get; set; }
+        public int? ClientePedCliCod { get; set; }
+        public virtual Cliente ClientePed { get; set; }
 
         public DateTime? PedDtaEms { get; set; }
         public DateTime? PedDtaFat { get; set; }
