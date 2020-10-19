@@ -16,7 +16,8 @@ namespace Holtz_PDV.Models
         public virtual Cidade Cidade { get; set; }
         public Tipo_Pessoa CliTip { get; set; } //Tipo
 
-        //public virtual List<ClienteEmails> ClienteEmails { get; set; }
+        
+        public virtual List<ClienteEmails> ClienteEmails { get; set; }
 
 
     }
