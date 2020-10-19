@@ -39,6 +39,7 @@ namespace Holtz_PDV.Services
         { //INSERT
             try
             {
+                ToUpper(obj);
                 _context.Produtos.Add(obj);
                 await _context.SaveChangesAsync();
             }
@@ -57,6 +58,7 @@ namespace Holtz_PDV.Services
             }
             try
             {
+                ToUpper(obj);
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
             }
@@ -78,6 +80,13 @@ namespace Holtz_PDV.Services
             {
                 throw new IntegrityException("Não é possível excluir este Cliente.");
             }
+        }
+        
+        private void ToUpper(Produto produto)
+        {
+            produto.ProNom = (produto.ProNom == null) ? "" : produto.ProNom.ToUpper();
+            produto.ProObs = (produto.ProObs == null) ? "" : produto.ProObs.ToUpper();
+            //produto.Pro = (produto.Pro == null) ? "" : produto.Pro.ToUpper();
         }
     }
 }
