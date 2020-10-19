@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using Holtz_PDV.Models;
@@ -7,6 +8,7 @@ using Holtz_PDV.Models.ViewModels;
 using System.Diagnostics;
 using AutoMapper;
 using Holtz_PDV.Services.Exceptions;
+using System;
 
 namespace Holtz_PDV.Controllers
 {
@@ -28,6 +30,18 @@ namespace Holtz_PDV.Controllers
 
             //var produtos = await _produtoService.FindAllAsync();
             //return View(_mapper.Map<List<ProdutoFromViewModel>>(produtos));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int page = 1, string productName = "")
+        {
+            ViewData["GetProducts"] = productName;
+            var query = from x in await _produtoService.FindAllAsync() select x;
+            if (!String.IsNullOrEmpty(productName))
+            {
+                query = query.Where(x => x.ProNom.Contains(productName.ToUpper()));
+            }
+            return View(PaginatedListH<Produto>.Create(query.ToList(), page, 5));
         }
 
         public async Task<IActionResult> Create()
