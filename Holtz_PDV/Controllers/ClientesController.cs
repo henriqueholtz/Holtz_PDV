@@ -120,7 +120,8 @@ namespace Holtz_PDV.Controllers
                 return View(_mapper.Map<ClienteFromViewModel>(new ClienteFromViewModel()));
             }
             await _clienteService.InsertAsync(cliente);
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { page = page });
         }
 
 

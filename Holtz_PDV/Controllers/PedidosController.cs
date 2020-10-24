@@ -7,6 +7,7 @@ using Holtz_PDV.Models.ViewModels;
 using Holtz_PDV.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using Holtz_PDV.Services.Exceptions;
 
 namespace Holtz_PDV.Controllers
 {
@@ -30,12 +31,12 @@ namespace Holtz_PDV.Controllers
             
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int page)
         {
             return View();
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page)
         {
             if (id == null)
             {
@@ -48,7 +49,7 @@ namespace Holtz_PDV.Controllers
             }
             return View(_mapper.Map<PedidoFromViewModel>(ped));
         }
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page)
         {
             if (id == null)
             {
@@ -61,7 +62,7 @@ namespace Holtz_PDV.Controllers
             }
             return View(_mapper.Map<PedidoFromViewModel>(ped));
         }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int page)
         {
             if (id == null)
             {
@@ -76,7 +77,7 @@ namespace Holtz_PDV.Controllers
         }
 
 
-        public IActionResult Error(string message)
+        public IActionResult Error(string message, int page)
         {
             ErrorViewModel viewModel = new ErrorViewModel()
             {
@@ -88,5 +89,57 @@ namespace Holtz_PDV.Controllers
 
 
         //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Edit(Pedido pedido, int page)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(_mapper.Map<PedidoFromViewModel>(new PedidoFromViewModel()));
+            }
+            try
+            {
+                await _pedidoService.UpdateAsync(pedido);
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
+            }
+            catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            catch (DbConcurrencyException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Delete(int id, int page)
+        {
+            try
+            {
+                await _pedidoService.RemoveAsync(id);
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
+            }
+            catch (IntegrityException e) // exceção a nível de Serviço
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
+        public async Task<IActionResult> Create(Pedido pedido)
+        {//INSERT
+            if (!ModelState.IsValid)
+            {
+                return View(_mapper.Map<PedidoFromViewModel>(new PedidoFromViewModel()));
+            }
+            await _pedidoService.InsertAsync(pedido);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

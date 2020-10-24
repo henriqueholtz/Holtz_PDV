@@ -1,5 +1,6 @@
 ﻿@model Holtz_PDV.Models.ViewModels.PedidoFromViewModel
 @{
+    var pagina = Context.Request.Query["page"];
     ViewData["Title"] = "Editar Pedido";
 }
 <h3>@ViewData["Title"]</h3>
@@ -58,8 +59,8 @@
 
 
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-success" />
-                <a asp-action="Index" class="btn btn-light">Voltar</a>
+                <input type="submit" asp-route-page="@pagina" value="Salvar" class="btn btn-success" />
+                <a asp-action="Index" asp-route-page="@pagina" class="btn btn-light">Voltar</a>
             </div>
         </form>
     </div>
