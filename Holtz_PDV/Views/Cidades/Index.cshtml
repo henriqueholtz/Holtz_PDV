@@ -55,9 +55,9 @@
                     @Html.DisplayFor(modelItem => item.Estado.EstUf)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" class="btn btn-primary btn-sm">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" class="btn btn-light btn-sm">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" class="btn btn-danger btn-sm">Remover</a>
+                    <a asp-action="Edit" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" asp-route-uf="@Uf" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" asp-route-uf="@Uf" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" asp-route-uf="@Uf" class="btn btn-danger btn-sm">Remover</a>
                 </td>
             </tr>
         }
@@ -70,8 +70,8 @@
 }
 
 <div class="justify-content-center">
-    <a asp-action="Index" asp-route-page="1" class="btn btn-sm btn-info @prevDisabled"> |< </a>
-    <a asp-action="Index" asp-route-page="@(Model.PageIndex -1)" class="btn btn-sm btn-info @prevDisabled"> < </a>
+    <a asp-action="Index" asp-route-page="1" asp-route-uf="@Uf" class="btn btn-sm btn-info @prevDisabled"> |< </a>
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex -1)" asp-route-uf="@Uf" class="btn btn-sm btn-info @prevDisabled"> < </a>
     @if (Model.TotalPages > 1)
     {
         @for (int i = 1; i <= Model.TotalPages; i++)
@@ -82,9 +82,9 @@
                 classPag = "btn-primary";
             }
 
-            <a asp-action="Index" asp-route-page="@i" class="btn btn-sm @classPag"> @i </a>
+            <a asp-action="Index" asp-route-page="@i" asp-route-uf="@Uf" class="btn btn-sm @classPag"> @i </a>
         }
     }
-    <a asp-action="Index" asp-route-page="@(Model.PageIndex +1)" class="btn btn-sm btn-info @nextDisabled"> > </a>
-    <a asp-action="Index" asp-route-page="@(Model.TotalPages)" class="btn btn-sm btn-info @nextDisabled"> >| </a>
+    <a asp-action="Index" asp-route-page="@(Model.PageIndex +1)" asp-route-uf="@Uf" class="btn btn-sm btn-info @nextDisabled"> > </a>
+    <a asp-action="Index" asp-route-page="@(Model.TotalPages)" asp-route-uf="@Uf" class="btn btn-sm btn-info @nextDisabled"> >| </a>
 </div>

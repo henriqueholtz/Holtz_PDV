@@ -1,6 +1,7 @@
 ﻿@model Holtz_PDV.Models.ViewModels.CidadeFromViewModel
 @{
     var pagina = Context.Request.Query["page"];
+    var uf = Context.Request.Query["uf"];
     ViewData["Title"] = "Visualizar Cidade";
 }
 <h3>@ViewData["Title"]</h3>
@@ -46,6 +47,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CidCod" asp-route-page="@pagina" class="btn btn-info">Editar</a> |
-    <a asp-action="Index" asp-route-page="@pagina" class="btn btn-light">Voltar</a>
+    <a asp-action="Edit" asp-route-id="@Model.CidCod" asp-route-page="@pagina" asp-route-uf="@uf" class="btn btn-info">Editar</a> |
+    <a asp-action="Index" asp-route-page="@pagina" asp-route-uf="@uf" class="btn btn-light">Voltar</a>
 </div>
