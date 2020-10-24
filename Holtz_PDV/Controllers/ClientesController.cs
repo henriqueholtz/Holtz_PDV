@@ -49,7 +49,7 @@ namespace Holtz_PDV.Controllers
             }
             return View(PaginatedListH<Cliente>.Create(query.ToList(), page, 5));
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int page)
         {
             List<Cidade> cidades = await _cidadeService.FindAllAsync();
             return View(_mapper.Map<ClienteFromViewModel>(new ClienteFromViewModel(cidades)));
@@ -113,7 +113,7 @@ namespace Holtz_PDV.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public  async Task<IActionResult> Create(Cliente cliente)
+        public  async Task<IActionResult> Create(Cliente cliente, int page)
         {
             if (!ModelState.IsValid)
             {
