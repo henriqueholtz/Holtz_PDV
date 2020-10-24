@@ -55,9 +55,9 @@
                     @Html.DisplayFor(modelItem => item.Estado.EstUf)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CidCod" class="btn btn-primary btn-sm">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.CidCod" class="btn btn-light btn-sm">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.CidCod" class="btn btn-danger btn-sm">Remover</a>
+                    <a asp-action="Edit" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" class="btn btn-light btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.CidCod" asp-route-page="@Model.PageIndex" class="btn btn-danger btn-sm">Remover</a>
                 </td>
             </tr>
         }

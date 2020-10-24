@@ -56,13 +56,13 @@ namespace Holtz_PDV.Controllers
             return View(PaginatedListH<Cidade>.Create(queryResult.ToList(), page, 5));
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int page)
         {
             List<Estado> estados = await _estadoService.FindAllAsync();
             return View(_mapper.Map<CidadeFromViewModel>(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel(estados))));
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<CidadeFromViewModel>(_mapper.Map<CidadeFromViewModel>(viewModel)));
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page)
         {
             if (id == null)
             {
@@ -92,7 +92,7 @@ namespace Holtz_PDV.Controllers
             return View(_mapper.Map<CidadeFromViewModel>(obj));
         }
 
-        public async Task<IActionResult> Delete (int? id)
+        public async Task<IActionResult> Delete (int? id, int page)
         {
             if (id == null)
             {
@@ -120,7 +120,7 @@ namespace Holtz_PDV.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task<IActionResult> Create(Cidade cidade)
+        public async Task<IActionResult> Create(Cidade cidade, int page)
         {
             if (!ModelState.IsValid)
             {
@@ -128,12 +128,13 @@ namespace Holtz_PDV.Controllers
                 return View(_mapper.Map<CidadeFromViewModel>(_mapper.Map<CidadeFromViewModel>(new CidadeFromViewModel(estados))));
             }
             await _cidadeService.InsertAsync(cidade);
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { page = page });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task<IActionResult> Edit(Cidade cidade)
+        public async Task<IActionResult> Edit(Cidade cidade, int page)
         {
             if (!ModelState.IsValid)
             {
@@ -142,7 +143,8 @@ namespace Holtz_PDV.Controllers
             try
             {
                 await _cidadeService.UpdateAsync(cidade);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
             }
             catch (NotFoundException e) //ou trocar as duas exceptions pelo applicationException (pai de todas)
             {
@@ -156,12 +158,13 @@ namespace Holtz_PDV.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Evitar/Previnir ataques CSRF
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, int page)
         {//DELETE
             try
             {
                 await _cidadeService.RemoveAsync(id);
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { page = page });
             }
             catch (IntegrityException e) // exceção a nível de Serviço
             {

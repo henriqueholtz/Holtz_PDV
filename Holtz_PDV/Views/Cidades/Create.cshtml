@@ -1,5 +1,6 @@
 ﻿@model Holtz_PDV.Models.ViewModels.CidadeFromViewModel
 @{
+    var pagina = Context.Request.Query["page"];
     ViewData["Title"] = "Cadastrar Cidade";
 }
 <h3>@ViewData["Title"]</h3>
@@ -25,8 +26,8 @@
                 <span asp-validation-for="Estado.EstCod" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
-                <a asp-action="Index" class="btn btn-light">Voltar</a>
+                <input type="submit" asp-route-page="@pagina" value="Create" class="btn btn-success" />
+                <a asp-action="Index" asp-route-page="@pagina" class="btn btn-light">Voltar</a>
             </div>
         </form>
     </div>

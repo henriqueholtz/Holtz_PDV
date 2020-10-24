@@ -1,5 +1,6 @@
 ﻿@model Holtz_PDV.Models.ViewModels.CidadeFromViewModel
 @{
+    var pagina = Context.Request.Query["page"];
     ViewData["Title"] = "Deletar Cidade";
 }
 
@@ -49,7 +50,7 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="CidCod" /> <!-- Campo oculto para enviar o comando delete -->
-        <input type="submit" value="Delete" class="btn btn-danger" title="EXCLUIR"/> 
-        <a asp-action="Index" class="btn btn-light">Voltar</a>
+        <input type="submit" asp-route-page="@pagina" value="Delete" class="btn btn-danger" title="EXCLUIR"/> 
+        <a asp-action="Index" asp-route-page="@pagina" class="btn btn-light">Voltar</a>
     </form>
 </div>
