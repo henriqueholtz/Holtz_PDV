@@ -33,7 +33,7 @@ namespace Holtz_PDV.Controllers
             //var model = await PagingList.CreateAsync(_clienteService.FindAllQueryable(), 5, page);
             //return View(model);
             var list = await _clienteService.FindAllAsync();
-            return View(PaginatedListH<Cliente>.Create(list, page, 5));
+            return View(PaginatedListH<Cliente>.Create(list, page, 10));
 
         }
 
@@ -47,7 +47,7 @@ namespace Holtz_PDV.Controllers
             {
                 query = query.Where(x => x.CliRaz.Contains(clientName.ToUpper()) || x.CliNomFan.Contains(clientName.ToUpper()));
             }
-            return View(PaginatedListH<Cliente>.Create(query.ToList(), page, 5));
+            return View(PaginatedListH<Cliente>.Create(query.ToList(), page, 10));
         }
         public async Task<IActionResult> Create(int page)
         {

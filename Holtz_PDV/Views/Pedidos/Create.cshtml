@@ -38,6 +38,7 @@
             <div class="form-group">
                 <input type="submit" asp-route-page="@pagina" value="Create" class="btn btn-success" />
                 <a asp-action="Index"asp-route-page="@pagina" class="btn btn-light">Voltar</a>
+                @Html.ActionLink("Voltar", "Index")
             </div>
         </form>
     </div>

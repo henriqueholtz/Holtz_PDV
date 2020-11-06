@@ -4,6 +4,19 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /*MANUAL HENRIQUE*/
 
+.btn-WhatsApp {
+    background-color: lime;
+    border-radius: 3px;
+    color: #FFF;
+    padding: 3px 6px;
+}
+
+.btn-GitHub {
+    background-color: black;
+    color: #FFF;
+    padding: 3px 4px;
+}
+
 /*FINISH*/
 
 a.navbar-brand {

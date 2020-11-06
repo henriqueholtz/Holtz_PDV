@@ -9,7 +9,6 @@ namespace Holtz_PDV.Models.ViewModels
     {
         public PedidoFromViewModel()
         {
-
         }
 
         [Display(Name = "Código")]
