@@ -20,9 +20,7 @@ namespace Holtz_PDV
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>()
-                    .UseIISIntegration()
-                    .Build();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }
